@@ -25,7 +25,7 @@ body {
 
 h1 {
     font-size: 80px;
-    color: #EAAD70;
+    color: #E0DFD0;
     text-align: center;
 }
 
@@ -83,12 +83,12 @@ a:hover {
 
 h2 {
     font-size: 80px;
-    color: #EAAD70;
+    color: #1E2640;
     text-align: center;
 }
 
 .first-navbar {
-    background-color: #DA6120;
+    background-color: #922C40;
 }
 
 
@@ -128,12 +128,12 @@ h2 {
 
 /* Pottery Tips section */
 .source {
-    color: #AC5850;
+    color: #922C40;
     font-size: 20px
 }
 
 .source:hover{
-    color: #DA6120;
+    color: #DC9750;
 }
 
 p{
