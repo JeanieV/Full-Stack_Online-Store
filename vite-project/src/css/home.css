@@ -1,0 +1,157 @@
+body {
+    background-color: #E0DFD0;
+}
+
+/* Jumbotron section */
+.jumbo {
+    position: relative;
+}
+
+.homeView {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.heading-on-top {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 30px;
+}
+
+h1 {
+    font-size: 80px;
+    color: #EAAD70;
+    text-align: center;
+}
+
+/* Scroll section */
+.scroll-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: #E0DFD0;
+}
+
+a:hover {
+    color: #E0DFD0;
+}
+
+#section1 a span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 27px;
+    height: 27px;
+    margin-left: -12px;
+    border-left: 1px solid #E0DFD0;
+    border-bottom: 1px solid #E0DFD0;
+    transform: rotate(-45deg);
+    animation: scroll 1.5s infinite;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+@keyframes scroll {
+    0% {
+        transform: rotate(-45deg) translate(0, 0);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(-45deg) translate(-20px, 20px);
+        opacity: 0;
+    }
+}
+
+/* Navbar */
+
+h2 {
+    font-size: 80px;
+    color: #EAAD70;
+    text-align: center;
+}
+
+.first-navbar {
+    background-color: #DA6120;
+}
+
+
+.titles {
+    color: #E0DFD0;
+    font-size: 32px;
+}
+
+.titles1 {
+    color: #000000;
+    font-size: 32px;
+}
+
+.titles:hover {
+    color: #000000;
+}
+
+.profileImage {
+    width: 50px;
+    background-color: transparent;
+}
+
+.viewProfile {
+    background-color: transparent;
+    border: none;
+}
+
+.shoppingCartimg {
+    width: 60px;
+    background-color: transparent;
+}
+
+.viewShoppingCart {
+    background-color: transparent;
+    border: none;
+}
+
+/* Pottery Tips section */
+.source {
+    color: #AC5850;
+    font-size: 20px
+}
+
+.source:hover{
+    color: #DA6120;
+}
+
+p{
+    font-size: 20px;
+}
+
+.blockquote {
+    text-align: center;
+
+}
+
+.blockquote:hover {
+    animation: 2s blocktransform;
+    animation-play-state: paused;
+}
+
+@keyframes blocktransform {
+    0% {
+        transform: scale(1.2);
+    }
+}

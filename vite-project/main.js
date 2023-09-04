@@ -1,4 +1,4 @@
-import './src/home.css';
+import './src/css/home.css';
 import { supabase } from "./supabase";
 
 // Connecting to the Supabase database
