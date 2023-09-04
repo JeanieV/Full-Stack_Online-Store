@@ -39,8 +39,11 @@
 
   <main>
 
-    <!-- Sticky Navbar section -->
-    <nav class=" navbar first-navbar navbar-expand-sm sticky-top py-3 mb-5">
+    <!-- --------------------- -->
+    <!-- Sticky Navbar Section -->
+    <!-- --------------------- -->
+
+    <nav class=" navbar first-navbar navbar-expand-sm sticky-top p-3 mb-5">
       <div class="container-fluid">
 
         <!-- Home Page -->
@@ -53,14 +56,12 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/src/html/new.html"> New Additions </a></li>
-            <li><a class="dropdown-item" href="/src/html/succulents.html"> Succulents </a></li>
-            <li><a class="dropdown-item" href="/src/html/plantcare.html"> Plant Care </a></li>
-            <li><a class="dropdown-item" href="/src/html/ferns.html"> Ferns </a></li>
-            <li><a class="dropdown-item" href="/src/html/collection.html"> Entire Collection </a></li>
+            <li><a class="dropdown-item" href="/src/html/succulents.html"> Tools </a></li>
+            <li><a class="dropdown-item" href="/src/html/plantcare.html"> Ceramic Pots </a></li>
           </ul>
         </div>
 
-        <!-- Gardening Tips -->
+        <!-- Pottery Tips -->
         <div class="nav-item dropdown">
           <a class="navbar-brand dropdown-toggle titles" href="#" role="button" data-bs-toggle="dropdown">
             Pottery Tips
@@ -113,107 +114,87 @@
       </div>
     </div>
 
-
+    <!-- --------------------- -->
     <!-- Carousel Section -->
-    <h2 id="ourCollection"> Seize the clay! </h2>
+    <!-- --------------------- -->
 
-    <div id="ourProducts" class="carousel slide mt-3" data-bs-ride="carousel">
+    <div class="container my-5">
+      <h2 id="ourCollection"> </h2>
 
-      <!-- Indicator lines -->
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#ourProducts" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#ourProducts" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#ourProducts" data-bs-slide-to="2"></button>
-        <button type="button" data-bs-target="#ourProducts" data-bs-slide-to="3"></button>
-      </div>
+      <div id="carousel" class="carousel slide mb-5" data-bs-ride="carousel">
 
-      <!-- The collection photos with captions and button -->
-      <div class="carousel-inner">
-        <!-- First Carousel -->
-        <div class="carousel-item active">
+        <!-- Indicators on carousel -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="1"></button>
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="2"></button>
+        </div>
 
-          <picture>
-            <img src="/src/images/succulentcarousel.jpg" alt="Succulent Collection"
-              attribution="https://www.google.com/url?sa=i&url=https%3A%2F%2Fottershawcacti.com%2Fshop%2Fcategory%2Fecheveria%2F&psig=AOvVaw1QnBnNIVp_DSxmtQh2rqmF&ust=1681641469313000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLCq9OXYq_4CFQAAAAAdAAAAABAE"
+        <!-- Slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active d-flex justify-content-center align-items-center">
+
+            <picture>
+              <img src="./src/img/store.jpg" alt="Store" class="carousel-image"
+                attribution="https://queenslandhomes.com.au/wp-content/uploads/2023/02/KimWallaceCeramics_6629682_KWCeramicsStudioShopfro.jpg">
+            </picture>
+
+            <div class="carousel-caption">
+              <div class="d-flex justify-content-center align-items-center">
+                <div class="caption-background p-3">
+                  <h3> Seize the clay and come visit us! </h3>
+                  <p class="infoParagraph"> Various Pottery and Ceramic options to choose from </p>
+                </div>
+              </div>
+              <button type="submit" class="viewMoreButton p-3 my-3"> Store Location </button>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+
+            <img src="/src/images/ferncarousel.jpg" alt="Fern Collection"
+              attribution="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gardendesign.com%2Fplants%2Fferns.html&psig=AOvVaw0oa_oip5yw1TuPs-MGmWd7&ust=1681641625214000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPDy46_Zq_4CFQAAAAAdAAAAABAE"
               class="d-block">
-          </picture>
 
-          <div class="carousel-caption">
-            <h3> View our Succulent Collection </h3>
-            <p> Various Succulents to choose from </p>
-            <a href="/src/html/succulents.html" class="btn carouselcard"> View Collection </a>
-          </div>
-        </div>
-
-        <!-- Second Carousel -->
-        <div class="carousel-item">
-
-          <img src="/src/images/plantcare.jpg" alt="Plant Care Collection"
-            attribution="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.proflowers.com%2Fblog%2Fplant-care&psig=AOvVaw0OcnLSGzp3iY5o6t2olb8g&ust=1681641981834000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKDx_tnaq_4CFQAAAAAdAAAAABAE"
-            class="d-block">
-
-          <div class="carousel-caption">
-            <h3> View our Plant Care Collection </h3>
-            <p> Protect your garden with these wonderful plant care products </p>
-            <a href="/src/html/plantcare.html" class="btn carouselcard"> View Collection </a>
-          </div>
-        </div>
-
-        <!-- Third Carousel -->
-        <div class="carousel-item">
-
-          <img src="/src/images/ferncarousel.jpg" alt="Fern Collection"
-            attribution="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gardendesign.com%2Fplants%2Fferns.html&psig=AOvVaw0oa_oip5yw1TuPs-MGmWd7&ust=1681641625214000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPDy46_Zq_4CFQAAAAAdAAAAABAE"
-            class="d-block">
-
-          <div class="carousel-caption">
-            <h3> View our Fern Collection </h3>
-            <p> Various Ferns to choose from </p>
-            <a href="/src/html/ferns.html" class="btn carouselcard"> View Collection </a>
-          </div>
-        </div>
-
-        <!-- Fourth Carousel -->
-        <div class="carousel-item newBackground">
-          <div class="row">
-            <div class="columnCarousel pt-5">
-              <picture>
-                <img class="succulent1" src="/src/images/succulent1.webp" alt="Succulent Collection"
-                  attribution="https://www.google.com/url?q=https://www.earthandjungle.com/product/tSFF111y/succulent-one-random-potted-plant-bulk-r%3Futm_source%3Dgoogle%26utm_medium%3Dorganic%26utm_content%3Dcatalog&sa=U&ved=0ahUKEwiHnrWcqan-AhXwQkEAHToyDzcQwSsISw&usg=AOvVaw1AFFOR2JhBJkUVVLeWubgU">
-              </picture>
-            </div>
-            <div class="columnCarousel pt-5">
-              <img class="succulent2" src="/src/images/succulent2.webp" alt="Mini Succulent Garden"
-                attribution="https://www.google.com/url?q=https://spoilbasket.com/product/mini-succulent-garden-medium/%3Futm_source%3DGoogleFreeListings%26utm_campaign%3DKliken%2B-%2BGoogle%2BShopping%2B-%2BZA%26utm_campaign_id%3D1007947%26utm_ad_group_id%3D970121%26utm_prod_id%3D8939%26utm_mobile%3D0&sa=U&ved=0ahUKEwiHnrWcqan-AhXwQkEAHToyDzcQwSsIpgE&usg=AOvVaw07cRgzCOJt_h_3yzQB2hbr">
-            </div>
-            <div class="columnCarousel pt-5">
-              <img class="succulent3" src="/src/images/succulent3.webp" alt="Succulent in Ceramic Pot"
-                attribution="https://www.google.com/url?q=https://www.builders.co.za/Outdoor-Garden-and-Patio/Garden-Decor/Plants/Indoor-Plants-Foliage/Classic-Succulents-in-Ceramic-(90-x-90-x-90mm)/p/000000000000734694&sa=U&ved=0ahUKEwiHnrWcqan-AhXwQkEAHToyDzcQrzwI5gE&usg=AOvVaw2tlaKVDr_ZLcRxpUKshz73">
+            <div class="carousel-caption">
+              <h3> View our Fern Collection </h3>
+              <p> Various Ferns to choose from </p>
+              <a href="/src/html/ferns.html" class="btn carouselcard"> View Collection </a>
             </div>
           </div>
 
-          <!-- Carousel Captions -->
-          <div class="carousel-caption">
-            <h3> View our New Additions </h3>
-            <p> New Additions are added regularly, watch this space! </p>
-            <a href="/src/html/new.html" class="btn carouselcard"> View Collection </a>
+
+          <div class="carousel-item">
+
+            <img src="/src/images/ferncarousel.jpg" alt="Fern Collection"
+              attribution="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gardendesign.com%2Fplants%2Fferns.html&psig=AOvVaw0oa_oip5yw1TuPs-MGmWd7&ust=1681641625214000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPDy46_Zq_4CFQAAAAAdAAAAABAE"
+              class="d-block">
+
+            <div class="carousel-caption">
+              <h3> View our Fern Collection </h3>
+              <p> Various Ferns to choose from </p>
+              <a href="/src/html/ferns.html" class="btn carouselcard"> View Collection </a>
+            </div>
           </div>
         </div>
+
+
+        <!-- Left and right controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
       </div>
-
-      <!-- Left and right buttons -->
-      <button class="carousel-control-prev" type="button" data-bs-target="#ourProducts" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#ourProducts" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </button>
     </div>
 
 
+    <!-- --------------------- -->
     <!-- Pottery Tips Section -->
+    <!-- --------------------- -->
 
-    <div class="container mt-5 mb-5">
+    <div class="container my-5">
       <h2 class="my-5" id="tip1"> Pottery Tips </h2>
 
       <div class="totalBlockquote p-2">
@@ -224,10 +205,12 @@
             If you begin with hand building your pottery, there are a few techniques that would be helpful to know as
             you begin.
 
-            The first is “pinching,” where you roll the clay into a ball, make an indent in the middle with your thumb,
+            The first is “pinching,” where you roll the clay into a ball, make an indent in the middle with your
+            thumb,
             then pinch the sides of the ball with your thumb in the middle to form a pot.
 
-            Another pottery for beginners technique is “coiling.” For this method, you begin with a slab of clay to form
+            Another pottery for beginners technique is “coiling.” For this method, you begin with a slab of clay to
+            form
             the base of your vessel. Then, you roll another piece of clay into a long, skinny cylinder which you then
             coil on top of the base to create your vessel.
 
@@ -249,11 +232,13 @@
           <h3 id="tip2" class="mt-5"> Throwing on the Potter’s Wheel </h3>
           <p>
             When you picture making pottery, you probably imagine making it on a spinning potter’s wheel. This way of
-            making pottery takes practice and the purchase of (or access to) a potter’s wheel. If you’re just beginning
+            making pottery takes practice and the purchase of (or access to) a potter’s wheel. If you’re just
+            beginning
             your pottery for beginners journey, you may want to enroll in a few pottery classes to try your hand at
             using a potter’s wheel before investing in your own wheel at home.
 
-            Making pottery on a wheel is called “throwing.” A wet ball of clay is held in the center of the wheel while
+            Making pottery on a wheel is called “throwing.” A wet ball of clay is held in the center of the wheel
+            while
             it spins. After making an indentation in the top of the clay, you use your hands and fingers to move the
             clay upward as it spins and shape the sides of the vessel. </p>
 
