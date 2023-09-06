@@ -1,0 +1,100 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #A47551;
+}
+
+h1 {
+    font-size: 80px;
+    color: #E0DFD0;
+    text-align: center;
+}
+
+.jumbo {
+    position: relative;
+}
+
+.aboutUsImage {
+    width: 100%;
+    height: 30vw;
+    object-fit: cover;
+}
+
+.heading-on-top {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.homeView {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.ceoImage {
+    width: 100%;
+    height: auto;
+    border-radius: 300px;
+}
+
+/* Navbar section */
+h2 {
+    font-size: 80px;
+    color: #E0DFD0;
+    text-align: center;
+}
+
+p {
+    font-size: 27px;
+    text-align: center;
+}
+
+.first-navbar {
+    background-color: #E0DFD0;
+}
+
+
+.titles {
+    color: #922C40;
+    font-size: 32px;
+}
+
+.titles:hover {
+    color: #000000;
+}
+
+.shoppingCartimg {
+    width: 60px;
+    background-color: transparent;
+}
+
+.viewShoppingCart {
+    background-color: transparent;
+    border: none;
+}
+
+
+/* Back to top button */
+
+#backToTopButton {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    background-color: #922C40;
+    color: #E0DFD0;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+#backToTopButton:hover {
+    background-color: #DC9750;
+}

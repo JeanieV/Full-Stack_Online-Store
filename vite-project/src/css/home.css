@@ -1,5 +1,9 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background-color: #E0DFD0;
+    background-color: #A47551;
 }
 
 /* Jumbotron section */
@@ -9,7 +13,7 @@ body {
 
 .homeView {
     width: 100%;
-    height: auto;
+    height: 60vw;
     object-fit: cover;
 }
 
@@ -83,12 +87,12 @@ a:hover {
 
 h2 {
     font-size: 80px;
-    color: #1E2640;
+    color: #E0DFD0;
     text-align: center;
 }
 
 .first-navbar {
-    background-color: #922C40;
+    background-color: #1E2640;
 }
 
 
@@ -128,12 +132,12 @@ h2 {
 
 /* Pottery Tips section */
 .source {
-    color: #922C40;
-    font-size: 20px
+    color: #1E2640;
+    font-size: 22px
 }
 
 .source:hover {
-    color: #DC9750;
+    color: #E0DFD0;
 }
 
 p {
@@ -195,7 +199,7 @@ img {
     font-size: 23px;
     color: #E0DFD0;
     background: #922C40;
-    width: 12vw;
+    width: 13vw;
     border-radius: 30px;
     text-align: center;
     border: none;
@@ -207,19 +211,51 @@ img {
     color: #E0DFD0;
 }
 
-h3{
+h3 {
     text-align: center;
     color: #E0DFD0;
     font-size: 35px;
 }
 
-.infoParagraph{
+h4 {
+    text-align: center;
+    color: #E0DFD0;
+    font-size: 35px;
+}
+
+.infoParagraph {
     text-align: center;
     color: #E0DFD0;
     font-size: 25px;
 }
 
-.caption-background{
+.caption-background {
     background: rgba(0, 0, 0, 0.6);
     width: max-content;
 }
+
+.infoImages {
+    width: 50vw;
+    border-radius: 30px;
+}
+
+
+/* Back to top button */
+
+#backToTopButton {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    background-color: #922C40; 
+    color: #E0DFD0; 
+    cursor: pointer; 
+    border-radius: 10px;
+    font-size: 18px;
+  }
+  
+  #backToTopButton:hover {
+    background-color: #DC9750;
+  }

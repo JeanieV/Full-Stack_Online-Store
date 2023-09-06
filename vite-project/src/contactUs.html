@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="./css/contactUs.css">
+    <script src="./js/contactUs.js" type="module" defer></script>
+    <title>Contact Us</title>
+</head>
+
+<body>
+    <main>
+
+        <!-- Jumbotron section -->
+        <div class="jumbo">
+            <video class="homeView" autoplay loop muted>
+                <source src="./video/pexels-ivan-samkov-7121437 (1080p).mp4" type="video/mp4"
+                    attribution="Video by Kelly: https://www.pexels.com/video/close-up-view-of-person-s-hand-while-doing-pottery-5634000/">
+            </video>
+        </div>
+
+        <!-- Navbar -->
+
+        <nav class="navbar first-navbar navbar-expand-sm sticky-top p-3">
+            <div class="container-fluid">
+
+                <!-- Home Page -->
+                <a class="navbar-brand titles" href="../index.html"> Home </a>
+
+                <!-- Dropdown Navbar -->
+                <div class="nav-item dropdown">
+                    <a class="navbar-brand dropdown-toggle titles" href="#" role="button" data-bs-toggle="dropdown">
+                        Shop
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/src/html/new.html"> New Additions </a></li>
+                        <li><a class="dropdown-item" href="/src/html/succulents.html"> Tools </a></li>
+                        <li><a class="dropdown-item" href="/src/html/plantcare.html"> StoneWare Collection </a></li>
+                        <li><a class="dropdown-item" href="/src/html/plantcare.html"> Porcelain Collection </a></li>
+                        <li><a class="dropdown-item" href="/src/html/plantcare.html"> Ceramic Collection </a></li>
+                    </ul>
+                </div>
+
+                <!-- Pottery Tips -->
+                <div class="nav-item dropdown">
+                    <a class="navbar-brand dropdown-toggle titles" href="#" role="button" data-bs-toggle="dropdown">
+                        Pottery Tips
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../index.html#tip1"> Hand Building Pottery </a></li>
+                        <li><a class="dropdown-item" href="../index.html#tip2"> Throwing on the Potter’s Wheel </a></li>
+                        <li><a class="dropdown-item" href="../index.html#tip3"> Slip Casting </a></li>
+                    </ul>
+                </div>
+
+                <!-- About Page -->
+                <a class="navbar-brand titles" href="./aboutUs.html"> About Us </a>
+
+                <!-- Contact Page -->
+                <a class="navbar-brand titles" href="./contactUs.html"> Contact Us </a>
+
+                <!-- Checkout Page -->
+                <button class="viewShoppingCart" type="submit">
+                    <picture>
+                        <span class="cartProductCount"></span>
+                        <img class="shoppingCartimg" src="./img/shopping-cart.png" alt="Shopping Cart"
+                            title="Shopping Cart" attribution="https://www.flaticon.com/free-icon-font/shopping-cart">
+                    </picture>
+                </button>
+            </div>
+        </nav>
+
+        <div class="d-flex justify-content-center align-items-center my-5">
+
+            <div class="col-sm-6">
+                <h1 class="my-5">Contact us</h1>
+
+
+                <div class="d-flex justify-content-center align-items-center mt-5">
+                    <table>
+                        <tr>
+                            <td class="p-4 text-center"> <img class="details p-2" src="./img/phone-call.png" alt="Call"
+                                    title="Call" attribution="https://www.flaticon.com/free-icon-font/phone-call"> </td>
+                            <td class="p-3">
+                                <p> 014 789 9632 </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-center"> <img class="details p-2" src="./img/envelope.png" alt="Email"
+                                    title="Email" attribution="https://www.flaticon.com/free-icon-font/envelope"> </td>
+                            <td class="p-3">
+                                <p> <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=venterjeaniebs@gmail.com&su=Inquiry#inbox?compose=DmwnWrRvwTfpnChZgCsgXdgjkCNPfXGmPCBRXtvhqSbCXHFCRBrBbChRLTMgScpRQpSbpfsgSfqb"
+                                        title="Gmail" target="_blank" alt="Gmail"> venterjeaniebs@gmail.com</a></p>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="col-sm-6">
+                <h1 class="my-5"> Do you have a question? </h1>
+
+                <div class="d-flex justify-content-center align-items-center">
+                    <form>
+                        <table>
+                            <tr>
+                                <td class="p-4"><label for="name" class="labelStyle"> Name: </label></td>
+                                <td class="p-4"><input type="text" name="name" class="inputStyle">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-4"><label for="email" class="labelStyle"> Email: </label></td>
+                                <td class="p-4"><input type="text" name="email" class="inputStyle">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-4"><label for="questionType" class="labelStyle">Question Type:</label></td>
+                                <td class="p-4">
+                                    <select name="employee-rolequestionType" class="inputStyle">
+                                        <option selected></option>
+                                        <option value="Collaborations">Collaborations</option>
+                                        <option value="Packages">Packages</option>
+                                        <option value="Functions">Functions</option>
+                                        <option value="Call Me">Call Me</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-4"><label for="message" class="labelStyle"> Message: </label></td>
+                                <td class="p-4"><textarea class="inputStyleText"></textarea>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <button type="submit" id="questionForm" class="submitButton p-2"> Submit </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <h1 class="p-5 my-5"> Our location </h1>
+
+        <div class="d-flex justify-content-center align-items-center my-3">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d54840.31902356916!2d18.436526045045433!3d-34.04416555453548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc418a554e7fd7%3A0x82c5818e358751b4!2sBlue%20Route%20Mall!5e0!3m2!1sen!2sza!4v1694010609425!5m2!1sen!2sza"
+                class="map my-5" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+
+
+
+
+
+        <button onclick="topFunction()" id="backToTopButton" title="Go to top" class="p-3">Top</button>
+    </main>
+
+
+
+</body>
+
+</html>

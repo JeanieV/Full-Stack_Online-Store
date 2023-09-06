@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="./css/aboutUs.css">
+    <script src="./js/aboutUs.js" type="module" defer></script>
+    <title>About Us</title>
+</head>
+
+<body>
+
+    <header>
+        <!-- Jumbotron section -->
+        <div class="jumbo">
+
+            <picture>
+                <img src="./img/aboutUs.jpg" alt="About us" class="aboutUsImage"
+                    attribution="Photo by Andrea Piacquadio: https://www.pexels.com/photo/crop-group-stacking-hands-together-3830745/">
+            </picture>
+        
+              <div class="heading-on-top">
+                <h1 class="p-3">About Us</h1>
+              </div>
+        </div>
+
+    </header>
+
+    <main>
+
+        <!-- --------------------- -->
+        <!-- Sticky Navbar Section -->
+        <!-- --------------------- -->
+
+        <nav class=" navbar first-navbar navbar-expand-sm sticky-top p-3 mb-5">
+            <div class="container-fluid">
+
+                <!-- Home Page -->
+                <a class="navbar-brand titles" href="../index.html"> Home </a>
+
+                <!-- Dropdown Navbar -->
+                <div class="nav-item dropdown">
+                    <a class="navbar-brand dropdown-toggle titles" href="#" role="button" data-bs-toggle="dropdown">
+                        Shop
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/src/html/new.html"> New Additions </a></li>
+                        <li><a class="dropdown-item" href="/src/html/succulents.html"> Tools </a></li>
+                        <li><a class="dropdown-item" href="/src/html/plantcare.html"> StoneWare Collection </a></li>
+                        <li><a class="dropdown-item" href="/src/html/plantcare.html"> Porcelain Collection </a></li>
+                        <li><a class="dropdown-item" href="/src/html/plantcare.html"> Ceramic Collection </a></li>
+                    </ul>
+                </div>
+
+                <!-- Pottery Tips -->
+                <div class="nav-item dropdown">
+                    <a class="navbar-brand dropdown-toggle titles" href="#" role="button" data-bs-toggle="dropdown">
+                        Pottery Tips
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../index.html#tip1"> Hand Building Pottery </a></li>
+                        <li><a class="dropdown-item" href="../index.html#tip2"> Throwing on the Potter’s Wheel </a></li>
+                        <li><a class="dropdown-item" href="../index.html#tip3"> Slip Casting </a></li>
+                    </ul>
+                </div>
+
+                <!-- About Page -->
+                <a class="navbar-brand titles" href="./aboutUs.html"> About Us </a>
+
+                <!-- Contact Page -->
+                <a class="navbar-brand titles" href="./contactUs.html"> Contact Us </a>
+
+                <!-- Checkout Page -->
+                <button class="viewShoppingCart" type="submit">
+                    <picture>
+                        <span class="cartProductCount"></span>
+                        <img class="shoppingCartimg" src="./img/shopping-cart.png" alt="Shopping Cart"
+                            title="Shopping Cart" attribution="https://www.flaticon.com/free-icon-font/shopping-cart">
+                    </picture>
+                </button>
+            </div>
+        </nav>
+
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-6">
+
+                    <video class="homeView" autoplay loop muted>
+                        <source src="./video/pexels-tea-oebel-6692629 (2160p).mp4" type="video/mp4"
+                            attribution="Video by cottonbro studio: https://www.pexels.com/video/a-person-tapping-a-clay-6692629/">
+                    </video>
+
+                </div>
+
+                <div class="col-sm-6">
+
+                    <div class="d-flex justify-content-center align-items-center my-3">
+
+                        <h2 class="my-5"> Our Story </h2>
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-center my-3">
+                        <p class="my-1 p-3">
+                            The Art of Pottery is a South African based company that works directly with our local
+                            partners from Cape Town to create sustainable, functional and contemporary objects for your
+                            home.
+                        </p>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center my-3">
+                        <p class="my-1 p-3">
+                            All of our products are designed and hand crafted by us here in South Africa.
+                        </p>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center my-3">
+                        <p class="my-1 p-3">
+                            We take great pride in preserving traditional methods of production, in many cases
+                            using practices that have been passed down generations but often overlooked.
+                        </p>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center my-3">
+                        <p class="my-1 p-3">
+                            We believe handcrafted products have an inherent individuality, with unique differences
+                            revealing how they have been made, setting them apart from mass produced items.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+
+                <div class="col-sm-6">
+                    <h2 class="my-5"> Meet the team </h2>
+
+                    <div class="d-flex justify-content-center align-items-center my-3">
+                        <p class="my-1 p-3">
+                            Our team consists of 5 lovely ladies from Cape Town, who are deeply passionate about the art
+                            of pottery.
+                        </p>
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-center my-3">
+                        <p class="my-1 p-3">
+                            We're not just a pottery store; we're a close-knit family of artisans who have
+                            come together to share our love for crafting beautiful ceramics with the world.
+                        </p>
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-center my-3">
+                        <p class="my-1 p-3">
+                            We partner with local artists from Cape Town to empower them so that the world can share in their talent.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6">
+
+                    <picture>
+                        <img src="./img/team1.jpg" alt="team photo" class="homeView"
+                            attribution="Photo by Andrea Piacquadio: https://www.pexels.com/photo/crop-friends-stacking-hands-together-3830752/">
+                    </picture>
+
+                </div>
+
+            </div>
+
+
+            <div class="row mt-5">
+
+                <div class="col-sm-4">
+
+                    <picture>
+                        <img src="./img/ceo.jpg" class="ceoImage" alt="CEO & Founder">
+                    </picture>
+                </div>
+
+                <div class="col-sm-6">
+
+                    <h2 class="my-5"> Our CEO & Founder </h2>
+
+                    <div class="d-flex justify-content-center align-items-center my-3">
+                        <p class="my-1 p-3">
+                           Jeanie Venter
+                        </p>
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-center my-3">
+                        <p class="my-1 p-3">
+                           Currently studying Software Development and created this website.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        </div>
+
+        </div>
+
+        <button onclick="topFunction()" id="backToTopButton" title="Go to top" class="p-3">Top</button>
+    </main>
+
+
+
+</body>
+
+</html>
