@@ -1,4 +1,4 @@
-import { Stoneware } from '../js/products';
+import { Ceramic } from '../js/products';
 
 // -----------------
 // Connection to Supabase
@@ -6,9 +6,9 @@ import { Stoneware } from '../js/products';
 
 // Create a function to fetch and use data
 const fetchData = async () => {
-  // Fetch products from the Supabase database using the Stoneware class
-  const stoneware = await Stoneware.fetchAll();
-  console.log(stoneware);
+  // Fetch products from the Supabase database using the Ceramic class
+  const ceramic = await Ceramic.fetchAll();
+  console.log(ceramic);
 }
 fetchData();
 
@@ -47,7 +47,7 @@ function generateProductCard(product) {
 
   // Create the card container
   const cardContainer = document.createElement("div");
-  cardContainer.classList.add("homeCard", "container", "mt-5", "mb-5", "col-sm-3");
+  cardContainer.classList.add("ceramicCard", "container", "mt-5", "mb-5", "col-sm-3");
 
   // Create the card itself
   const card = document.createElement("div");
@@ -108,12 +108,12 @@ function generateProductCard(product) {
   return cardContainer;
 }
 
-const stoneware = await Stoneware.fetchAll();
+const ceramic = await Ceramic.fetchAll();
 const cardContainer = document.querySelector(".allCards");
 
 // Loop through products and generate cards
-stoneware.forEach((stoneware) => {
-  const productCard = generateProductCard(stoneware);
+ceramic.forEach((ceramic) => {
+  const productCard = generateProductCard(ceramic);
   cardContainer.appendChild(productCard);
 });
 
@@ -314,7 +314,7 @@ const readMoreButtons = document.querySelectorAll('.readMore');
 
 readMoreButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    showModal(stoneware[index]); // Pass the product to showModal
+    showModal(ceramic[index]); // Pass the product to showModal
   });
 });
 

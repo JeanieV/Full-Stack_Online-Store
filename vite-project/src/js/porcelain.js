@@ -1,4 +1,4 @@
-import { Stoneware } from '../js/products';
+import { Porcelain } from '../js/products';
 
 // -----------------
 // Connection to Supabase
@@ -6,9 +6,9 @@ import { Stoneware } from '../js/products';
 
 // Create a function to fetch and use data
 const fetchData = async () => {
-  // Fetch products from the Supabase database using the Stoneware class
-  const stoneware = await Stoneware.fetchAll();
-  console.log(stoneware);
+  // Fetch products from the Supabase database using the Porcelain class
+  const porcelain = await Porcelain.fetchAll();
+  console.log(porcelain);
 }
 fetchData();
 
@@ -47,7 +47,7 @@ function generateProductCard(product) {
 
   // Create the card container
   const cardContainer = document.createElement("div");
-  cardContainer.classList.add("homeCard", "container", "mt-5", "mb-5", "col-sm-3");
+  cardContainer.classList.add("porcelainCard", "container", "mt-5", "mb-5", "col-sm-3");
 
   // Create the card itself
   const card = document.createElement("div");
@@ -55,7 +55,7 @@ function generateProductCard(product) {
 
   // Create the image element
   const image = document.createElement("img");
-  image.classList.add("productImage");
+  image.classList.add("porcelainImage");
   image.src = product.getImage;
   image.alt = product.getName;
   image.loading = "lazy";
@@ -108,12 +108,12 @@ function generateProductCard(product) {
   return cardContainer;
 }
 
-const stoneware = await Stoneware.fetchAll();
+const porcelain = await Porcelain.fetchAll();
 const cardContainer = document.querySelector(".allCards");
 
 // Loop through products and generate cards
-stoneware.forEach((stoneware) => {
-  const productCard = generateProductCard(stoneware);
+porcelain.forEach((porcelain) => {
+  const productCard = generateProductCard(porcelain);
   cardContainer.appendChild(productCard);
 });
 
@@ -314,7 +314,7 @@ const readMoreButtons = document.querySelectorAll('.readMore');
 
 readMoreButtons.forEach((button, index) => {
   button.addEventListener('click', () => {
-    showModal(stoneware[index]); // Pass the product to showModal
+    showModal(porcelain[index]); // Pass the product to showModal
   });
 });
 
@@ -330,7 +330,7 @@ alphabeticallySort.addEventListener('click', sortProducts);
 
 function sortProducts() {
 
-  const cardsAlphabetically = Array.from(document.querySelectorAll('.homeCard'));
+  const cardsAlphabetically = Array.from(document.querySelectorAll('.porcelainCard'));
   cardsAlphabetically.sort((a, b) => {
     const titleA = a.querySelector('h3').textContent;
     const titleB = b.querySelector('h3').textContent;
@@ -347,7 +347,7 @@ const lowSort = document.querySelector(".lowToHigh");
 lowSort.addEventListener('click', sortProductsLow);
 
 function sortProductsLow() {
-  const cardsLow = Array.from(document.querySelectorAll('.homeCard'));
+  const cardsLow = Array.from(document.querySelectorAll('.porcelainCard'));
   cardsLow.sort((a, b) => {
     const priceA = parseFloat(a.querySelector('h4').textContent.replace('R ', ''));
     const priceB = parseFloat(b.querySelector('h4').textContent.replace('R ', ''));
@@ -364,7 +364,7 @@ const sortButtonHighToLow = document.querySelector(".highToLow");
 sortButtonHighToLow.addEventListener('click', sortProductsHigh);
 
 function sortProductsHigh() {
-  const cardsLow = Array.from(document.querySelectorAll('.homeCard'));
+  const cardsLow = Array.from(document.querySelectorAll('.porcelainCard'));
   cardsLow.sort((a, b) => {
     const priceA = parseFloat(a.querySelector('h4').textContent.replace('R ', ''));
     const priceB = parseFloat(b.querySelector('h4').textContent.replace('R ', ''));

@@ -36,11 +36,12 @@ h1 {
 /* Scroll section */
 .scroll-button {
     position: absolute;
-    bottom: 20px;
+    top: 90%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    font-size: 30px;
+    font-size: 40px;
+    z-index: 1;
 }
 
 a {
@@ -56,11 +57,11 @@ a:hover {
     position: absolute;
     top: 0;
     left: 50%;
-    width: 27px;
-    height: 27px;
+    width: 40px;
+    height: 40px;
     margin-left: -12px;
-    border-left: 1px solid #E0DFD0;
-    border-bottom: 1px solid #E0DFD0;
+    border-left: 10px solid #000000;
+    border-bottom: 10px solid #000000;
     transform: rotate(-45deg);
     animation: scroll 1.5s infinite;
     box-sizing: border-box;
@@ -203,6 +204,10 @@ img {
     border-radius: 30px;
     text-align: center;
     border: none;
+    display: inline-block; 
+    margin-top: 10px;
+    text-decoration: none; 
+    cursor: pointer; 
 }
 
 .viewMoreButton:hover {
@@ -210,7 +215,6 @@ img {
     background-color: #1E2640;
     color: #E0DFD0;
 }
-
 h3 {
     text-align: center;
     color: #E0DFD0;
