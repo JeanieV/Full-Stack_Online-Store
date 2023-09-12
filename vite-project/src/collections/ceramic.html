@@ -24,20 +24,24 @@
     <header>
         <div class="jumbo">
 
-            <picture>
-                <img src="../img/product16.jpg" alt="Ceramic" class="ceramicBack"
-                    attribution="Photo by Andrea Piacquadio: https://www.pexels.com/photo/crop-group-stacking-hands-together-3830745/">
-            </picture>
+            <video class="homeView" autoplay loop muted>
+                <source src="../video/pexels-mikhail-nilov-8247218 (1080p).mp4" type="video/mp4"
+                    attribution="Video by Mikhail Nilov: https://www.pexels.com/video/a-beautiful-roses-with-leaves-8247218/">
+            </video>
 
-            <div class="heading-on-top">
-                <h1 class="p-3 ceramic">Ceramic Collection</h1>
+            <div class="logoBackground">
+                <picture>
+                    <img src="../img/logo.png" alt="Logo" class="logo"
+                        attribution="Photo by Andrea Piacquadio: https://www.pexels.com/photo/crop-group-stacking-hands-together-3830745/">
+                </picture>
+
+                <h1 class="p-3">Ceramic Collection</h1>
             </div>
 
             <section id="section1" class="scroll-button">
                 <a><span></span></a>
             </section>
         </div>
-        
     </header>
 
     <main>
@@ -96,17 +100,23 @@
             </div>
         </nav>
 
-
-        <h2 class="my-5 p-5"> Shop our Ceramic Collection </h2>
-
-
-        <div class="d-flex justify-content-center align-items-center">
-
+        <!-- Sorting Buttons -->
+        <div class="d-flex justify-content-center align-items-center my-5 p-3">
             <button class="btn sortingButtons alphabetically p-3 mx-2"> Sort Products Alphabetically</button>
             <button class="btn sortingButtons lowToHigh p-3 mx-2"> Price: Low to High</button>
             <button class="btn sortingButtons highToLow p-3 mx-2"> Price: High to Low</button>
-
         </div>
+
+        <!-- Added a loading state for the products -->
+        <div class="d-flex justify-content-center align-items-center my-5">
+            <div id="loadingIndicator" class="loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>        
+            </div>
+        </div>
+
 
         <!-- Modal that will show for every product (currently on hide)-->
         <div id="myModal" class="modal modalCart">

@@ -4,13 +4,43 @@ import { Stoneware } from '../js/products';
 // Connection to Supabase
 // -----------------
 
-// Create a function to fetch and use data
+// Function to fetch and use data
 const fetchData = async () => {
-  // Fetch products from the Supabase database using the Stoneware class
-  const stoneware = await Stoneware.fetchAll();
-  console.log(stoneware);
-}
+
+  const loadingIndicator = document.getElementById("loadingIndicator");
+  loadingIndicator.style.display = "block";
+
+  try {
+    // Fetch products from the Supabase database using the Ceramic class
+    const stoneware = await Stoneware.fetchAll();
+    console.log(stoneware);
+
+    // Hide the loading indicator once data is fetched
+    loadingIndicator.style.display = "none";
+
+    // Generate and display product cards
+    const cardContainer = document.querySelector(".allCards");
+    stoneware.forEach((stoneware) => {
+      const productCard = generateProductCard(stoneware);
+      cardContainer.appendChild(productCard);
+    });
+
+    // The showModal will display when the user clicks on the Read More Button
+    const readMoreButtons = document.querySelectorAll('.readMore');
+
+    readMoreButtons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        showModal(stoneware[index]); // Pass the product to showModal
+      });
+    });
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+// Call the fetchData function to initiate data fetching
 fetchData();
+
 
 
 // -----------------
@@ -26,7 +56,7 @@ backToTop.addEventListener("click", topFunction);
 window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
-  if (document.documentElement.scrollTop > 80) {
+  if (document.documentElement.scrollTop > 300) {
     backToTop.style.display = "block";
   } else {
     backToTop.style.display = "none";
@@ -108,14 +138,7 @@ function generateProductCard(product) {
   return cardContainer;
 }
 
-const stoneware = await Stoneware.fetchAll();
-const cardContainer = document.querySelector(".allCards");
 
-// Loop through products and generate cards
-stoneware.forEach((stoneware) => {
-  const productCard = generateProductCard(stoneware);
-  cardContainer.appendChild(productCard);
-});
 
 
 
@@ -308,16 +331,6 @@ function showModal(product) {
   modalView.appendChild(centerDiv);
   modalView.style.display = "block";
 }
-
-// The showModal will display when the user clicks on the Read More Button
-const readMoreButtons = document.querySelectorAll('.readMore');
-
-readMoreButtons.forEach((button, index) => {
-  button.addEventListener('click', () => {
-    showModal(stoneware[index]); // Pass the product to showModal
-  });
-});
-
 
 // -----------------
 // Sorting section

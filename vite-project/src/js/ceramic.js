@@ -4,14 +4,43 @@ import { Ceramic } from '../js/products';
 // Connection to Supabase
 // -----------------
 
-// Create a function to fetch and use data
+// Function to fetch and use data
 const fetchData = async () => {
-  // Fetch products from the Supabase database using the Ceramic class
-  const ceramic = await Ceramic.fetchAll();
-  console.log(ceramic);
-}
-fetchData();
 
+  const loadingIndicator = document.getElementById("loadingIndicator");
+  loadingIndicator.style.display = "block";
+
+  try {
+    // Fetch products from the Supabase database using the Ceramic class
+    const ceramic = await Ceramic.fetchAll();
+    console.log(ceramic);
+
+    // Hide the loading indicator once data is fetched
+    loadingIndicator.style.display = "none";
+
+    // Generate and display product cards
+    const cardContainer = document.querySelector(".allCards");
+    ceramic.forEach((ceramic) => {
+      const productCard = generateProductCard(ceramic);
+      cardContainer.appendChild(productCard);
+    });
+
+    // The showModal will display when the user clicks on the Read More Button
+    const readMoreButtons = document.querySelectorAll('.readMore');
+
+    readMoreButtons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        showModal(ceramic[index]); // Pass the product to showModal
+      });
+    });
+
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+// Call the fetchData function to initiate data fetching
+fetchData();
 
 // -----------------
 // Back to top button
@@ -26,7 +55,7 @@ backToTop.addEventListener("click", topFunction);
 window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
-  if (document.documentElement.scrollTop > 80) {
+  if (document.documentElement.scrollTop > 300) {
     backToTop.style.display = "block";
   } else {
     backToTop.style.display = "none";
@@ -107,17 +136,6 @@ function generateProductCard(product) {
   // Return the card container
   return cardContainer;
 }
-
-const ceramic = await Ceramic.fetchAll();
-const cardContainer = document.querySelector(".allCards");
-
-// Loop through products and generate cards
-ceramic.forEach((ceramic) => {
-  const productCard = generateProductCard(ceramic);
-  cardContainer.appendChild(productCard);
-});
-
-
 
 
 // -----------------
@@ -309,15 +327,6 @@ function showModal(product) {
   modalView.style.display = "block";
 }
 
-// The showModal will display when the user clicks on the Read More Button
-const readMoreButtons = document.querySelectorAll('.readMore');
-
-readMoreButtons.forEach((button, index) => {
-  button.addEventListener('click', () => {
-    showModal(ceramic[index]); // Pass the product to showModal
-  });
-});
-
 
 // -----------------
 // Sorting section
@@ -330,7 +339,7 @@ alphabeticallySort.addEventListener('click', sortProducts);
 
 function sortProducts() {
 
-  const cardsAlphabetically = Array.from(document.querySelectorAll('.homeCard'));
+  const cardsAlphabetically = Array.from(document.querySelectorAll('.ceramicCard'));
   cardsAlphabetically.sort((a, b) => {
     const titleA = a.querySelector('h3').textContent;
     const titleB = b.querySelector('h3').textContent;
@@ -347,7 +356,7 @@ const lowSort = document.querySelector(".lowToHigh");
 lowSort.addEventListener('click', sortProductsLow);
 
 function sortProductsLow() {
-  const cardsLow = Array.from(document.querySelectorAll('.homeCard'));
+  const cardsLow = Array.from(document.querySelectorAll('.ceramicCard'));
   cardsLow.sort((a, b) => {
     const priceA = parseFloat(a.querySelector('h4').textContent.replace('R ', ''));
     const priceB = parseFloat(b.querySelector('h4').textContent.replace('R ', ''));
@@ -364,7 +373,7 @@ const sortButtonHighToLow = document.querySelector(".highToLow");
 sortButtonHighToLow.addEventListener('click', sortProductsHigh);
 
 function sortProductsHigh() {
-  const cardsLow = Array.from(document.querySelectorAll('.homeCard'));
+  const cardsLow = Array.from(document.querySelectorAll('.ceramicCard'));
   cardsLow.sort((a, b) => {
     const priceA = parseFloat(a.querySelector('h4').textContent.replace('R ', ''));
     const priceB = parseFloat(b.querySelector('h4').textContent.replace('R ', ''));

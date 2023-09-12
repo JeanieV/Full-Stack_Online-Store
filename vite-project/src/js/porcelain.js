@@ -4,12 +4,42 @@ import { Porcelain } from '../js/products';
 // Connection to Supabase
 // -----------------
 
-// Create a function to fetch and use data
+// Function to fetch and use data
 const fetchData = async () => {
-  // Fetch products from the Supabase database using the Porcelain class
-  const porcelain = await Porcelain.fetchAll();
-  console.log(porcelain);
-}
+ 
+  const loadingIndicator = document.getElementById("loadingIndicator");
+  loadingIndicator.style.display = "block";
+
+  try {
+    // Fetch products from the Supabase database using the Ceramic class
+    const porcelain = await Porcelain.fetchAll();
+    console.log(porcelain);
+
+    // Hide the loading indicator once data is fetched
+    loadingIndicator.style.display = "none";
+
+    // Generate and display product cards
+    const cardContainer = document.querySelector(".allCards");
+    porcelain.forEach((porcelain) => {
+      const productCard = generateProductCard(porcelain);
+      cardContainer.appendChild(productCard);
+    });
+
+    // The showModal will display when the user clicks on the Read More Button
+    const readMoreButtons = document.querySelectorAll('.readMore');
+
+    readMoreButtons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        showModal(porcelain[index]); // Pass the product to showModal
+      });
+    });
+
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+// Call the fetchData function to initiate data fetching
 fetchData();
 
 
@@ -26,7 +56,7 @@ backToTop.addEventListener("click", topFunction);
 window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
-  if (document.documentElement.scrollTop > 80) {
+  if (document.documentElement.scrollTop > 300) {
     backToTop.style.display = "block";
   } else {
     backToTop.style.display = "none";
@@ -107,17 +137,6 @@ function generateProductCard(product) {
   // Return the card container
   return cardContainer;
 }
-
-const porcelain = await Porcelain.fetchAll();
-const cardContainer = document.querySelector(".allCards");
-
-// Loop through products and generate cards
-porcelain.forEach((porcelain) => {
-  const productCard = generateProductCard(porcelain);
-  cardContainer.appendChild(productCard);
-});
-
-
 
 
 // -----------------
@@ -308,15 +327,6 @@ function showModal(product) {
   modalView.appendChild(centerDiv);
   modalView.style.display = "block";
 }
-
-// The showModal will display when the user clicks on the Read More Button
-const readMoreButtons = document.querySelectorAll('.readMore');
-
-readMoreButtons.forEach((button, index) => {
-  button.addEventListener('click', () => {
-    showModal(porcelain[index]); // Pass the product to showModal
-  });
-});
 
 
 // -----------------

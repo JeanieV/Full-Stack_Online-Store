@@ -9,6 +9,7 @@ body {
 /* Jumbotron section */
 .jumbo {
     position: relative;
+    height: 60vw;
 }
 
 .homeView {

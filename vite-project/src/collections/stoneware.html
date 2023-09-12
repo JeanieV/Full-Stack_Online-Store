@@ -24,19 +24,23 @@
     <header>
         <div class="jumbo">
 
-            <picture>
-                <img src="../img/stoneWare.webp" alt="Porcelain" class="homeView"
-                    attribution="Photo by Andrea Piacquadio: https://www.pexels.com/photo/crop-group-stacking-hands-together-3830745/">
-            </picture>
+            <video class="homeView" autoplay loop muted>
+                <source src="../video/pexels-mikhail-nilov-8247218 (1080p).mp4" type="video/mp4"
+                    attribution="Video by Mikhail Nilov: https://www.pexels.com/video/a-beautiful-roses-with-leaves-8247218/">
+            </video>
 
-            <div class="heading-on-top">
+            <div class="logoBackground">
+                <picture>
+                    <img src="../img/logo.png" alt="Logo" class="logo"
+                        attribution="Photo by Andrea Piacquadio: https://www.pexels.com/photo/crop-group-stacking-hands-together-3830745/">
+                </picture>
+
                 <h1 class="p-3">Stoneware Collection</h1>
             </div>
 
             <section id="section1" class="scroll-button">
                 <a><span></span></a>
             </section>
-            
         </div>
     </header>
 
@@ -62,7 +66,7 @@
                         <li><a class="dropdown-item" href="/src/html/succulents.html"> Tools </a></li>
                         <li><a class="dropdown-item" href="./stoneware.html"> Stoneware Collection </a></li>
                         <li><a class="dropdown-item" href="./porcelain.html"> Porcelain Collection </a></li>
-                        <li><a class="dropdown-item" href="/src/html/plantcare.html"> Ceramic Collection </a></li>
+                        <li><a class="dropdown-item" href="./ceramic.html"> Ceramic Collection </a></li>
                     </ul>
                 </div>
 
@@ -97,15 +101,21 @@
         </nav>
 
 
-        <h2 class="my-5 p-5"> Shop our Stoneware Collection </h2>
+        <!-- Sorting Buttons -->
+        <div class="d-flex justify-content-center align-items-center my-5 p-3">
+            <button class="btn sortingButtons alphabetically p-3 mx-2"> Sort Products Alphabetically</button>
+            <button class="btn sortingButtons lowToHigh p-3 mx-2"> Price: Low to High</button>
+            <button class="btn sortingButtons highToLow p-3 mx-2"> Price: High to Low</button>
+        </div>
 
-
-        <div class="d-flex justify-content-center align-items-center">
-
-                <button class="btn sortingButtons alphabetically p-3 mx-2"> Sort Products Alphabetically</button>
-                <button class="btn sortingButtons lowToHigh p-3 mx-2"> Price: Low to High</button>
-                <button class="btn sortingButtons highToLow p-3 mx-2"> Price: High to Low</button>
-           
+        <!-- Added a loading state for the products -->
+        <div class="d-flex justify-content-center align-items-center my-5">
+            <div id="loadingIndicator" class="loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>        
+            </div>
         </div>
 
         <!-- Modal that will show for every product (currently on hide)-->
