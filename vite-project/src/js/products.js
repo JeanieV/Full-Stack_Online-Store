@@ -154,3 +154,34 @@ export class Ceramic {
 export function filterCeramicByCategory(category) {
     return data.ceramic.filter((ceramic) => ceramic.category === category);
 }
+
+
+export class Contact {
+    constructor(name, email, phoneNumber, questionType, message) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.questionType = questionType;
+        this.message = message;
+    }
+
+    // Getters
+    get getName() {
+        return this.name;
+    }
+    get getEmail() {
+        return this.email;
+    }
+    get getPhoneNumber() {
+        return this.phoneNumber;
+    }
+    get getQuestionType() {
+        return this.questionType;
+    }
+    get getMessage() {
+        return this.message;
+    }
+
+
+
+}

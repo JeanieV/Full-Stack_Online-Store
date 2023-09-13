@@ -1,3 +1,50 @@
+import { Contact } from '../js/products';
+import { supabase } from '../../supabase';
+
+// Add an event listener to the form submission
+const contactForm = document.querySelector('#contactForm');
+
+async function submitContactForm(event) {
+  event.preventDefault(); // Prevent the default form submission behavior
+
+  // Get form input values
+  const name = contactForm.elements.name.value;
+  const email = contactForm.elements.email.value;
+  const phoneNumber = contactForm.elements.phoneNumber.value;
+  const questionType = contactForm.elements.questionType.value;
+  const message = contactForm.elements.message.value;
+
+  // Create a new Contact instance
+  const newContact = new Contact(name, email, phoneNumber, questionType, message);
+
+  try {
+    // Insert the new contact into the "contact" table
+    const { data, error } = await supabase.from('contact').upsert([newContact]);
+  
+    if (error) {
+      console.error('Error inserting data:', error);
+    } else {
+      alert('Your information was added successfully! \n We will get back to your request as soon as possible.');
+
+      // Optionally, you can reset the form after successful submission
+      contactForm.reset();
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+  
+}
+
+
+// Add an event listener to the form submission
+contactForm.addEventListener('submit', submitContactForm);
+
+
+
+
+
+
+
 // Get the button:
 let backToTop = document.getElementById("backToTopButton");
 
@@ -18,6 +65,8 @@ function scrollFunction() {
 function topFunction() {
   document.documentElement.scrollTop = 40; // For Chrome, Firefox, IE and Opera
 }
+
+
 
 
 // -----------------

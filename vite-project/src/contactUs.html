@@ -125,7 +125,7 @@
                 <h1 class="my-5"> Do you have a question? </h1>
 
                 <div class="d-flex justify-content-center align-items-center">
-                    <form>
+                    <form id="contactForm">
                         <table>
                             <tr>
                                 <td class="p-4"><label for="name" class="labelStyle"> Name: </label></td>
@@ -138,9 +138,14 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td class="p-4"><label for="phoneNumber" class="labelStyle"> Phone Number: </label></td>
+                                <td class="p-4"><input type="tel" name="phoneNumber" class="inputStyle">
+                                </td>
+                            </tr>
+                            <tr>
                                 <td class="p-4"><label for="questionType" class="labelStyle">Question Type:</label></td>
                                 <td class="p-4">
-                                    <select name="employee-rolequestionType" class="inputStyle">
+                                    <select name="questionType" class="inputStyle">
                                         <option selected></option>
                                         <option value="Collaborations">Collaborations</option>
                                         <option value="Packages">Packages</option>
@@ -151,13 +156,13 @@
                             </tr>
                             <tr>
                                 <td class="p-4"><label for="message" class="labelStyle"> Message: </label></td>
-                                <td class="p-4"><textarea class="inputStyleText"></textarea>
+                                <td class="p-4"><textarea name="message" class="inputStyleText"></textarea>
                                 </td>
                             </tr>
 
                         </table>
                         <div class="d-flex justify-content-center align-items-center">
-                            <button type="submit" id="questionForm" class="submitButton p-2"> Submit </button>
+                            <button type="submit" class="submitButton p-2"> Submit </button>
                         </div>
                     </form>
                 </div>
