@@ -11,38 +11,12 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="../css/collections.css">
-    <script src="../js/ceramic.js" type="module" defer></script>
-    <title>Ceramic Collection </title>
+    <script src="../js/new.js" type="module" defer></script>
+    <title>New Additions </title>
 </head>
 
 <body>
 
-    <!-- --------------------- -->
-    <!-- Jumbotron Section -->
-    <!-- --------------------- -->
-
-    <header>
-        <div class="jumbo">
-
-            <video class="homeView" autoplay loop muted>
-                <source src="../video/pexels-mikhail-nilov-8247218 (1080p).mp4" type="video/mp4"
-                    attribution="Video by Mikhail Nilov: https://www.pexels.com/video/a-beautiful-roses-with-leaves-8247218/">
-            </video>
-
-            <div class="logoBackground">
-                <picture>
-                    <img src="../img/logo.png" alt="Logo" class="logo"
-                        attribution="Photo by Andrea Piacquadio: https://www.pexels.com/photo/crop-group-stacking-hands-together-3830745/">
-                </picture>
-
-                <h1 class="p-3">Ceramic Collection</h1>
-            </div>
-
-            <section id="section1" class="scroll-button">
-                <a><span></span></a>
-            </section>
-        </div>
-    </header>
 
     <main>
 
@@ -100,67 +74,72 @@
             </div>
         </nav>
 
-        <!-- Sorting Buttons -->
-        <div class="d-flex justify-content-center align-items-center">
-            <h6 class="mt-5"> Sort Products:</h6>
-        </div>
-
-        <div class="d-flex justify-content-center align-items-center">
-            <div class="mt-5">
-                <table>
-                    <tr>
-                        <td class="p-3"><button class="btn sortingButtons alphabetically mx-2"
-                                title="Sort Alphabetically"> <img src="../img/sort.png" class="sortingImage"
-                                    alt="Sort Alphabetically"
-                                    attribution="https://www.flaticon.com/free-icons/sort"></button>
-                        </td>
-                        <td class="p-3">
-                            <button class="btn sortingButtons highToLow mx-2" title="High to Low Pirce"> <img
-                                    src="../img/high-cost.png" class="sortingImage" alt="High to Low Pirce"
-                                    attribution="https://www.flaticon.com/free-icons/expensive"></button>
-                        </td>
-                        <td class="p-3">
-                            <button class="btn sortingButtons lowToHigh mx-2" title="Low to High Pirce"> <img
-                                    src="../img/low-price.png" class="sortingImage" alt="Low to High Pirce"
-                                    attribution="https://www.flaticon.com/free-icons/low-cost"></button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <p> Alphabetically </p>
-                        </td>
-                        <td>
-                            <p> High to Low </p>
-                        </td>
-                        <td>
-                            <p>Low to High </p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-        <!-- Added a loading state for the products -->
-        <div class="d-flex justify-content-center align-items-center mb-5">
-            <div id="loadingIndicator" class="loader">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-
 
         <!-- Modal that will show for every product (currently on hide)-->
         <div id="myModal" class="modal modalCart">
             <span class="close">&times;</span>
         </div>
 
+        <!-- Coming Soon -->
 
-        <!-- This is where the products will be shown on cards -->
-        <div id="productCardContainer" class="row mx-1 allCards">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-6">
+
+                    <div class="comingSoon">
+                        <picture>
+                            <img src="../img/classes.jpg" alt="Pottery Classes" class="potteryClasses mb-5"
+                                attribution="Photo by Mikhail Nilov: https://www.pexels.com/photo/shaping-of-an-unfinished-clay-pot-9304551/">
+                        </picture>
+
+                        <div class="time-content">
+                            <div class="time days p-3">
+                                <span class="number"></span>
+                                <span class="text">Days</span>
+                            </div>
+                            <div class="time hours p-3">
+                                <span class="number"></span>
+                                <span class="text">Hours</span>
+                            </div>
+                            <div class="time minutes p-3">
+                                <span class="number"></span>
+                                <span class="text">Minutes</span>
+                            </div>
+                            <div class="time seconds p-3">
+                                <span class="number"></span>
+                                <span class="text">Seconds</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+
+                    <div class="d-flex justify-content-center align-items-center p-5">
+                        <h2 class="my-5"> Some Exciting News!</h2>
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-center p-5">
+                        <p> Our Pottery classes will launch soon and we can't wait for you to share in this new
+                            adventure. </p>
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-center p-5">
+                        <p> All the details will be made available on our website </p>
+                    </div>
+
+                </div>
+
+
+            </div>
         </div>
+
+
+
+
+
+
 
         <!-- This is the back to top button -->
         <button onclick="topFunction()" id="backToTopButton" title="Go to top" class="p-3">Go to Top</button>

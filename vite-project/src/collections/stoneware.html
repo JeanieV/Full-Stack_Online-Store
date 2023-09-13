@@ -62,7 +62,7 @@
                         Shop
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/src/html/new.html"> New Additions </a></li>
+                        <li><a class="dropdown-item" href="./new.html"> New Additions </a></li>
                         <li><a class="dropdown-item" href="./tools.html"> Tools </a></li>
                         <li><a class="dropdown-item" href="./stoneware.html"> Stoneware Collection </a></li>
                         <li><a class="dropdown-item" href="./porcelain.html"> Porcelain Collection </a></li>
@@ -103,22 +103,47 @@
 
         <!-- Sorting Buttons -->
         <div class="d-flex justify-content-center align-items-center">
+            <h6 class="mt-5"> Sort Products:</h6>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center">
             <div class="mt-5">
-                <button class="btn sortingButtons alphabetically mx-2" title="Sort Alphabetically"> <img
-                        src="../img/sort.png" class="sortingImage" alt="Sort Alphabetically"
-                        attribution="https://www.flaticon.com/free-icons/sort"></button>
-                <button class="btn sortingButtons highToLow mx-2" title="High to Low Pirce"> <img
-                        src="../img/high-cost.png" class="sortingImage" alt="High to Low Pirce"
-                        attribution="https://www.flaticon.com/free-icons/expensive"></button>
-                <button class="btn sortingButtons lowToHigh mx-2" title="Low to High Pirce"> <img
-                        src="../img/low-price.png" class="sortingImage" alt="Low to High Pirce"
-                        attribution="https://www.flaticon.com/free-icons/low-cost"></button>
+                <table>
+                    <tr>
+                        <td class="p-3"><button class="btn sortingButtons alphabetically mx-2" title="Sort Alphabetically"> <img
+                                    src="../img/sort.png" class="sortingImage" alt="Sort Alphabetically"
+                                    attribution="https://www.flaticon.com/free-icons/sort"></button>
+                        </td>
+                        <td class="p-3">
+                            <button class="btn sortingButtons highToLow mx-2" title="High to Low Pirce"> <img
+                                    src="../img/high-cost.png" class="sortingImage" alt="High to Low Pirce"
+                                    attribution="https://www.flaticon.com/free-icons/expensive"></button>
+                        </td>
+                        <td class="p-3">
+                            <button class="btn sortingButtons lowToHigh mx-2" title="Low to High Pirce"> <img
+                                    src="../img/low-price.png" class="sortingImage" alt="Low to High Pirce"
+                                    attribution="https://www.flaticon.com/free-icons/low-cost"></button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <p> Alphabetically </p>
+                        </td>
+                        <td>
+                            <p> High to Low </p>
+                        </td>
+                        <td>
+                            <p>Low to High </p>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
 
 
         <!-- Added a loading state for the products -->
-        <div class="d-flex justify-content-center align-items-center my-5">
+        <div class="d-flex justify-content-center align-items-center mb-5">
             <div id="loadingIndicator" class="loader">
                 <span></span>
                 <span></span>

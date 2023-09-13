@@ -110,6 +110,12 @@ h2 {
     text-align: center;
 }
 
+h6{
+    font-size: 40px;
+    color: #E0DFD0;
+    text-align: center; 
+}
+
 p {
     font-size: 27px;
     text-align: center;
@@ -234,6 +240,14 @@ h5 {
 .sortingButtons:hover {
     transform: scale(1.1);
 }
+
+.sorting-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+}
+
 
 .productImage {
     width: 250px;
@@ -448,3 +462,52 @@ a:hover {
         opacity: 0;
     }
 }
+
+
+/* Coming Soon */
+
+.comingSoon {
+    position: relative;
+    text-align: center;
+}
+
+.potteryClasses {
+    width: 100%;
+    height: auto; 
+    max-width: 100%; 
+    display: block; 
+}
+
+.time-content {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    background: rgba(250, 250, 250, 0.2);
+    z-index: 1; 
+}
+.time-content .time {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.time .number {
+    font-weight: 800;
+    font-size: 100px;
+    line-height: 1;
+    color: #eee;
+}
+
+.time .text {
+    color: #fff;
+    font-weight: 600;
+    font-size: 40px;
+}
+

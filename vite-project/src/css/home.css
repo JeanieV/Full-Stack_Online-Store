@@ -237,7 +237,8 @@ h3 {
 h4 {
     text-align: center;
     color: #E0DFD0;
-    font-size: 35px;
+    font-size: 40px;
+    font-weight: bold;
 }
 
 .infoParagraph {
