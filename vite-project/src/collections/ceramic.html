@@ -101,19 +101,25 @@
         </nav>
 
         <!-- Sorting Buttons -->
-        <div class="d-flex justify-content-center align-items-center my-5 p-3">
-            <button class="btn sortingButtons alphabetically p-3 mx-2"> Sort Products Alphabetically</button>
-            <button class="btn sortingButtons lowToHigh p-3 mx-2"> Price: Low to High</button>
-            <button class="btn sortingButtons highToLow p-3 mx-2"> Price: High to Low</button>
+        <div class="d-flex justify-content-center align-items-center">
+            <button class="btn sortingButtons alphabetically mx-2" title="Sort Alphabetically"> <img
+                    src="../img/sort.png" class="sortingImage" alt="Sort Alphabetically"
+                    attribution="https://www.flaticon.com/free-icons/sort"></button>
+            <button class="btn sortingButtons highToLow mx-2" title="High to Low Pirce"> <img
+                    src="../img/high-cost.png" class="sortingImage" alt="High to Low Pirce"
+                    attribution="https://www.flaticon.com/free-icons/expensive"></button>
+            <button class="btn sortingButtons lowToHigh mx-2" title="Low to High Pirce"> <img
+                    src="../img/low-price.png" class="sortingImage" alt="Low to High Pirce"
+                    attribution="https://www.flaticon.com/free-icons/low-cost"></button>
         </div>
 
         <!-- Added a loading state for the products -->
         <div class="d-flex justify-content-center align-items-center my-5">
             <div id="loadingIndicator" class="loader">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>        
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
 

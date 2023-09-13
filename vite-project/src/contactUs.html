@@ -72,7 +72,7 @@
                 <a class="navbar-brand titles" href="./contactUs.html"> Contact Us </a>
 
                 <!-- Checkout Page -->
-                <button class="viewShoppingCart" type="submit">
+                <button class="viewShoppingCart" type="submit" id="shoppingCart">
                     <picture>
                         <span class="cartProductCount"></span>
                         <img class="shoppingCartimg" src="./img/shopping-cart.png" alt="Shopping Cart"
@@ -82,6 +82,11 @@
             </div>
         </nav>
 
+
+        <!-- Modal that will show for every product (currently on hide)-->
+        <div id="myModal" class="modal modalCart">
+            <span class="close">&times;</span>
+        </div>
 
         <!-- --------------------- -->
         <!-- Contact Details Section -->
@@ -99,15 +104,15 @@
                             <td class="p-4 text-center"> <img class="details p-2" src="./img/phone-call.png" alt="Call"
                                     title="Call" attribution="https://www.flaticon.com/free-icon-font/phone-call"> </td>
                             <td class="p-3">
-                                <p> 014 789 9632 </p>
+                                <h3> 014 789 9632 </h3>
                             </td>
                         </tr>
                         <tr>
                             <td class="p-4 text-center"> <img class="details p-2" src="./img/envelope.png" alt="Email"
                                     title="Email" attribution="https://www.flaticon.com/free-icon-font/envelope"> </td>
                             <td class="p-3">
-                                <p> <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=venterjeaniebs@gmail.com&su=Inquiry#inbox?compose=DmwnWrRvwTfpnChZgCsgXdgjkCNPfXGmPCBRXtvhqSbCXHFCRBrBbChRLTMgScpRQpSbpfsgSfqb"
-                                        title="Gmail" target="_blank" alt="Gmail"> venterjeaniebs@gmail.com</a></p>
+                                <h3> <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=venterjeaniebs@gmail.com&su=Inquiry#inbox?compose=DmwnWrRvwTfpnChZgCsgXdgjkCNPfXGmPCBRXtvhqSbCXHFCRBrBbChRLTMgScpRQpSbpfsgSfqb"
+                                        title="Gmail" target="_blank" alt="Gmail"> venterjeaniebs@gmail.com</a></h3>
                             </td>
                         </tr>
 

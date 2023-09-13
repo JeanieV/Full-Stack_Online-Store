@@ -83,13 +83,14 @@
         <a class="navbar-brand titles" href="./src/contactUs.html"> Contact Us </a>
 
         <!-- Checkout Page -->
-        <button class="viewShoppingCart" type="submit">
+        <button class="viewShoppingCart" type="submit" id="shoppingCart">
           <picture>
             <span class="cartProductCount"></span>
             <img class="shoppingCartimg" src="./src/img/shopping-cart.png" alt="Shopping Cart" title="Shopping Cart"
               attribution="https://www.flaticon.com/free-icon-font/shopping-cart">
           </picture>
         </button>
+
       </div>
     </nav>
 
@@ -115,6 +116,11 @@
 
         </nav>
       </div>
+    </div>
+
+    <!-- Modal that will show for every product (currently on hide)-->
+    <div id="myModal" class="modal modalCart">
+      <span class="close">&times;</span>
     </div>
 
     <!-- --------------------- -->

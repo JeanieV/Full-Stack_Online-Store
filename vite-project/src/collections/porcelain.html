@@ -26,15 +26,15 @@
 
             <video class="homeView" autoplay loop muted>
                 <source src="../video/pexels-mikhail-nilov-8247218 (1080p).mp4" type="video/mp4"
-                  attribution="Video by Mikhail Nilov: https://www.pexels.com/video/a-beautiful-roses-with-leaves-8247218/">
-              </video>
+                    attribution="Video by Mikhail Nilov: https://www.pexels.com/video/a-beautiful-roses-with-leaves-8247218/">
+            </video>
 
-           <div class="logoBackground">
+            <div class="logoBackground">
                 <picture>
                     <img src="../img/logo.png" alt="Logo" class="logo"
                         attribution="Photo by Andrea Piacquadio: https://www.pexels.com/photo/crop-group-stacking-hands-together-3830745/">
                 </picture>
-            
+
                 <h1 class="p-3">Porcelain Collection</h1>
             </div>
 
@@ -101,22 +101,28 @@
         </nav>
 
 
-       <!-- Sorting Buttons -->
-       <div class="d-flex justify-content-center align-items-center my-5 p-3">
-        <button class="btn sortingButtons alphabetically p-3 mx-2"> Sort Products Alphabetically</button>
-        <button class="btn sortingButtons lowToHigh p-3 mx-2"> Price: Low to High</button>
-        <button class="btn sortingButtons highToLow p-3 mx-2"> Price: High to Low</button>
-    </div>
-
-    <!-- Added a loading state for the products -->
-    <div class="d-flex justify-content-center align-items-center my-5">
-        <div id="loadingIndicator" class="loader">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>        
+        <!-- Sorting Buttons -->
+        <div class="d-flex justify-content-center align-items-center my-5 p-3">
+            <button class="btn sortingButtons alphabetically p-3 mx-2" title="Sort Alphabetically"> <img
+                    src="../img/sort.png" class="sortingImage" alt="Sort Alphabetically"
+                    attribution="https://www.flaticon.com/free-icons/sort"></button>
+            <button class="btn sortingButtons highToLow p-3 mx-2" title="High to Low Pirce"> <img
+                    src="../img/high-cost.png" class="sortingImage" alt="High to Low Pirce"
+                    attribution="https://www.flaticon.com/free-icons/expensive"></button>
+            <button class="btn sortingButtons lowToHigh p-3 mx-2" title="Low to High Pirce"> <img
+                    src="../img/low-price.png" class="sortingImage" alt="Low to High Pirce"
+                    attribution="https://www.flaticon.com/free-icons/low-cost"></button>
         </div>
-    </div>
+
+        <!-- Added a loading state for the products -->
+        <div class="d-flex justify-content-center align-items-center my-5">
+            <div id="loadingIndicator" class="loader">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
 
         <!-- Modal that will show for every product (currently on hide)-->
         <div id="myModal" class="modal modalCart">

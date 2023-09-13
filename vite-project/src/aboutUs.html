@@ -82,7 +82,7 @@
                 <a class="navbar-brand titles" href="./contactUs.html"> Contact Us </a>
 
                 <!-- Checkout Page -->
-                <button class="viewShoppingCart" type="submit">
+                <button class="viewShoppingCart" type="submit" id="shoppingCart">
                     <picture>
                         <span class="cartProductCount"></span>
                         <img class="shoppingCartimg" src="./img/shopping-cart.png" alt="Shopping Cart"
@@ -92,6 +92,10 @@
             </div>
         </nav>
 
+        <!-- Modal that will show for every product (currently on hide)-->
+        <div id="myModal" class="modal modalCart">
+            <span class="close">&times;</span>
+        </div>
 
         <div class="container">
             <div class="row">
@@ -179,27 +183,28 @@
                 <div class="col-sm-6">
 
                     <picture>
-                        <img src="./img/team1.jpg" alt="team photo" class="homeView"
+                        <img src="./img/team1.jpg" alt="team photo" class="homeView mb-5"
                             attribution="Photo by Andrea Piacquadio: https://www.pexels.com/photo/crop-friends-stacking-hands-together-3830752/">
                     </picture>
 
                 </div>
 
             </div>
+        </div>
 
-
-            <div class="row mt-5">
+        <div class="ceoBackground">
+            <!-- Logo and CEO -->
+            <div class="d-flex justify-content-center align-items-center mt-5">
 
                 <div class="col-sm-4">
-
                     <picture>
-                        <img src="./img/ceo.jpg" class="ceoImage" alt="CEO & Founder">
+                        <img src="./img/ceo.jpg" class="ceoImage p-5" alt="CEO & Founder">
                     </picture>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-4">
 
-                    <h2 class="my-5"> Our CEO & Founder </h2>
+                    <h3 class="my-5"> Our CEO & Founder </h3>
 
                     <div class="d-flex justify-content-center align-items-center my-3">
                         <p class="my-1 p-3">
@@ -212,7 +217,13 @@
                             Currently studying Software Development and created this website.
                         </p>
                     </div>
+                </div>
 
+                <div class="col-sm-4">
+                    <picture>
+                        <img src="./img/logo.png" alt="Logo" class="logo p-5"
+                            attribution="Photo by Andrea Piacquadio: https://www.pexels.com/photo/crop-group-stacking-hands-together-3830745/">
+                    </picture>
                 </div>
 
             </div>

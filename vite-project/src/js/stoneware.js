@@ -192,7 +192,7 @@ function showModal(product) {
 
   // Creating the original image inside the modal
   const modalImage = document.createElement("img");
-  modalImage.classList.add("productModal");
+  modalImage.classList.add("productModal", "px-2");
   modalImage.setAttribute("id", "modalImage");
   modalImage.setAttribute("src", product.getImage);
 

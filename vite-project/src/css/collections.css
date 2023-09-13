@@ -225,15 +225,13 @@ h5 {
 }
 
 .sortingButtons {
-    background-color: #922C40;
-    color: #E0DFD0;
     width: 10vw;
     font-size: 20px;
+    border: none;
 }
 
 .sortingButtons:hover {
-    background-color: #000000;
-    color: #E0DFD0;
+    transform: scale(1.1);
 }
 
 .productImage {
@@ -267,7 +265,7 @@ h5 {
 .modal-content {
     background-color: #E0DFD0;
     border: 1px solid #888;
-    width: 60vw;
+    width: 70vw;
 }
 
 
@@ -288,8 +286,8 @@ h5 {
 /* Zoom on modal image */
 
 .productModal {
-    width: 350px;
-    height: 360px;
+    width: 400px;
+    height: 370px;
     overflow: hidden;
 }
 
@@ -426,8 +424,8 @@ a:hover {
     width: 50px;
     height: 50px;
     margin-left: -12px;
-    border-left: 10px solid #E0DFD0;
-    border-bottom: 10px solid #E0DFD0;
+    border-left: 10px solid #922C40;
+    border-bottom: 10px solid #922C40;
     transform: rotate(-45deg);
     animation: scroll 1.5s infinite;
     box-sizing: border-box;
