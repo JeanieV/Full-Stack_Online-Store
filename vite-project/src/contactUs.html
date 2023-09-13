@@ -46,7 +46,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/src/html/new.html"> New Additions </a></li>
-                        <li><a class="dropdown-item" href="/src/html/succulents.html"> Tools </a></li>
+                        <li><a class="dropdown-item" href="./collections/tools.html"> Tools </a></li>
                         <li><a class="dropdown-item" href="./collections/stoneWare.html"> Stoneware Collection </a></li>
                         <li><a class="dropdown-item" href="./collections/porcelain.html"> Porcelain Collection </a></li>
                         <li><a class="dropdown-item" href="./collections/ceramic.html"> Ceramic Collection </a></li>
@@ -129,23 +129,27 @@
                         <table>
                             <tr>
                                 <td class="p-4"><label for="name" class="labelStyle"> Name: </label></td>
-                                <td class="p-4"><input type="text" name="name" class="inputStyle">
+                                <td class="p-4"><input type="text" name="name" class="inputStyle" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="p-4"><label for="email" class="labelStyle"> Email: </label></td>
-                                <td class="p-4"><input type="text" name="email" class="inputStyle">
+                                <td class="p-4"><input type="text" name="email" class="inputStyle"
+                                        pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+                                        required>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="p-4"><label for="phoneNumber" class="labelStyle"> Phone Number: </label></td>
-                                <td class="p-4"><input type="tel" name="phoneNumber" class="inputStyle">
+                                <td class="p-4"><label for="phoneNumber" class="labelStyle"> Phone Number: <br>
+                                        (xxx-xxx-xxxx) </label></td>
+                                <td class="p-4"><input type="tel" name="phoneNumber" class="inputStyle"
+                                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="p-4"><label for="questionType" class="labelStyle">Question Type:</label></td>
                                 <td class="p-4">
-                                    <select name="questionType" class="inputStyle">
+                                    <select name="questionType" class="inputStyle" required>
                                         <option selected></option>
                                         <option value="Collaborations">Collaborations</option>
                                         <option value="Packages">Packages</option>

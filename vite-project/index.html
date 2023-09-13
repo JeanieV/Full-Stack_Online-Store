@@ -18,24 +18,26 @@
 <body>
 
   <header>
-    <!-- Jumbotron section -->
     <div class="jumbo">
 
       <video class="homeView" autoplay loop muted>
         <source src="./src/video/pexels-kelly-lacy-5634000 (2160p).mp4" type="video/mp4"
-          attribution="Video by Kelly: https://www.pexels.com/video/close-up-view-of-person-s-hand-while-doing-pottery-5634000/">
+          attribution="Video by Mikhail Nilov: https://www.pexels.com/video/a-beautiful-roses-with-leaves-8247218/">
       </video>
 
-      <div class="heading-on-top">
-        <h1 class="p-5">Welcome to <br> The Art of Pottery</h1>
+      <div class="logoBackground">
+        <picture>
+          <img src="./src/img/logo.png" alt="Logo" class="logo"
+            attribution="Photo by Andrea Piacquadio: https://www.pexels.com/photo/crop-group-stacking-hands-together-3830745/">
+        </picture>
+
+        <h1 class="p-3">Welcome to the <br> Art of Pottery</h1>
       </div>
 
+      <section id="section1" class="scroll-button">
+        <a><span></span></a>
+      </section>
     </div>
-
-    <section id="section1" class="scroll-button">
-      <a><span></span></a>
-    </section>
-
   </header>
 
   <main>
@@ -57,7 +59,7 @@
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="/src/html/new.html"> New Additions </a></li>
-            <li><a class="dropdown-item" href="/src/html/succulents.html"> Tools </a></li>
+            <li><a class="dropdown-item" href="./src/collections/tools.html"> Tools </a></li>
             <li><a class="dropdown-item" href="./src/collections/stoneWare.html"> Stoneware Collection </a></li>
             <li><a class="dropdown-item" href="./src/collections/porcelain.html"> Porcelain Collection </a></li>
             <li><a class="dropdown-item" href="./src/collections/ceramic.html"> Ceramic Collection </a></li>
@@ -138,6 +140,7 @@
           <button type="button" data-bs-target="#carousel" data-bs-slide-to="1"></button>
           <button type="button" data-bs-target="#carousel" data-bs-slide-to="2"></button>
           <button type="button" data-bs-target="#carousel" data-bs-slide-to="3"></button>
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="4"></button>
         </div>
 
         <!-- Slideshow -->
@@ -226,6 +229,26 @@
             </div>
           </div>
 
+          <!-- Tools -->
+
+          <div class="carousel-item d-flex justify-content-center align-items-center">
+            <picture>
+              <img src="./src/img/tools.webp" alt="Ceramic Collection"
+                attribution="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flipkart.com%2Fdefinite-art-professional-pottery-tools-kit-clay-sculpting-scarping-cutting-fine-detailing-smoothening-shaping-trimming-pack-19-tools%2Fp%2Fitmaa22cd1c10937&psig=AOvVaw29KdgMvrNbfQHRejulORcG&ust=1694691160002000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCIDK1de-p4EDFQAAAAAdAAAAABAZ">
+            </picture>
+
+            <!-- Will direct to ceramic collection -->
+            <div class="carousel-caption">
+              <div class="d-flex justify-content-center align-items-center">
+                <div class="caption-background p-3">
+                  <h3> View our Pottery Tools & Equipment </h3>
+                  <p class="infoParagraph"> Various options to choose from! </p>
+                </div>
+              </div>
+              <a href="./src/collections/tools.html" class="viewMoreButton p-2 my-3"> View Collection </a>
+            </div>
+          </div>
+
 
           <!-- Left and right controls -->
           <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
@@ -244,6 +267,13 @@
 
       <div class="container my-5">
         <h2 class="my-5" id="tip1"> Pottery Tips </h2>
+
+        <div class="d-flex justify-content-center align-items-center">
+          <picture>
+            <img src="./src/img/handBuilding1.jpg" alt="Hand Building" class="infoImages mb-5"
+              attribution="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thesprucecrafts.com%2Fbasic-hand-building-techniques-2745928&psig=AOvVaw3pz_FsHDZx0LP39Y0jW8Dx&ust=1694072595838000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJDN19q-lYEDFQAAAAAdAAAAABAE">
+          </picture>
+        </div>
 
         <div class="totalBlockquote p-2">
           <!-- Tip 1 -->
@@ -275,17 +305,17 @@
             </footer>
           </blockquote>
 
-          <div class="d-flex justify-content-center align-items-center">
-            <picture>
-              <img src="./src/img/handBuilding1.jpg" alt="Hand Building" class="infoImages mb-5"
-                attribution="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thesprucecrafts.com%2Fbasic-hand-building-techniques-2745928&psig=AOvVaw3pz_FsHDZx0LP39Y0jW8Dx&ust=1694072595838000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCJDN19q-lYEDFQAAAAAdAAAAABAE">
-            </picture>
-          </div>
-
 
           <!-- Tip 2 -->
+          <div class="d-flex justify-content-center align-items-center">
+            <picture>
+              <img src="./src/img/wheelThrowing.png" alt="Wheel Throwing" class="infoImages mb-5" id="tip2"
+                attribution="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwarrenpl.org%2Fevent%2Fpottery-intro-to-wheel-throwing-2-class-series-w%2F2023-05-03%2F&psig=AOvVaw3pBy8uPVL9NwON7IZrIIVm&ust=1694072637260000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCNiZ2ZS_lYEDFQAAAAAdAAAAABAE">
+            </picture>
+          </div>
+          
           <blockquote class="blockquote mx-5 p-2">
-            <h4 id="tip2" class="my-5"> Throwing on the Potter’s Wheel </h4>
+            <h4 class="my-5"> Throwing on the Potter’s Wheel </h4>
             <p>
               When you picture making pottery, you probably imagine making it on a spinning potter’s wheel. This way of
               making pottery takes practice and the purchase of (or access to) a potter’s wheel. If you’re just
@@ -305,17 +335,18 @@
             </footer>
           </blockquote>
 
+          
+          <!-- Tip 3 -->
+
           <div class="d-flex justify-content-center align-items-center">
             <picture>
-              <img src="./src/img/wheelThrowing.png" alt="Wheel Throwing" class="infoImages mb-5"
+              <img src="./src/img/slipCasting.jpg" alt="Slip Casting" class="infoImages mb-5" id="tip3"
                 attribution="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwarrenpl.org%2Fevent%2Fpottery-intro-to-wheel-throwing-2-class-series-w%2F2023-05-03%2F&psig=AOvVaw3pBy8uPVL9NwON7IZrIIVm&ust=1694072637260000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCNiZ2ZS_lYEDFQAAAAAdAAAAABAE">
             </picture>
           </div>
 
-
-          <!-- Tip 3 -->
           <blockquote class="blockquote mx-5 p-2">
-            <h4 id="tip3" class="my-5"> Slip Casting </h4>
+            <h4 class="my-5"> Slip Casting </h4>
             <p>
               Slip casting is another pottery for beginners technique that does not require a potter’s wheel. “Slip” is
               clay that has been mixed with water until it is either pasty or runny. This slip can then be poured into a
@@ -328,14 +359,6 @@
                 classpop! </a>
             </footer>
           </blockquote>
-
-          <div class="d-flex justify-content-center align-items-center">
-            <picture>
-              <img src="./src/img/slipCasting.jpg" alt="Slip Casting" class="infoImages mb-5"
-                attribution="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwarrenpl.org%2Fevent%2Fpottery-intro-to-wheel-throwing-2-class-series-w%2F2023-05-03%2F&psig=AOvVaw3pBy8uPVL9NwON7IZrIIVm&ust=1694072637260000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCNiZ2ZS_lYEDFQAAAAAdAAAAABAE">
-            </picture>
-          </div>
-
 
         </div>
       </div>

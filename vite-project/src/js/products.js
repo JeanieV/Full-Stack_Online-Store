@@ -155,6 +155,57 @@ export function filterCeramicByCategory(category) {
     return data.ceramic.filter((ceramic) => ceramic.category === category);
 }
 
+export class Tools {
+    constructor(name, description, barcode, price, image) {
+        this._name = name;
+        this._description = description;
+        this._barcode = barcode;
+        this._price = price;
+        this._image = image;
+    }
+
+    // Getters
+    get getName() {
+        return this._name;
+    }
+    get getDescription() {
+        return this._description;
+    }
+    get getBarcode() {
+        return this._barcode;
+    }
+    get getPrice() {
+        return this._price;
+    }
+    get getImage() {
+        return this._image;
+    }
+
+    static async fetchAll() {
+        // Replace this with your Supabase query to fetch products
+        const { data, error } = await supabase.from("tools").select();
+
+        if (error) {
+            throw error;
+        }
+
+        // Create an array of Products instances from the fetched data
+        return data.map((productData) => {
+            return new Tools(
+                productData.name,
+                productData.description,
+                productData.barcode,
+                productData.price,
+                productData.image
+            );
+        });
+    }
+}
+
+export function filterToolsByCategory(category) {
+    return data.tools.filter((tools) => tools.category === category);
+}
+
 
 export class Contact {
     constructor(name, email, phoneNumber, questionType, message) {
@@ -181,7 +232,4 @@ export class Contact {
     get getMessage() {
         return this.message;
     }
-
-
-
 }

@@ -24,7 +24,7 @@ async function submitContactForm(event) {
     if (error) {
       console.error('Error inserting data:', error);
     } else {
-      alert('Your information was added successfully! \n We will get back to your request as soon as possible.');
+      alert('Thank you! \nWe will get back to your request as soon as possible.');
 
       // Optionally, you can reset the form after successful submission
       contactForm.reset();
@@ -35,15 +35,8 @@ async function submitContactForm(event) {
   
 }
 
-
 // Add an event listener to the form submission
 contactForm.addEventListener('submit', submitContactForm);
-
-
-
-
-
-
 
 // Get the button:
 let backToTop = document.getElementById("backToTopButton");

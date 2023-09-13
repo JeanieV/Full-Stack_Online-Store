@@ -8,36 +8,46 @@ body {
 
 /* Jumbotron section */
 .jumbo {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     position: relative;
     height: 60vw;
+    background-color: white;
 }
 
 .homeView {
     width: 100%;
-    height: 60vw;
+    height: 100%;
     object-fit: cover;
+    grid-column: 1 / 2;
 }
 
-.heading-on-top {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.logoBackground {
+    background-color: white;
+    position: relative;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-column: 2 / 3;
+}
+
+.logo {
+    max-width: 100%;
+    height: 25vw;
 }
 
 h1 {
     font-size: 80px;
-    color: #E0DFD0;
+    color: #A47551;
     text-align: center;
 }
 
 /* Scroll section */
 .scroll-button {
     position: absolute;
-    top: 90%;
+    top: 70%;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -58,8 +68,8 @@ a:hover {
     position: absolute;
     top: 0;
     left: 50%;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     margin-left: -12px;
     border-left: 10px solid #000000;
     border-bottom: 10px solid #000000;
@@ -94,22 +104,23 @@ h2 {
 }
 
 .first-navbar {
-    background-color: #1E2640;
+    background-color: #E0DFD0;
 }
 
 
 .titles {
-    color: #E0DFD0;
-    font-size: 32px;
-}
-
-.titles1 {
-    color: #000000;
+    color: #922C40;
     font-size: 32px;
 }
 
 .titles:hover {
     color: #000000;
+}
+
+
+.titles1 {
+    color: #000000;
+    font-size: 32px;
 }
 
 .profileImage {
