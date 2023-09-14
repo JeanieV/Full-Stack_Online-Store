@@ -1,39 +1,44 @@
-// Coming Soon time interval part
+// Coming Soon section
+const seconds = document.querySelector(".seconds .number");
+const minutes = document.querySelector(".minutes .number");
+const hours = document.querySelector(".hours .number");
+const days = document.querySelector(".days .number");
 
-const seconds = document.querySelector(".seconds .number"),
-  minutes = document.querySelector(".minutes .number"),
-  hours = document.querySelector(".hours .number"),
-  days = document.querySelector(".days .number");
+// Check if there is a stored end time in localStorage
+let endTime = localStorage.getItem("timerEndTime");
 
-let secValue = 11,
-  minValue = 2,
-  hourValue = 2,
-  dayValue = 10;
+// If no end time is found or if the end time has passed, calculate a new end time
+if (!endTime || new Date().getTime() > endTime) {
+  const currentTime = new Date().getTime();
+  endTime = currentTime + 20 * 24 * 60 * 60 * 1000; // 20 days in milliseconds
+  localStorage.setItem("timerEndTime", endTime);
+}
 
 const timeFunction = setInterval(() => {
-  secValue--;
+  const currentTime = new Date().getTime();
+  const timeRemaining = endTime - currentTime;
 
-  if (secValue === 0) {
-    minValue--;
-    secValue = 60;
-  }
-  if (minValue === 0) {
-    hourValue--;
-    minValue = 60;
-  }
-  if (hourValue === 0) {
-    dayValue--;
-    hourValue = 24;
-  }
-
-  if (dayValue === 0) {
+  if (timeRemaining <= 0) {
     clearInterval(timeFunction);
+    seconds.textContent = "00";
+    minutes.textContent = "00";
+    hours.textContent = "00";
+    days.textContent = "00";
+    localStorage.removeItem("timerEndTime"); // Remove the end time from localStorage
+  } else {
+    const secValue = Math.floor((timeRemaining / 1000) % 60);
+    const minValue = Math.floor((timeRemaining / 60000) % 60);
+    const hourValue = Math.floor((timeRemaining / 3600000) % 24);
+    const dayValue = Math.floor(timeRemaining / 86400000);
+
+    seconds.textContent = secValue < 10 ? `0${secValue}` : secValue;
+    minutes.textContent = minValue < 10 ? `0${minValue}` : minValue;
+    hours.textContent = hourValue < 10 ? `0${hourValue}` : hourValue;
+    days.textContent = dayValue < 10 ? `0${dayValue}` : dayValue;
   }
-  seconds.textContent = secValue < 10 ? `0${secValue}` : secValue;
-  minutes.textContent = minValue < 10 ? `0${minValue}` : minValue;
-  hours.textContent = hourValue < 10 ? `0${hourValue}` : hourValue;
-  days.textContent = dayValue < 10 ? `0${dayValue}` : dayValue;
-}, 1000); 
+}, 1000);
+
+// Clear the localstorage with localstorage.clear() if the date needs to change
 
 
 // Get the button:

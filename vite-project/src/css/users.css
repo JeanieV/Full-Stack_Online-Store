@@ -1,0 +1,77 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #A47551;
+}
+
+#background-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.signUpForm {
+    background-color: #E0DFD0;
+    border-radius: 35px;
+    width: 50vw;
+}
+
+h1 {
+    font-size: 50px;
+    text-align: center;
+    color: #922C40;
+}
+
+.labelStyle {
+    color: #000000;
+    font-size: 28px;
+}
+
+.inputStyle {
+    height: 40px;
+    width: 15vw;
+    text-align: center;
+}
+
+.logInButton{
+    font-size: 25px;
+    background-color: #922C40;
+    color: #E0DFD0;
+    border: none;
+    width: 9vw;
+}
+
+.logInButton:hover {
+    transform: scale(1.1);
+    background-color: #A47551;
+    color: black;
+    border: none;
+}
+
+.tranBack {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.homeButton{
+    width: 80px;
+    height: 80px;
+    border-radius: 30px;
+}
+
+p{
+    font-size: 20px;
+    text-align: center;
+    color: #000000; 
+}
