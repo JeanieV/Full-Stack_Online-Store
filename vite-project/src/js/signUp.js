@@ -25,11 +25,24 @@ async function submitRegisterForm(event) {
         if (error) {
             console.error('Error inserting data:', error);
         } else {
-            alert('Thank you for registering at the Art of Pottery');
+            alert('Thank you for registering!');
             // Reset the form again
             registerForm.reset();
+
+            // Retrieve the username from the form input
+            const username = newUser.getUsername;
+
+            // Store the username in local storage
+            localStorage.setItem('loggedInUsername', username);
+            
             // Direct users to home page
             window.location.href = '../../index.html';
+
+             // Display the username in the UI
+             const loggedInUsernameSpan = document.getElementById('loggedInUsernameSpan');
+             loggedInUsernameSpan.textContent = username;
+             loggedInUsernameSpan.style.display = 'inline'; // Show the username span
+
         }
     } catch (error) {
         console.error('Error:', error);
@@ -39,3 +52,4 @@ async function submitRegisterForm(event) {
 
 // Add an event listener to the form submission
 registerForm.addEventListener('submit', submitRegisterForm);
+

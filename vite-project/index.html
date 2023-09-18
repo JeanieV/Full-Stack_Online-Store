@@ -102,10 +102,14 @@
         <nav class="navbar navbar-expand-sm sticky-top mt-5 mb-3">
 
           <!-- Sign In -->
-          <a class="navbar-brand titles1 p-4" href="./src/users/signUp.html"> Register </a>
+          <a class="navbar-brand titles1 p-4" href="./src/users/signUp.html" id="registerButton"> Register </a>
 
           <!-- Log In -->
-          <a class="navbar-brand titles1 p-4" href="/src/html/contact.html">Log In </a>
+          <a class="navbar-brand titles1 p-4" href="./src/users/logIn.html" id="loginButton">Log In </a>
+
+          <!-- If the user is logged in or registered -->
+          <span class="username" id="loggedInUsernameSpan"></span>
+
 
           <!-- Signed in User -->
           <button class="viewProfile p-4" type="submit">
@@ -115,6 +119,9 @@
                 attribution="https://www.flaticon.com/free-animated-icons/user">
             </picture>
           </button>
+
+          <!-- If the user is logged in or registered -->
+          <button class="logout" id="logoutUser"> Log Out</button>
 
         </nav>
       </div>

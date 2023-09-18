@@ -10,6 +10,7 @@ const data = useData();
 console.log(data);
 
 
+
 // Get the button:
 let backToTop = document.getElementById("backToTopButton");
 
@@ -113,3 +114,53 @@ shoppingCart.addEventListener('click', () => {
   emptyShoppingCart();
 });
 
+
+// Function to check if a user is logged in
+async function checkLoggedInStatus() {
+  const loggedInUsername = localStorage.getItem('loggedInUsername');
+  const registerButton = document.getElementById('registerButton');
+  const loginButton = document.getElementById('loginButton');
+  const loggedInUsernameSpan = document.getElementById('loggedInUsernameSpan');
+  const logoutUser = document.getElementById('logoutUser');
+
+  // Get user data from Supabase
+  const userData = await useData();
+  
+  if (loggedInUsername && userData) {
+    // Check if the loggedInUsername exists in the userData
+    const userExists = userData.some(user => user.username === loggedInUsername);
+
+    if (userExists) {
+      // User is logged in and the username exists in the database
+      registerButton.style.display = 'none';
+      loginButton.style.display = 'none';
+      loggedInUsernameSpan.textContent = `Hi there, ${loggedInUsername}!`;
+      logoutUser.style.display = 'block';
+    } else {
+      // User is not found in the database, clear the local storage
+      localStorage.removeItem('loggedInUsername');
+      loggedInUsernameSpan.style.display = 'none';
+    }
+  } else {
+    // User is not logged in
+    loggedInUsernameSpan.style.display = 'none';
+  }
+}
+
+// Call the function to check login status when the page loads
+window.addEventListener('load', checkLoggedInStatus);
+
+
+function logOutUser() {
+  // Clear the user session data from localStorage
+  localStorage.removeItem('loggedInUsername');
+
+  // Redirect the user to the index page
+  window.location.href = 'index.html'; 
+}
+
+// Add an event listener to the "Log Out" button
+const logoutButton = document.getElementById('logoutUser'); 
+if (logoutButton) {
+  logoutButton.addEventListener('click', logOutUser);
+}

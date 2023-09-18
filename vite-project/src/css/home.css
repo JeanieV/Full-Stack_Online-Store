@@ -430,3 +430,13 @@ h4 {
 li {
     font-size: 20px;
 }
+
+/* Signed in Users */
+.username {
+    font-size: 35px;
+    color: #000000;
+}
+
+.logout{
+    display: none;
+}
