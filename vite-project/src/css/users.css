@@ -24,6 +24,12 @@ body {
     width: 50vw;
 }
 
+.logInForm{
+    background-color: #E0DFD0;
+    border-radius: 35px;
+    width: 40vw;
+}
+
 h1 {
     font-size: 50px;
     text-align: center;

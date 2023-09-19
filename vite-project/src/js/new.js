@@ -47,7 +47,7 @@ let backToTop = document.getElementById("backToTopButton");
 backToTop.addEventListener("click", topFunction);
 
 // When the user scrolls down 80px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
   if (document.documentElement.scrollTop > 80) {
@@ -105,6 +105,23 @@ function emptyShoppingCart() {
 
   // Appending the cartDate to the div
   centerDiv1.appendChild(cartDate);
+
+  // Getting the fullname from the localStorage
+  const fullname = localStorage.getItem('loggedInFullName');
+
+  // Creating a customerName element if the fullname is available
+  if (fullname) {
+    const customerName = document.createElement("h2");
+    customerName.classList.add("heading2Modal", "pb-2");
+    customerName.textContent = `Hi there, ${fullname}!`;
+    // Appending the customerName to the centerDiv
+    centerDiv1.appendChild(customerName);
+  } else {
+    // Handle the case when fullname is not found in localStorage
+    const noFullnameMessage = document.createElement("p");
+    noFullnameMessage.textContent = 'Welcome!';
+    centerDiv1.appendChild(noFullnameMessage);
+  }
 
   // Creating the paragraph
   const newparagraph = document.createElement("p");

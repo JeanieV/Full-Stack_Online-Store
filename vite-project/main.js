@@ -17,7 +17,7 @@ let backToTop = document.getElementById("backToTopButton");
 backToTop.addEventListener("click", topFunction);
 
 // When the user scrolls down 80px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
   if (document.documentElement.scrollTop > 300) {
@@ -40,8 +40,7 @@ function topFunction() {
 const cartView = document.getElementById("myModal");
 
 function emptyShoppingCart() {
-
-  //Clear the current modal before showing a new modal
+  // Clear the current modal before showing a new modal
   cartView.innerHTML = '';
 
   const centerCartDiv = document.createElement("div");
@@ -51,7 +50,7 @@ function emptyShoppingCart() {
   const mycart = document.createElement("div");
   mycart.classList.add("content-cart", "mx-5", "mt-5");
 
-  //Creating the close button on the modal
+  // Creating the close button on the modal
   const buttonClose = document.createElement("span");
   buttonClose.classList.add("close", "p-2");
   buttonClose.innerHTML = "&times";
@@ -76,10 +75,27 @@ function emptyShoppingCart() {
   // Appending the cartDate to the div
   centerDiv1.appendChild(cartDate);
 
+  // Getting the fullname from the localStorage
+  const fullname = localStorage.getItem('loggedInFullName');
+
+  // Creating a customerName element if the fullname is available
+  if (fullname) {
+    const customerName = document.createElement("h2");
+    customerName.classList.add("heading2Modal", "pb-2");
+    customerName.textContent = `Hi there, ${fullname}!`;
+    // Appending the customerName to the centerDiv
+    centerDiv1.appendChild(customerName);
+  } else {
+    // Handle the case when fullname is not found in localStorage
+    const noFullnameMessage = document.createElement("p");
+    noFullnameMessage.textContent = 'Welcome!';
+    centerDiv1.appendChild(noFullnameMessage);
+  }
+
   // Creating the paragraph
   const newparagraph = document.createElement("p");
   newparagraph.classList.add("tableData");
-  newparagraph.innerHTML = `Your shopping cart is currently empty. <br> Kindly click on the button below to start your shopping journey!`
+  newparagraph.innerHTML = `Your shopping cart is currently empty. <br> Kindly click on the button below to start your shopping journey.`;
 
   const centerDiv = document.createElement('div');
   centerDiv.classList.add("col-md-12", "text-center", "py-5");
@@ -91,9 +107,9 @@ function emptyShoppingCart() {
 
   shoppingButton.addEventListener('click', () => {
     cartView.style.display = 'none';
-  })
+  });
 
-  centerDiv.appendChild(shoppingButton)
+  centerDiv.appendChild(shoppingButton);
   // Appending to the cart
   mycart.appendChild(buttonClose);
   mycart.appendChild(invoiceName);
@@ -115,6 +131,7 @@ shoppingCart.addEventListener('click', () => {
 });
 
 
+
 // Function to check if a user is logged in
 async function checkLoggedInStatus() {
   const loggedInUsername = localStorage.getItem('loggedInUsername');
@@ -125,7 +142,7 @@ async function checkLoggedInStatus() {
 
   // Get user data from Supabase
   const userData = await useData();
-  
+
   if (loggedInUsername && userData) {
     // Check if the loggedInUsername exists in the userData
     const userExists = userData.some(user => user.username === loggedInUsername);
@@ -136,6 +153,8 @@ async function checkLoggedInStatus() {
       loginButton.style.display = 'none';
       loggedInUsernameSpan.textContent = `Hi there, ${loggedInUsername}!`;
       logoutUser.style.display = 'block';
+
+      console.log(loggedInUsername);
     } else {
       // User is not found in the database, clear the local storage
       localStorage.removeItem('loggedInUsername');
@@ -154,13 +173,18 @@ window.addEventListener('load', checkLoggedInStatus);
 function logOutUser() {
   // Clear the user session data from localStorage
   localStorage.removeItem('loggedInUsername');
+  localStorage.removeItem('loggedInFullName');
+  localStorage.removeItem('loggedInAddress');
+  localStorage.removeItem('loggedInPhoneNumber');
+  localStorage.removeItem('loggedInEmail');
+  localStorage.removeItem('loggedInPassword');
 
   // Redirect the user to the index page
-  window.location.href = 'index.html'; 
+  window.location.href = 'index.html';
 }
 
 // Add an event listener to the "Log Out" button
-const logoutButton = document.getElementById('logoutUser'); 
+const logoutButton = document.getElementById('logoutUser');
 if (logoutButton) {
   logoutButton.addEventListener('click', logOutUser);
 }
