@@ -24,10 +24,16 @@ body {
     width: 50vw;
 }
 
-.logInForm{
+.logInForm {
     background-color: #E0DFD0;
     border-radius: 35px;
     width: 40vw;
+}
+
+.editForm {
+    background-color: #E0DFD0;
+    border-radius: 35px;
+    width: 50vw;
 }
 
 h1 {
@@ -45,9 +51,10 @@ h1 {
     height: 40px;
     width: 15vw;
     text-align: center;
+    font-size: 20px;
 }
 
-.logInButton{
+.logInButton {
     font-size: 25px;
     background-color: #922C40;
     color: #E0DFD0;
@@ -62,6 +69,21 @@ h1 {
     border: none;
 }
 
+.accountButton{
+    font-size: 25px;
+    background-color: #922C40;
+    color: #E0DFD0;
+    border: none;
+    width: 10vw;
+}
+
+.accountButton:hover {
+    transform: scale(1.1);
+    background-color: #A47551;
+    color: black;
+    border: none;
+}
+
 .tranBack {
     border: none;
     background-color: transparent;
@@ -70,20 +92,40 @@ h1 {
     display: inline-block;
 }
 
-.homeButton{
+.homeButton {
     width: 80px;
     height: 80px;
     border-radius: 30px;
 }
 
-p{
+p {
     font-size: 20px;
     text-align: center;
-    color: #000000; 
+    color: #000000;
 }
 
-.infoBackground{
+.infoBackground {
     background-color: #E0DFD0;
     border-radius: 35px;
     width: 60vw;
+}
+
+.heading2Modal {
+    font-size: 50px;
+    text-align: center;
+    color: #A47551;
+    padding: 0;
+}
+
+td {
+    font-size: 25px;
+    text-align: center;
+    color: #000000;
+}
+
+.labelStyle {
+    color: #922C40;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: left;
 }
