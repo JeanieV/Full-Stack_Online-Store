@@ -49,6 +49,8 @@ async function submitLoginForm(event) {
 
             userLocalStorage(username, fullname, address, phoneNumber, email, password);
 
+            // Show alert
+            alert("You are logged in!")
             // Redirect users to the home page with the correct username
             window.location.href = '../../index.html';
         } else {

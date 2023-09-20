@@ -444,7 +444,8 @@ function emptyShoppingCart() {
     centerDiv1.appendChild(customerName);
   } else {
     // Handle the case when fullname is not found in localStorage
-    const noFullnameMessage = document.createElement("p");
+    const noFullnameMessage = document.createElement("h2");
+    noFullnameMessage.classList.add("heading2Modal", "pb-2");
     noFullnameMessage.textContent = 'Welcome!';
     centerDiv1.appendChild(noFullnameMessage);
   }

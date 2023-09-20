@@ -77,7 +77,7 @@ async function submitRegisterForm(event) {
             // Display the username in the UI
             const loggedInUsernameSpan = document.getElementById('loggedInUsernameSpan');
             loggedInUsernameSpan.textContent = username;
-            loggedInUsernameSpan.style.display = 'inline'; // Show the username span
+            loggedInUsernameSpan.style.display = 'inline';
         }
     } catch (error) {
         console.error('Error:', error);

@@ -81,3 +81,9 @@ p{
     text-align: center;
     color: #000000; 
 }
+
+.infoBackground{
+    background-color: #E0DFD0;
+    border-radius: 35px;
+    width: 60vw;
+}

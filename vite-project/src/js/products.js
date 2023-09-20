@@ -277,4 +277,25 @@ export class User {
     get getPhoneNumber() {
         return this.phoneNumber;
     }
+
+    static async fetchAll() {
+        // Replace this with your Supabase query to fetch products
+        const { data, error } = await supabase.from("users").select();
+
+        if (error) {
+            throw error;
+        }
+
+        // Create an array of Products instances from the fetched data
+        return data.map((productData) => {
+            return new User(
+                productData.username,
+                productData.fullname,
+                productData.address,
+                productData.password,
+                productData.email,
+                productData.phoneNumber
+            );
+        });
+    }
 }
