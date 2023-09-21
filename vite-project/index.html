@@ -20,7 +20,7 @@
   <header>
     <div class="jumbo">
 
-      <video class="homeView" autoplay loop muted>
+      <video class="homeView" autoplay loop muted loading="lazy">
         <source src="./src/video/pexels-kelly-lacy-5634000 (2160p).mp4" type="video/mp4"
           attribution="Video by Mikhail Nilov: https://www.pexels.com/video/a-beautiful-roses-with-leaves-8247218/">
       </video>
@@ -28,10 +28,11 @@
       <div class="logoBackground">
         <picture>
           <img src="./src/img/logo.png" alt="Logo" class="logo"
-            attribution="Photo by Andrea Piacquadio: https://www.pexels.com/photo/crop-group-stacking-hands-together-3830745/">
+            attribution="Photo by Andrea Piacquadio: https://www.pexels.com/photo/crop-group-stacking-hands-together-3830745/"
+            loading="lazy">
         </picture>
 
-        <h1 class="p-3">Art<br>of<br>Pottery<br> Welcomes you</h1>
+        <h1 class="p-3">Art<br>of<br>Pottery</h1>
       </div>
 
       <section id="section1" class="scroll-button">
@@ -96,37 +97,39 @@
       </div>
     </nav>
 
-    <!-- Sign In/ Log In Navbar section -->
     <div class="container-fluid">
       <div class="d-flex justify-content-end">
         <nav class="navbar navbar-expand-sm sticky-top mt-5 mb-3">
 
+          <!-- This is where the loading state will take place -->
+          <div id="loadingState" class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading</p>
+          </div>
+    
           <!-- Sign In -->
           <a class="navbar-brand titles1 p-4" href="./src/users/signUp.html" id="registerButton"> Register </a>
-
+    
           <!-- Log In -->
           <a class="navbar-brand titles1 p-4" href="./src/users/logIn.html" id="loginButton">Log In </a>
-
+    
           <!-- If the user is logged in or registered -->
           <span class="username" id="loggedInUsernameSpan"></span>
-
-
+    
           <!-- Signed in User -->
           <a class="viewProfile p-4" href="./src/users/profile.html">
             <picture>
               <span class="signedInUser"></span>
-              <img class="profileImage" src="./src/img/user.png" alt="Profile" title="My Profile"
-                attribution="https://www.flaticon.com/free-animated-icons/user">
+              <img class="profileImage" src="./src/img/user.png" alt="Profile" title="My Profile" attribution="https://www.flaticon.com/free-animated-icons/user">
             </picture>
           </a>
-
+    
           <!-- If the user is logged in or registered -->
-          <button class="logout tranBack" id="logoutUser"> <img src="./src/img/logout.png" class="logOutImage" alt="Logout" title="Log Out"
-            attribution="https://www.flaticon.com/free-icons/logout"></button>
-
+          <button class="logout tranBack" id="logoutUser"> <img src="./src/img/logout.png" class="logOutImage" alt="Logout" title="Log Out" attribution="https://www.flaticon.com/free-icons/logout"></button>
         </nav>
       </div>
     </div>
+    
 
     <!-- Modal that will show for every product (currently on hide)-->
     <div id="myModal" class="modal modalCart">
@@ -159,7 +162,7 @@
           <div class="carousel-item active d-flex justify-content-center align-items-center">
 
             <picture>
-              <img src="./src/img/store.jpg" alt="Store" class="carousel-image"
+              <img src="./src/img/store.jpg" alt="Store" class="carousel-image" loading="lazy"
                 attribution="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.themodernhouse.com%2Fjournal%2Fstudio-pottery-london%2F&psig=AOvVaw2hpuQ1OwXhOnAFGuoiOpY_&ust=1694073983115000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCKiupKTElYEDFQAAAAAdAAAAABAE">
             </picture>
 

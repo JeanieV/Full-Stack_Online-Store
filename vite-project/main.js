@@ -3,8 +3,20 @@ import { supabase } from "./supabase";
 
 // Connecting to the Supabase database
 const useData = async () => {
-  const { data, error } = await supabase.from("users").select();
-  return data;
+  try {
+    showLoadingState();
+
+    const { data, error } = await supabase.from("users").select();
+    
+    if (error) {
+      // Handle error
+    } else {
+      hideLoadingState(); // Hide loading state when data is received
+      return data;
+    }
+  } catch (error) {
+    // Handle error
+  }
 }
 const data = useData();
 console.log(data);
@@ -167,7 +179,10 @@ async function checkLoggedInStatus() {
 }
 
 // Call the function to check login status when the page loads
-window.addEventListener('load', checkLoggedInStatus);
+window.addEventListener('load', () => {
+  checkLoggedInStatus();
+  hideLoadingState(); // Hide loading state after the page has fully loaded
+});
 
 
 function logOutUser() {
@@ -187,4 +202,17 @@ function logOutUser() {
 const logoutButton = document.getElementById('logoutUser');
 if (logoutButton) {
   logoutButton.addEventListener('click', logOutUser);
+}
+
+
+// Display the loading state when a Supabase request is made
+function showLoadingState() {
+  const loadingState = document.getElementById("loadingState");
+  loadingState.style.display = "block";
+}
+
+// Hide the loading state when content has loaded
+function hideLoadingState() {
+  const loadingState = document.getElementById("loadingState");
+  loadingState.style.display = "none";
 }
