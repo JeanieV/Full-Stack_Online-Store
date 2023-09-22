@@ -1,17 +1,6 @@
 import { User } from '../js/products';
 import { supabase } from '../../supabase';
-
-
-// Add the information to localStorage
-function userLocalStorage(username, fullname, address, phoneNumber, email, password) {
-    localStorage.setItem('loggedInUsername', username);
-    localStorage.setItem('loggedInFullName', fullname);
-    localStorage.setItem('loggedInAddress', address);
-    localStorage.setItem('loggedInPhoneNumber', phoneNumber);
-    localStorage.setItem('loggedInEmail', email);
-    localStorage.setItem('loggedInPassword', password);
-}
-
+import { userLocalStorage } from './helper';
 
 // Add an event listener to the form submission
 const registerForm = document.querySelector('#registerForm');

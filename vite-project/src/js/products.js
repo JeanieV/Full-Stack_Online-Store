@@ -1,18 +1,22 @@
 import { supabase } from "../../supabase";
 
-
 // Stoneware Class
 
-export class Stoneware {
-    constructor(name, description, barcode, price, image) {
+export class Product {
+    constructor(product_id, name, description, barcode, price, image, category) {
+        this._product_id = product_id;
         this._name = name;
         this._description = description;
         this._barcode = barcode;
         this._price = price;
         this._image = image;
+        this._category = category;
     }
 
     // Getters
+    get getProductId() {
+        return this._product_id;
+    }
     get getName() {
         return this._name;
     }
@@ -28,193 +32,36 @@ export class Stoneware {
     get getImage() {
         return this._image;
     }
+    get getCategory() {
+        return this._category;
+    }
 
-    static async fetchAll() {
-        // Replace this with your Supabase query to fetch products
-        const { data, error } = await supabase.from("stoneware").select();
 
-        if (error) {
+    static async fetchAll(tableName) {
+        try {
+            const { data, error } = await supabase.from(tableName).select();
+            if (error) {
+                throw error;
+            }
+    
+            // Process the data as needed
+            // Create an array of Product instances from the fetched data
+            return data.map((productData) => {
+                return new Product(
+                    productData.product_id,
+                    productData.name,
+                    productData.description,
+                    productData.barcode,
+                    productData.price,
+                    productData.image,
+                    tableName
+                );
+            });
+        } catch (error) {
             throw error;
         }
-
-        // Create an array of Products instances from the fetched data
-        return data.map((productData) => {
-            return new Stoneware(
-                productData.name,
-                productData.description,
-                productData.barcode,
-                productData.price,
-                productData.image
-            );
-        });
     }
 }
-
-export function filterStonewareByCategory(category) {
-    return data.stoneware.filter((stoneware) => stoneware.category === category);
-}
-
-
-// Porcelain Class
-
-export class Porcelain {
-    constructor(name, description, barcode, price, image) {
-        this._name = name;
-        this._description = description;
-        this._barcode = barcode;
-        this._price = price;
-        this._image = image;
-    }
-
-    // Getters
-    get getName() {
-        return this._name;
-    }
-    get getDescription() {
-        return this._description;
-    }
-    get getBarcode() {
-        return this._barcode;
-    }
-    get getPrice() {
-        return this._price;
-    }
-    get getImage() {
-        return this._image;
-    }
-
-    static async fetchAll() {
-        // Replace this with your Supabase query to fetch products
-        const { data, error } = await supabase.from("porcelain").select();
-
-        if (error) {
-            throw error;
-        }
-
-        // Create an array of Products instances from the fetched data
-        return data.map((productData) => {
-            return new Porcelain(
-                productData.name,
-                productData.description,
-                productData.barcode,
-                productData.price,
-                productData.image
-            );
-        });
-    }
-}
-
-export function filterPorcelainByCategory(category) {
-    return data.porcelain.filter((porcelain) => porcelain.category === category);
-}
-
-// Ceramic Class
-
-export class Ceramic {
-    constructor(name, description, barcode, price, image) {
-        this._name = name;
-        this._description = description;
-        this._barcode = barcode;
-        this._price = price;
-        this._image = image;
-    }
-
-    // Getters
-    get getName() {
-        return this._name;
-    }
-    get getDescription() {
-        return this._description;
-    }
-    get getBarcode() {
-        return this._barcode;
-    }
-    get getPrice() {
-        return this._price;
-    }
-    get getImage() {
-        return this._image;
-    }
-
-    static async fetchAll() {
-        // Replace this with your Supabase query to fetch products
-        const { data, error } = await supabase.from("ceramic").select();
-
-        if (error) {
-            throw error;
-        }
-
-        // Create an array of Products instances from the fetched data
-        return data.map((productData) => {
-            return new Ceramic(
-                productData.name,
-                productData.description,
-                productData.barcode,
-                productData.price,
-                productData.image
-            );
-        });
-    }
-}
-
-export function filterCeramicByCategory(category) {
-    return data.ceramic.filter((ceramic) => ceramic.category === category);
-}
-
-
-// Tools Class
-
-export class Tools {
-    constructor(name, description, barcode, price, image) {
-        this._name = name;
-        this._description = description;
-        this._barcode = barcode;
-        this._price = price;
-        this._image = image;
-    }
-
-    // Getters
-    get getName() {
-        return this._name;
-    }
-    get getDescription() {
-        return this._description;
-    }
-    get getBarcode() {
-        return this._barcode;
-    }
-    get getPrice() {
-        return this._price;
-    }
-    get getImage() {
-        return this._image;
-    }
-
-    static async fetchAll() {
-        // Replace this with your Supabase query to fetch products
-        const { data, error } = await supabase.from("tools").select();
-
-        if (error) {
-            throw error;
-        }
-
-        // Create an array of Products instances from the fetched data
-        return data.map((productData) => {
-            return new Tools(
-                productData.name,
-                productData.description,
-                productData.barcode,
-                productData.price,
-                productData.image
-            );
-        });
-    }
-}
-
-export function filterToolsByCategory(category) {
-    return data.tools.filter((tools) => tools.category === category);
-}
-
 
 // Contact Class
 
@@ -249,7 +96,8 @@ export class Contact {
 // Users Class
 
 export class User {
-    constructor(username, fullname, address, password, email, phoneNumber) {
+    constructor(userId, username, fullname, address, password, email, phoneNumber) {
+        this.user_id = userId;
         this.username = username;
         this.fullname = fullname;
         this.address = address;
@@ -259,6 +107,9 @@ export class User {
     }
 
     // Getters
+    get getUserId() {
+        return this.userId;
+    }
     get getUsername() {
         return this.username;
     }
@@ -289,6 +140,7 @@ export class User {
         // Create an array of Products instances from the fetched data
         return data.map((productData) => {
             return new User(
+                productData.userId,
                 productData.username,
                 productData.fullname,
                 productData.address,
@@ -299,3 +151,31 @@ export class User {
         });
     }
 }
+
+// Users Class
+
+export class Order {
+    constructor(user_id, product_category, product_id, quantity) {
+        this.user_id = user_id;
+        this.product_id = product_id;
+        this.product_category = product_category;
+        this.quantity = quantity;
+    }
+
+    // Getters
+    get getUserId() {
+        return this.user_id;
+    }
+    get getProductId() {
+        return this.product_id;
+    }
+    get getCategory() {
+        return this.product_category;
+    }
+    get getQuantity() {
+        return this.quantity;
+    }
+
+}
+
+

@@ -1,15 +1,5 @@
 import { supabase } from '../../supabase';
-
-
-// Add the information to localStorage
-function userLocalStorage(username, fullname, address, phoneNumber, email, password) {
-    localStorage.setItem('loggedInUsername', username);
-    localStorage.setItem('loggedInFullName', fullname);
-    localStorage.setItem('loggedInAddress', address);
-    localStorage.setItem('loggedInPhoneNumber', phoneNumber);
-    localStorage.setItem('loggedInEmail', email);
-    localStorage.setItem('loggedInPassword', password);
-}
+import { userLocalStorage } from './helper';
 
 
 const loginForm = document.querySelector('#loginForm');
@@ -25,7 +15,7 @@ async function submitLoginForm(event) {
         // Query the database to check if the user exists
         const { data, error } = await supabase
             .from('users')
-            .select('username, fullname, address, phoneNumber, email, password') 
+            .select('user_id, username, fullname, address, phoneNumber, email, password') 
             .eq('email', email)
             .eq('password', password)
             .single();
@@ -37,6 +27,7 @@ async function submitLoginForm(event) {
             window.location.href = '../users/signUp.html';
         } else if (data) {
             // User with the provided email and password exists
+            const user_id = data.user_id;
             const username = data.username;
             const fullname = data.fullname; 
             const address = data.address;
@@ -47,7 +38,7 @@ async function submitLoginForm(event) {
             // Update the fullname in localStorage
             localStorage.setItem('loggedInFullName', fullname);
 
-            userLocalStorage(username, fullname, address, phoneNumber, email, password);
+            userLocalStorage(user_id, username, fullname, address, phoneNumber, email, password);
 
             // Show alert
             alert("You are logged in!")
