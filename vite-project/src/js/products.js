@@ -1,6 +1,8 @@
 import { supabase } from "../../supabase";
 
-// Stoneware Class
+// -------------
+// Product class (Stoneware, Porcelain, Ceramic and Tools)
+// -------------
 
 export class Product {
     constructor(product_id, name, description, barcode, price, image, category) {
@@ -36,7 +38,6 @@ export class Product {
         return this._category;
     }
 
-
     static async fetchAll(tableName) {
         try {
             const { data, error } = await supabase.from(tableName).select();
@@ -63,7 +64,9 @@ export class Product {
     }
 }
 
+// -------------
 // Contact Class
+// -------------
 
 export class Contact {
     constructor(name, email, phoneNumber, questionType, message) {
@@ -93,11 +96,12 @@ export class Contact {
 }
 
 
-// Users Class
+// -------------
+// User Class
+// -------------
 
 export class User {
-    constructor(userId, username, fullname, address, password, email, phoneNumber) {
-        this.user_id = userId;
+    constructor(username, fullname, address, password, email, phoneNumber) {
         this.username = username;
         this.fullname = fullname;
         this.address = address;
@@ -107,9 +111,6 @@ export class User {
     }
 
     // Getters
-    get getUserId() {
-        return this.userId;
-    }
     get getUsername() {
         return this.username;
     }
@@ -140,7 +141,6 @@ export class User {
         // Create an array of Products instances from the fetched data
         return data.map((productData) => {
             return new User(
-                productData.userId,
                 productData.username,
                 productData.fullname,
                 productData.address,
@@ -152,7 +152,9 @@ export class User {
     }
 }
 
-// Users Class
+// -------------
+// Order Class
+// -------------
 
 export class Order {
     constructor(user_id, product_category, product_id, quantity) {

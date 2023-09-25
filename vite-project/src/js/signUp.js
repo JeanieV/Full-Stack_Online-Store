@@ -43,6 +43,8 @@ async function submitRegisterForm(event) {
         if (error) {
             console.error('Error inserting data:', error);
         } else {
+
+
             console.log("User added to database!")
             alert('Thank you for registering!');
 

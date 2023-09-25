@@ -1,7 +1,6 @@
 import { supabase } from '../../supabase';
 import { userLocalStorage } from './helper';
 
-
 const loginForm = document.querySelector('#loginForm');
 
 async function submitLoginForm(event) {
@@ -52,7 +51,6 @@ async function submitLoginForm(event) {
         console.error('Error:', error);
     }
 }
-
 
 // Add an event listener to the form submission
 loginForm.addEventListener('submit', submitLoginForm);

@@ -201,3 +201,13 @@ function sortProductsHigh() {
   containerLow.innerHTML = '';
   cardsLow.forEach(card => containerLow.appendChild(card));
 }
+
+// -----------------
+// Calling the Cart Section
+// -----------------
+
+// If the user clicks on the shopping cart button (and the cart is empty)
+const shoppingCart = document.getElementById('shoppingCart');
+shoppingCart.addEventListener('click', () => {
+  emptyShoppingCart();
+});

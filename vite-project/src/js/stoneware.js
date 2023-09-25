@@ -7,7 +7,6 @@ import { emptyShoppingCart } from '../js/helper';
 // Connection to Supabase
 // -----------------
 
-
 // Function to fetch and use data
 const fetchData = async () => {
 
@@ -72,7 +71,6 @@ function scrollFunction() {
 function topFunction() {
   document.documentElement.scrollTop = 500; // For Chrome, Firefox, IE and Opera
 }
-
 
 // -----------------
 // Product cards section
@@ -151,7 +149,6 @@ function generateProductCard(product) {
 // Sorting section
 // -----------------
 
-
 //The products will be sorted automatically in alphabetical order
 const alphabeticallySort = document.querySelector(".alphabetically");
 alphabeticallySort.addEventListener('click', sortProducts);
@@ -202,3 +199,13 @@ function sortProductsHigh() {
   containerLow.innerHTML = '';
   cardsLow.forEach(card => containerLow.appendChild(card));
 }
+
+// -----------------
+// Calling the Cart Section
+// -----------------
+
+// If the user clicks on the shopping cart button (and the cart is empty)
+const shoppingCart = document.getElementById('shoppingCart');
+shoppingCart.addEventListener('click', () => {
+  emptyShoppingCart();
+});

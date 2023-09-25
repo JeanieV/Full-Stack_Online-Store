@@ -21,4 +21,13 @@ function topFunction() {
   document.documentElement.scrollTop = 40; // For Chrome, Firefox, IE and Opera
 }
 
+// -----------------
+// Calling the Cart Section
+// -----------------
+
+// If the user clicks on the shopping cart button (and the cart is empty)
+const shoppingCart = document.getElementById('shoppingCart');
+shoppingCart.addEventListener('click', () => {
+  emptyShoppingCart();
+});
 

@@ -12,11 +12,9 @@ export function userLocalStorage(user_id, username, fullname, address, phoneNumb
   localStorage.setItem('loggedInPassword', password);
 }
 
-
 // -----------------
 // Modal for each product
 // -----------------
-
 
 const modalView = document.getElementById("myModal");
 
@@ -230,7 +228,6 @@ export async function addToCart() {
 
 }
 
-
 // -----------------
 // Empty Shopping Cart
 // -----------------
@@ -323,10 +320,4 @@ export function emptyShoppingCart() {
 
   cartView.style.display = "block";
 }
-
-// If the user clicks on the shopping cart button (and the cart is empty)
-const shoppingCart = document.getElementById('shoppingCart');
-shoppingCart.addEventListener('click', () => {
-  emptyShoppingCart();
-});
 
