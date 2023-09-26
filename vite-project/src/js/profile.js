@@ -1,4 +1,4 @@
-import { User } from '../js/products';
+import { User } from '../js/classes';
 import { supabase } from '../../supabase';
 
 // -----------------

@@ -106,33 +106,40 @@
             <div class="spinner"></div>
             <p>Loading</p>
           </div>
-    
+
           <!-- Sign In -->
           <a class="navbar-brand titles1 p-4" href="./src/users/signUp.html" id="registerButton"> Register </a>
-    
+
           <!-- Log In -->
           <a class="navbar-brand titles1 p-4" href="./src/users/logIn.html" id="loginButton">Log In </a>
-    
+
           <!-- If the user is logged in or registered -->
           <span class="username" id="loggedInUsernameSpan"></span>
-    
+
           <!-- Signed in User -->
           <a class="viewProfile p-4" href="./src/users/profile.html">
             <picture>
               <span class="signedInUser"></span>
-              <img class="profileImage" src="./src/img/user.png" alt="Profile" title="My Profile" attribution="https://www.flaticon.com/free-animated-icons/user">
+              <img class="profileImage" src="./src/img/user.png" alt="Profile" title="My Profile"
+                attribution="https://www.flaticon.com/free-animated-icons/user">
             </picture>
           </a>
-    
+
           <!-- If the user is logged in or registered -->
-          <button class="logout tranBack" id="logoutUser"> <img src="./src/img/logout.png" class="logOutImage" alt="Logout" title="Log Out" attribution="https://www.flaticon.com/free-icons/logout"></button>
+          <button class="logout tranBack" id="logoutUser"> <img src="./src/img/logout.png" class="logOutImage"
+              alt="Logout" title="Log Out" attribution="https://www.flaticon.com/free-icons/logout"></button>
         </nav>
       </div>
     </div>
-    
+
 
     <!-- Modal that will show for every product (currently on hide)-->
     <div id="myModal" class="modal modalCart">
+      <span class="close">&times;</span>
+    </div>
+
+    <!-- Shopping Cart -->
+    <div id="myCart" class="modal modalCart">
       <span class="close">&times;</span>
     </div>
 

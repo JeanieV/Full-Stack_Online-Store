@@ -153,15 +153,16 @@ export class User {
 }
 
 // -------------
-// Order Class
+// CartEntry Class
 // -------------
 
-export class Order {
-    constructor(user_id, product_category, product_id, quantity) {
+export class CartEntry {
+    constructor(user_id, product_category, product_id, quantity, totalPrice) {
         this.user_id = user_id;
         this.product_id = product_id;
         this.product_category = product_category;
         this.quantity = quantity;
+        this.totalPrice = totalPrice;
     }
 
     // Getters
@@ -177,7 +178,9 @@ export class Order {
     get getQuantity() {
         return this.quantity;
     }
-
+    get getTotalPrice() {
+        return this.totalPrice;
+    }
 }
 
 

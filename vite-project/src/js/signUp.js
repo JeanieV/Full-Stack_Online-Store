@@ -1,4 +1,4 @@
-import { User } from '../js/products';
+import { User } from './classes';
 import { supabase } from '../../supabase';
 import { userLocalStorage } from './helper';
 
@@ -18,17 +18,17 @@ async function submitRegisterForm(event) {
 
     try {
         // Check if a user with the same email or phoneNumber already exists
-        const { data: existingUsers, error: existingUsersError } = await supabase
+        const { data, error } = await supabase
             .from('users')
             .select('email, phoneNumber')
             .or(`email.eq.${email},phoneNumber.eq.${phoneNumber}`);
 
-        if (existingUsersError) {
-            console.error('Error checking existing users:', existingUsersError);
+        if (error) {
+            console.error('Error checking existing users:', data);
             return;
         }
 
-        if (existingUsers.length > 0) {
+        if (data.length > 0) {
             // User with the same email or phoneNumber already exists
             alert('A user with the same email or phone number already exists.');
             registerForm.reset();
@@ -38,7 +38,7 @@ async function submitRegisterForm(event) {
         // If no existing user with the same email or phoneNumber, insert the new user
         const newUser = new User(username, fullname, address, password, email, phoneNumber);
 
-        const { data, error } = await supabase.from('users').upsert([newUser]);
+        await supabase.from('users').upsert([newUser]);
 
         if (error) {
             console.error('Error inserting data:', error);
@@ -77,3 +77,5 @@ async function submitRegisterForm(event) {
 
 // Add an event listener to the form submission
 registerForm.addEventListener('submit', submitRegisterForm);
+
+

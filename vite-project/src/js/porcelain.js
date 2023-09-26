@@ -1,7 +1,5 @@
-import { Product } from '../js/products';
-import { addToCart } from '../js/helper';
-import { showModal } from '../js/helper';
-import { emptyShoppingCart } from '../js/helper';
+import { Product } from '../js/classes';
+import { addToCart, showModal, showCart } from '../js/helper';
 
 // -----------------
 // Connection to Supabase
@@ -38,6 +36,17 @@ const fetchData = async () => {
         showModal(product[index]); 
       });
     });
+
+   // The product with the correct id will be added to the orders table
+   const addToCartButtons = document.querySelectorAll('.addToCart');
+   
+   addToCartButtons.forEach((button, index) => {
+     button.addEventListener('click', () => {
+       localStorage.setItem("productID", product[index].getProductId);
+       localStorage.setItem("productCategory", product[index].getCategory);
+       addToCart();
+     });
+   });
 
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -209,5 +218,5 @@ function sortProductsHigh() {
 // If the user clicks on the shopping cart button (and the cart is empty)
 const shoppingCart = document.getElementById('shoppingCart');
 shoppingCart.addEventListener('click', () => {
-  emptyShoppingCart();
+  showCart();
 });

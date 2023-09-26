@@ -1,7 +1,5 @@
-import { Product } from '../js/products';
-import { addToCart } from '../js/helper';
-import { showModal } from '../js/helper';
-import { emptyShoppingCart } from '../js/helper';
+import { Product } from '../js/classes';
+import { addToCart, showModal, showCart} from '../js/helper';
 
 // -----------------
 // Connection to Supabase
@@ -35,9 +33,22 @@ const fetchData = async () => {
       button.addEventListener('click', () => {
         localStorage.setItem("productID", product[index].getProductId);
         localStorage.setItem("productCategory", product[index].getCategory);
+        localStorage.setItem("price", product[index].getPrice);
         showModal(product[index]); 
       });
     });
+
+    // The product with the correct id will be added to the orders table
+    const addToCartButtons = document.querySelectorAll('.addToCart');
+    addToCartButtons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        localStorage.setItem("productID", product[index].getProductId);
+        localStorage.setItem("productCategory", product[index].getCategory);
+        localStorage.setItem("price", product[index].getPrice);
+        addToCart();
+      });
+    });
+
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -118,14 +129,12 @@ function generateProductCard(product) {
   readMoreButton.classList.add("btn", "cardButtons", "readMore", "p-2", "mx-2");
   readMoreButton.textContent = "Read More";
 
+  
   // "Add to Cart" button
   const addToCartButton = document.createElement("button");
   addToCartButton.classList.add("btn", "cardButtons", "addToCart", "p-2", "mx-2");
   addToCartButton.setAttribute("id", "addToCart");
   addToCartButton.textContent = "Add to Cart";
-
-  addToCartButton.addEventListener('click', addToCart);
-
 
   // Append elements to the card body
   cardBody.appendChild(title);
@@ -207,5 +216,5 @@ function sortProductsHigh() {
 // If the user clicks on the shopping cart button (and the cart is empty)
 const shoppingCart = document.getElementById('shoppingCart');
 shoppingCart.addEventListener('click', () => {
-  emptyShoppingCart();
+  showCart();
 });

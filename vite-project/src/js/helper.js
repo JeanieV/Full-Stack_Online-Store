@@ -1,7 +1,12 @@
-import { Order } from '../js/products';
+import { CartEntry } from './classes';
 import { supabase } from '../../supabase';
 
-// Add the information to localStorage
+
+// -----------------
+// Local Storage
+// -----------------
+
+
 export function userLocalStorage(user_id, username, fullname, address, phoneNumber, email, password) {
   localStorage.setItem('loggedInUserId', user_id);
   localStorage.setItem('loggedInUsername', username);
@@ -199,34 +204,51 @@ export function showModal(product) {
   modalView.style.display = "block";
 }
 
-// Add order to the database
-export async function addToCart() {
 
-  // Get form input values
+// -----------------
+// Cart Section
+// -----------------
+
+
+export async function addToCart() {
+  // Get the user_id from localStorage
   const user_id = parseInt(localStorage.getItem("loggedInUserId"));
+
+  // Check if the user is logged in (user_id is a valid value)
+  if (!user_id || isNaN(user_id)) {
+    console.error('User is not logged in.');
+    alert('Kindly log in to place an order!')
+
+    // Direct users to the signUp page
+    window.location.href = '../../index.html';
+    return;
+  }
+
+  // Get other form input values
   const product_id = parseInt(localStorage.getItem("productID"));
   const product_category = localStorage.getItem("productCategory");
   const quantity = 1;
+  const price = localStorage.getItem("price");
+  const totalPrice = price * quantity;
 
-  // Create a new Contact instance
-  const newOrder = new Order(user_id, product_category, product_id, quantity);
+  // Create a new Order instance
+  const newCartEntry = new CartEntry(user_id, product_category, product_id, quantity, totalPrice);
 
   try {
-    // Insert the new contact into the "contact" table
-    const { data, error } = await supabase.from('orders').upsert([newOrder]);
+    // Insert the new order into the "orders" table
+    const { data, error } = await supabase.from('cart').upsert([newCartEntry]);
 
     if (error) {
       console.error('Error inserting data:', error);
     } else {
       alert('Product has been added to your cart!');
-
-
     }
   } catch (error) {
     console.error('Error:', error);
   }
-
 }
+
+
 
 // -----------------
 // Empty Shopping Cart
@@ -319,5 +341,128 @@ export function emptyShoppingCart() {
   cartView.appendChild(centerCartDiv);
 
   cartView.style.display = "block";
+}
+
+
+// -----------------
+// Shopping Cart Section
+// -----------------
+
+export async function fetchUserCart(user_id) {
+  try {
+    const { data, error } = await supabase
+      .from('cart')
+      .select('product_id, product_category, quantity, totalPrice')
+      .eq('user_id', user_id);
+
+    if (error) {
+      throw error;
+    }
+
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export function showCart() {
+  const cartContainer = document.getElementById("myCart");
+
+  // Clear the existing content of the cartContainer
+  cartContainer.innerHTML = '';
+
+  const user_id = parseInt(localStorage.getItem('loggedInUserId'));
+
+  if (!user_id) {
+    console.error('User is not logged in.');
+    alert('Kindly log in to place an order!')
+
+    // Direct users to the signUp page
+    window.location.href = '../../index.html';
+    return;
+  }
+
+  // Fetch the specific user's cart items from the orders table
+  fetchUserCart(user_id)
+    .then((cartItems) => {
+      if (cartItems.length === 0) {
+        emptyShoppingCart();
+
+      } else {
+
+        const centerCartDiv = document.createElement("div");
+        centerCartDiv.classList.add("d-flex", "justify-content-center", "align-items-center", "my-5");
+
+        // Creating the cart modal elements
+        const mycart = document.createElement("div");
+        mycart.classList.add("content-cart", "mx-5", "mt-5");
+
+        const buttonClose = document.createElement("span");
+        buttonClose.classList.add("close", "p-2");
+        buttonClose.innerHTML = "&times";
+
+        buttonClose.addEventListener("click", () => {
+          // Hide the cart modal when the close button is clicked
+          cartContainer.style.display = 'none';
+        });
+
+        const invoiceName = document.createElement("h2");
+        invoiceName.classList.add("heading2Modal", "pb-2");
+        invoiceName.innerHTML = "Invoice";
+
+        // Appending "Invoice" name before the table
+        mycart.appendChild(buttonClose);
+        mycart.appendChild(invoiceName);
+
+        const centerDiv1 = document.createElement('div');
+        centerDiv1.classList.add("col-md-12", "text-center");
+
+        const cartDate = document.createElement("p");
+        cartDate.innerHTML = "Date: " + new Date().toLocaleDateString();
+        cartDate.classList.add("invoice-date");
+
+        centerDiv1.appendChild(cartDate);
+
+        const fullname = localStorage.getItem('loggedInFullName');
+
+        if (fullname) {
+          const customerName = document.createElement("h2");
+          customerName.classList.add("heading2Modal", "pb-2");
+          customerName.textContent = `Hi there, ${fullname}!`;
+          centerDiv1.appendChild(customerName);
+
+          const table = document.createElement('table');
+          table.classList.add("table", "table-striped");
+
+          // Create table header
+          const headerRow = table.insertRow();
+
+          const headers = ['Image', 'Name', 'Quantity', 'Price'];
+
+          headers.forEach((headerText) => {
+            const heading = document.createElement('th');
+
+            heading.textContent = headerText;
+            headerRow.appendChild(heading);
+          });
+
+          
+
+          // Appending the table after the "Invoice" name
+          mycart.appendChild(centerDiv1);
+          mycart.appendChild(table);
+
+        }
+
+        // Append the cart modal container to the cartContainer
+        centerCartDiv.appendChild(mycart);
+        cartContainer.appendChild(centerCartDiv);
+
+        // Display the cart modal
+        cartContainer.style.display = "block";
+      }
+    })
 }
 

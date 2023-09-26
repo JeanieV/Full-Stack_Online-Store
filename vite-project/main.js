@@ -1,6 +1,6 @@
 import './src/css/home.css';
 import { supabase } from "./supabase";
-import { emptyShoppingCart } from './src/js/helper';
+import { showCart } from './src/js/helper';
 
 // -----------------
 // Connection to Supabase
@@ -102,6 +102,7 @@ window.addEventListener('load', () => {
 
 function logOutUser() {
   // Clear the user session data from localStorage
+  localStorage.removeItem('loggedInUserId');
   localStorage.removeItem('loggedInUsername');
   localStorage.removeItem('loggedInFullName');
   localStorage.removeItem('loggedInAddress');
@@ -142,5 +143,5 @@ function hideLoadingState() {
 // If the user clicks on the shopping cart button (and the cart is empty)
 const shoppingCart = document.getElementById('shoppingCart');
 shoppingCart.addEventListener('click', () => {
-  emptyShoppingCart();
+  showCart();
 });

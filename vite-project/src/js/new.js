@@ -1,4 +1,4 @@
-import { emptyShoppingCart } from "./helper";
+import { showCart } from "./helper";
 
 // Coming Soon section
 const seconds = document.querySelector(".seconds .number");
@@ -72,5 +72,5 @@ function topFunction() {
 // If the user clicks on the shopping cart button (and the cart is empty)
 const shoppingCart = document.getElementById('shoppingCart');
 shoppingCart.addEventListener('click', () => {
-  emptyShoppingCart();
+  showCart();
 });

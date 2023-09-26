@@ -1,6 +1,6 @@
-import { Contact } from '../js/products';
+import { Contact } from '../js/classes';
 import { supabase } from '../../supabase';
-import { emptyShoppingCart } from '../js/helper';
+import { showCart } from '../js/helper';
 
 // Add an event listener to the form submission
 const contactForm = document.querySelector('#contactForm');
@@ -68,5 +68,5 @@ function topFunction() {
 // If the user clicks on the shopping cart button (and the cart is empty)
 const shoppingCart = document.getElementById('shoppingCart');
 shoppingCart.addEventListener('click', () => {
-  emptyShoppingCart();
+  showCart();
 });

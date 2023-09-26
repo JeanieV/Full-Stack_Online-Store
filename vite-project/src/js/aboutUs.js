@@ -1,4 +1,4 @@
-import { emptyShoppingCart } from '../js/helper';
+import { showCart } from '../js/helper';
 
 // Get the button:
 let backToTop = document.getElementById("backToTopButton");
@@ -28,6 +28,6 @@ function topFunction() {
 // If the user clicks on the shopping cart button (and the cart is empty)
 const shoppingCart = document.getElementById('shoppingCart');
 shoppingCart.addEventListener('click', () => {
-  emptyShoppingCart();
+  showCart();
 });
 
