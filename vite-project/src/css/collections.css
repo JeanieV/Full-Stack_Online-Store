@@ -193,23 +193,15 @@ h5 {
     text-align: center;
 }
 
-.homeCard {
-    background-color: #E0DFD0;
-    width: 20vw;
-    height: 32vw;
-}
 
-.porcelainCard {
+
+.homeCard {
     background-color: #E0DFD0;
     width: 23vw;
     height: 34vw;
 }
 
-.ceramicCard {
-    background-color: #E0DFD0;
-    width: 20vw;
-    height: 34vw;
-}
+
 
 .card-body {
     text-align: center;
@@ -250,11 +242,6 @@ h5 {
 
 
 .productImage {
-    width: 250px;
-    height: 280px;
-}
-
-.porcelainImage {
     width: 300px;
     height: 320px;
 }
