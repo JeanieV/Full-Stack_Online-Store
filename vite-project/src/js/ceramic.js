@@ -33,6 +33,7 @@ const fetchData = async () => {
       button.addEventListener('click', () => {
         localStorage.setItem("productID", product[index].getProductId);
         localStorage.setItem("productCategory", product[index].getCategory);
+        localStorage.setItem("price", product[index].getPrice);
         showModal(product[index]); 
       });
     });
@@ -44,6 +45,7 @@ const fetchData = async () => {
      button.addEventListener('click', () => {
        localStorage.setItem("productID", product[index].getProductId);
        localStorage.setItem("productCategory", product[index].getCategory);
+       localStorage.setItem("price", product[index].getPrice);
        addToCart();
      });
    });
@@ -132,8 +134,6 @@ function generateProductCard(product) {
   const addToCartButton = document.createElement("button");
   addToCartButton.classList.add("btn", "cardButtons", "addToCart", "p-2", "mx-2");
   addToCartButton.textContent = "Add to Cart";
-
-  addToCartButton.addEventListener('click', addToCart);
 
   // Append elements to the card body
   cardBody.appendChild(title);

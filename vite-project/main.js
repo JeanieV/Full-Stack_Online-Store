@@ -1,4 +1,3 @@
-import './src/css/home.css';
 import { supabase } from "./supabase";
 import { showCart } from './src/js/helper';
 
@@ -13,13 +12,13 @@ const useData = async () => {
     const { data, error } = await supabase.from("users").select();
     
     if (error) {
-      // Handle error
+      console.log(error);
     } else {
-      hideLoadingState(); // Hide loading state when data is received
+      hideLoadingState();
       return data;
     }
   } catch (error) {
-    // Handle error
+   console.log(error);
   }
 }
 const data = useData();
@@ -102,6 +101,9 @@ window.addEventListener('load', () => {
 
 function logOutUser() {
   // Clear the user session data from localStorage
+  localStorage.removeItem('price');
+  localStorage.removeItem('productCategory');
+  localStorage.removeItem('productID');
   localStorage.removeItem('loggedInUserId');
   localStorage.removeItem('loggedInUsername');
   localStorage.removeItem('loggedInFullName');
