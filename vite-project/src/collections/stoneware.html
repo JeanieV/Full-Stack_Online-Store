@@ -110,8 +110,9 @@
             <div class="mt-5">
                 <table>
                     <tr>
-                        <td class="p-3"><button class="btn sortingButtons alphabetically mx-2" title="Sort Alphabetically"> <img
-                                    src="../img/sort.png" class="sortingImage" alt="Sort Alphabetically"
+                        <td class="p-3"><button class="btn sortingButtons alphabetically mx-2"
+                                title="Sort Alphabetically"> <img src="../img/sort.png" class="sortingImage"
+                                    alt="Sort Alphabetically"
                                     attribution="https://www.flaticon.com/free-icons/sort"></button>
                         </td>
                         <td class="p-3">
@@ -160,6 +161,13 @@
         <!-- Shopping Cart -->
         <div id="myCart" class="modal modalCart">
             <span class="close">&times;</span>
+        </div>
+
+        <!-- This is where the loading state will take place for the cart -->
+        <div id="loadingState" class="modal modalCart">
+            <div class="d-flex justify-content-center align-items-center spin">
+                <span class="spinner"></span>
+            </div>
         </div>
 
 

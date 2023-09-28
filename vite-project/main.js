@@ -1,5 +1,5 @@
 import { supabase } from "./supabase";
-import { showCart } from './src/js/helper';
+import { showCart, hideLoadingState, showLoadingState } from './src/js/helper';
 
 // -----------------
 // Connection to Supabase
@@ -122,21 +122,6 @@ if (logoutButton) {
   logoutButton.addEventListener('click', logOutUser);
 }
 
-// -----------------
-// Loading state for user
-// -----------------
-
-// Display the loading state when a Supabase request is made
-function showLoadingState() {
-  const loadingState = document.getElementById("loadingState");
-  loadingState.style.display = "block";
-}
-
-// Hide the loading state when content has loaded
-function hideLoadingState() {
-  const loadingState = document.getElementById("loadingState");
-  loadingState.style.display = "none";
-}
 
 // -----------------
 // Calling the Cart Section
@@ -147,3 +132,4 @@ const shoppingCart = document.getElementById('shoppingCart');
 shoppingCart.addEventListener('click', () => {
   showCart();
 });
+

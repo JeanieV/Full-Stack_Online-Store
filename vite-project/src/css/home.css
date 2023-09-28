@@ -20,7 +20,7 @@ body {
     height: 100%;
     object-fit: cover;
     grid-column: 1 / 2;
-    
+
 }
 
 .logoBackground {
@@ -290,20 +290,21 @@ h4 {
 }
 
 .cart-image {
-    width: 120px;
-    height: 130px;
+    width: 150px;
+    height: 160px;
     overflow: hidden;
 }
 
 .cart-image-bin {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
+    border-radius: 25px;
 }
 
 .tableHeadings {
     font-size: 30px;
     text-align: center;
-    color: #3D550C;
+    color: #922C40;
     padding: 0;
 }
 
@@ -321,7 +322,7 @@ h4 {
 .priceHeadings {
     text-align: right;
     font-size: 25px;
-    color: #3D550C;
+    color: #922C40;
     padding: 15px;
     border-top: solid 1px #888;
 }
@@ -329,7 +330,7 @@ h4 {
 .quantity-input {
     text-align: center;
     font-size: 25px;
-    color: #3D550C;
+    width: 6vw;
     border: 1px solid #888;
 }
 
@@ -438,7 +439,7 @@ li {
     color: #000000;
 }
 
-.logOutImage{
+.logOutImage {
     width: 50px;
     height: 50px;
 }
@@ -451,34 +452,37 @@ li {
     display: inline-block;
 }
 
-.logout{
+.logout {
     display: none;
 }
 
 
 /* Loading state */
 
-.loading-state {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .spinner {
-    border: 7px solid #000000;
+.spinner {
+    border: 10px solid #A47551;
     border-radius: 50%;
-    border-top: 7px solid #E0DFD0;
-    width: 50px;
-    height: 50px;
+    border-top: 10px solid #E0DFD0;
+    width: 100px;
+    height: 100px;
     animation: spin 2s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+}
+
+.spin {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

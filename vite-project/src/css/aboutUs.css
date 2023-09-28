@@ -124,20 +124,21 @@ p {
 }
 
 .cart-image {
-    width: 120px;
-    height: 130px;
+    width: 150px;
+    height: 160px;
     overflow: hidden;
 }
 
 .cart-image-bin {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
+    border-radius: 25px;
 }
 
 .tableHeadings {
     font-size: 30px;
     text-align: center;
-    color: #3D550C;
+    color: #922C40;
     padding: 0;
 }
 
@@ -155,7 +156,7 @@ p {
 .priceHeadings {
     text-align: right;
     font-size: 25px;
-    color: #3D550C;
+    color: #922C40;
     padding: 15px;
     border-top: solid 1px #888;
 }
@@ -163,7 +164,7 @@ p {
 .quantity-input {
     text-align: center;
     font-size: 25px;
-    color: #3D550C;
+    width: 6vw;
     border: 1px solid #888;
 }
 
@@ -264,4 +265,30 @@ p {
 
 li {
     font-size: 20px;
+}
+
+
+/* Loading state */
+
+.spinner {
+    border: 10px solid #A47551;
+    border-radius: 50%;
+    border-top: 10px solid #E0DFD0;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+}
+
+.spin {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

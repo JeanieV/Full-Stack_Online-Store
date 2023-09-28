@@ -1,11 +1,11 @@
 import { CartEntry } from './classes';
 import { supabase } from '../../supabase';
+import { Product } from './classes';
 
 
 // -----------------
 // Local Storage
 // -----------------
-
 
 export function userLocalStorage(user_id, username, fullname, address, phoneNumber, email, password) {
   localStorage.setItem('loggedInUserId', user_id);
@@ -16,7 +16,6 @@ export function userLocalStorage(user_id, username, fullname, address, phoneNumb
   localStorage.setItem('loggedInEmail', email);
   localStorage.setItem('loggedInPassword', password);
 }
-
 
 // -----------------
 // Sorting section
@@ -37,7 +36,6 @@ export function sortProducts() {
   containerAlphabetically.innerHTML = '';
   cardsAlphabetically.forEach(cardsAlphabetically => containerAlphabetically.appendChild(cardsAlphabetically));
 }
-
 
 // Sort the product cards from low to high
 export function sortProductsLow() {
@@ -64,7 +62,6 @@ export function sortProductsHigh() {
   containerLow.innerHTML = '';
   cardsLow.forEach(card => containerLow.appendChild(card));
 }
-
 
 // -----------------
 // Modal for each product
@@ -253,7 +250,6 @@ export function showModal(product) {
   modalView.style.display = "block";
 }
 
-
 // -----------------
 // Product cards section
 // -----------------
@@ -323,49 +319,72 @@ export function generateProductCard(product) {
   return cardContainer;
 }
 
-
 // -----------------
 // Cart Section
 // -----------------
 
-
+// Check whether the product is already inside the cart and add a new one
 export async function addToCart() {
+
   // Get the user_id from localStorage
   const user_id = parseInt(localStorage.getItem("loggedInUserId"));
 
-  // Check if the user is logged in (user_id is a valid value)
+  // Check if the user is logged in 
   if (!user_id || isNaN(user_id)) {
     console.error('User is not logged in.');
     alert('Kindly log in to place an order!')
 
-    // Direct users to the signUp page
+    // Direct users to the home page
     window.location.href = '../../index.html';
     return;
   }
 
-  // Get other form input values
+  // Get form input values
   const product_id = parseInt(localStorage.getItem("productID"));
   const product_category = localStorage.getItem("productCategory");
   const quantity = 1;
   const price = localStorage.getItem("price");
   const totalPrice = price * quantity;
 
-  // Create a new Order instance
-  const newCartEntry = new CartEntry(user_id, product_category, product_id, quantity, totalPrice);
-
   try {
-    // Insert the new order into the "orders" table
-    const { data, error } = await supabase.from('cart').upsert([newCartEntry]);
+    // Check if the product is already in the cart
+    const { data, error } = await supabase
+      .from('cart')
+      .select()
+      .eq('user_id', user_id)
+      .eq('product_category', product_category)
+      .eq('product_id', product_id);
 
     if (error) {
-      console.error('Error inserting data:', error);
+      console.error('Error querying cart:', error);
+
+    } else if (data.length > 0) {
+
+      // Product already exists in the cart
+      alert('This product is already in your cart. Update the quantity.');
     } else {
-      alert('Product has been added to your cart!');
+      // Product doesn't exist in the cart, insert a new entry
+      const { error: insertError } = await supabase.from('cart').insert({
+        user_id: user_id,
+        product_category: product_category,
+        product_id: product_id,
+        quantity: quantity,
+        totalPrice: totalPrice
+      });
+
+      if (insertError) {
+        console.error('Error inserting data:', insertError);
+      } else {
+        alert('Product has been added to your cart!');
+      }
     }
+
   } catch (error) {
     console.error('Error:', error);
   }
 }
+
+
 
 
 
@@ -463,10 +482,35 @@ export function emptyShoppingCart() {
 }
 
 
+
 // -----------------
-// Shopping Cart Section
+// Fetching all the product tables (stoneware, porcelain, ceramic and tools)
 // -----------------
 
+// Creating a fetch call that gets the information from the product tables 
+async function fetchProducts(table, productId) {
+  try {
+    const { data, error } = await supabase
+      .from(table)
+      .select('*')
+      .eq('product_id', productId);
+
+    if (error) {
+      throw error;
+    }
+
+    return data[0];
+  } catch (error) {
+    throw error;
+  }
+}
+
+// -----------------
+// Fetching the cart information
+// -----------------
+
+
+// Fetch the information from the cart table to show it in the showCart()
 export async function fetchUserCart(user_id) {
   try {
     const { data, error } = await supabase
@@ -478,14 +522,54 @@ export async function fetchUserCart(user_id) {
       throw error;
     }
 
-    console.log(data);
+    // Creating an empty products array to push the products in
+    const products = [];
 
-    return data;
+    for (const cartItem of data) {
+      const { product_id, product_category } = cartItem;
+
+      let productData;
+
+      // Use if statements to determine the table to query based on product_category
+      if (product_category === 'stoneware') {
+        productData = await fetchProducts('stoneware', product_id);
+      } else if (product_category === 'porcelain') {
+        productData = await fetchProducts('porcelain', product_id);
+      } else if (product_category === 'ceramic') {
+        productData = await fetchProducts('ceramic', product_id);
+      } else if (product_category === 'tools') {
+        productData = await fetchProducts('tools', product_id);
+      }
+
+      // Create a Product object and add it to the products array
+      if (productData) {
+        const product = new Product(
+          productData.product_id,
+          productData.name,
+          productData.description,
+          productData.barcode,
+          productData.price,
+          productData.image,
+          productData.category
+        );
+        products.push(product);
+      }
+    }
+    console.log(products);
+
+    return products;
   } catch (error) {
     throw error;
   }
 }
 
+
+// -----------------
+// Shopping Cart
+// -----------------
+
+
+// Function to show the shopping cart
 export function showCart() {
   const cartContainer = document.getElementById("myCart");
 
@@ -498,17 +582,25 @@ export function showCart() {
     console.error('User is not logged in.');
     alert('Kindly log in to place an order!')
 
-    // Direct users to the signUp page
+    // Direct users to the home page
     window.location.href = '../../index.html';
     return;
   }
 
+  showLoadingState();
+
+
   // Fetch the specific user's cart items from the orders table
   fetchUserCart(user_id)
     .then((cartItems) => {
+
+      hideLoadingState();
+
+      // If there is nothing in the cart table for the user
       if (cartItems.length === 0) {
         emptyShoppingCart();
 
+        // If the user added products to their cart
       } else {
 
         const centerCartDiv = document.createElement("div");
@@ -548,31 +640,208 @@ export function showCart() {
 
         if (fullname) {
           const customerName = document.createElement("h2");
-          customerName.classList.add("heading2Modal", "pb-2");
+          customerName.classList.add("heading2Modal", "pb-5");
           customerName.textContent = `Hi there, ${fullname}!`;
           centerDiv1.appendChild(customerName);
+
+
+          const cartInfo = document.createElement("p");
+          cartInfo.classList.add("invoice-date", "pb-5");
+          cartInfo.textContent = `Thank you for choosing Art of Pottery for your one-stop pottery shop!`;
+          centerDiv1.appendChild(cartInfo);
 
           const table = document.createElement('table');
           table.classList.add("table", "table-striped");
 
           // Create table header
-          const headerRow = table.insertRow();
+          const headerRow = document.createElement("tr");
 
-          const headers = ['Image', 'Name', 'Quantity', 'Price'];
+          // Creating the image heading that will show in the table
+          const tableHeadImage = document.createElement("th");
+          tableHeadImage.classList.add("tableHeadings", "pb-5");
+          tableHeadImage.innerHTML = "Image";
 
-          headers.forEach((headerText) => {
-            const heading = document.createElement('th');
+          // Creating the product name heading that will show in the table
+          const tableHeadProductName = document.createElement("th");
+          tableHeadProductName.classList.add("tableHeadings", "pb-5");
+          tableHeadProductName.innerHTML = "Product Name";
 
-            heading.textContent = headerText;
-            headerRow.appendChild(heading);
-          });
+          // Creating the quantity heading that will show in the table
+          const tableHeadQuantity = document.createElement("th");
+          tableHeadQuantity.classList.add("tableHeadings", "pb-5");
+          tableHeadQuantity.innerHTML = "Quantity";
 
-          
+          // Creating the price heading that will show in the table
+          const tableHeadPrice = document.createElement("th");
+          tableHeadPrice.classList.add("tableHeadings", "pb-5");
+          tableHeadPrice.innerHTML = "Price";
+
+          // Appending to table
+          headerRow.appendChild(tableHeadImage);
+          headerRow.appendChild(tableHeadProductName);
+          headerRow.appendChild(tableHeadQuantity);
+          headerRow.appendChild(tableHeadPrice);
+          table.appendChild(headerRow);
+
+
+          let subTotal = 0;
+          let total = 0;
+
+          // Table rows with the information in the productData mapping from each table
+          for (const cartItem of cartItems) {
+
+            // Creating the table data
+            const row = document.createElement("tr");
+
+            // Creating the image that will show in the table
+            const productImage = document.createElement("td");
+            productImage.classList.add("tableData", "pb-5");
+
+            const imageColumn = document.createElement("img");
+            imageColumn.src = cartItem.getImage;
+            imageColumn.alt = cartItem.getName;
+            imageColumn.classList.add("cart-image");
+            productImage.appendChild(imageColumn);
+
+            // Creating the product name that will shpw in the table
+            const productName = document.createElement("td");
+            productName.classList.add("tableData");
+            productName.innerHTML = cartItem.getName;
+
+            // Creating the product quantity that will show in the table
+            const productQuantity = document.createElement("td");
+            productQuantity.classList.add("tableData");
+
+            // Creating the quantity input
+            const quantityInput = document.createElement("input");
+            quantityInput.type = "number";
+            quantityInput.min = 1;
+            quantityInput.max = 1000;
+            quantityInput.value = cartItem.getQuantity || 1;
+            quantityInput.classList.add("quantity-input");
+
+            // quantityInput.addEventListener("input", async (event) => {
+            //   const newQuantity = parseInt(event.target.value, 10);
+
+            //   if (!isNaN(newQuantity) && newQuantity > 0) {
+            //     cartItem.getQuantity = newQuantity;
+
+            //     const newTotalPrice = newQuantity * cartItem.getPrice;
+            //     cartItem.productPrice.textContent = "R" + newTotalPrice;
+
+            //     try {
+            //       // Update the cart entry quantity in the database
+            //       // await updateQuantity(user_id, cartItem.getCategory, cartItem.getProductId, newQuantity, newTotalPrice);
+
+            //     } catch (error) {
+            //       console.error('Error updating quantity:', error);
+            //     }
+            //   } else {
+            //     // Reset the input value if an invalid quantity is entered
+            //     event.target.value = cartItem.getQuantity;
+            //   }
+            // });
+
+            // Creating the Product Price that will show in the cart
+            const productPrice = document.createElement("td");
+            productPrice.classList.add("tableData");
+            productPrice.innerHTML = "R" + cartItem.getPrice;
+            cartItem.productPrice = productPrice;
+
+            // Appending to the quantity in the table
+            productQuantity.appendChild(quantityInput);
+
+            // Creating the remove button that will delete the row
+            const removeRowButton = document.createElement("td");
+            removeRowButton.classList.add("tableData");
+
+            const deleteButton = document.createElement("button");
+            deleteButton.classList.add("cart-delete-button");
+            deleteButton.textContent = "Delete";
+
+            // Add a click event listener to the delete button
+            deleteButton.addEventListener('click', () => {
+              removeFromCart(user_id, cartItem.getCategory, cartItem.getProductId);
+            });
+
+            removeRowButton.appendChild(deleteButton);
+
+            row.appendChild(productImage);
+            row.appendChild(productName);
+            row.appendChild(productQuantity);
+            row.appendChild(productPrice);
+            row.appendChild(removeRowButton)
+            table.appendChild(row);
+
+          }
+
+
+          // Function to calculate and update subtotal
+          // function updateSubtotal() {
+          //   subTotal = 0; // Reset subtotal
+
+          //   for (const cartItem of cartItems) {
+          //     subTotal += cartItem.getQuantity * cartItem.getPrice;
+          //   }
+
+          //   total = subTotal + 90;
+
+          //   // Update the subtotal value in the table
+          //   subTotalValue.textContent = "R" + subTotal;
+          //   totalValue.textContent = "R" + total;
+          // }
+
+          // Creating the Sub Total row and label
+          const subTotalRow = document.createElement("tr");
+          const subTotalLabel = document.createElement("td");
+          subTotalLabel.classList.add("priceHeadings");
+          subTotalLabel.colSpan = 1;
+          subTotalLabel.textContent = "Sub-Total";
+
+          // Creating the value 
+          const subTotalValue = document.createElement("td");
+          subTotalValue.classList.add("tableData1");
+          subTotalValue.textContent = "R" + subTotal;
+
+          subTotalRow.appendChild(subTotalLabel);
+          subTotalRow.appendChild(subTotalValue);
+          table.appendChild(subTotalRow);
+
+          // Creating the Delivery row and label
+          const deliveryRow = document.createElement("tr");
+          const deliveryLabel = document.createElement("td");
+          deliveryLabel.classList.add("priceHeadings");
+          deliveryLabel.colSpan = 1;
+          deliveryLabel.textContent = "Standard Delivery";
+
+          // Creating the value
+          const deliveryValue = document.createElement("td");
+          deliveryValue.classList.add("tableData1");
+          deliveryValue.textContent = "R90.00";
+          deliveryRow.appendChild(deliveryLabel);
+          deliveryRow.appendChild(deliveryValue);
+          table.appendChild(deliveryRow);
+
+
+          // Creating the Total row and label
+          const totalRow = document.createElement("tr");
+          const totalLabel = document.createElement("td");
+          totalLabel.classList.add("priceHeadings");
+          totalLabel.colSpan = 1;
+          totalLabel.textContent = "Total";
+
+          // Creating the value
+          const totalValue = document.createElement("td");
+          totalValue.classList.add("tableData1");
+          totalValue.textContent = "R" + total;
+          totalRow.appendChild(totalLabel);
+          totalRow.appendChild(totalValue);
+          table.appendChild(totalRow);
+
 
           // Appending the table after the "Invoice" name
           mycart.appendChild(centerDiv1);
           mycart.appendChild(table);
-
         }
 
         // Append the cart modal container to the cartContainer
@@ -584,4 +853,50 @@ export function showCart() {
       }
     })
 }
+
+
+// -----------------
+// Remove the product
+// -----------------
+
+// Original removeFromCart function that deletes the item from the Supabase database
+async function removeFromCart(user_id, product_category, product_id) {
+  try {
+    const { error } = await supabase
+      .from('cart')
+      .delete()
+      .eq('user_id', user_id)
+      .eq('product_category', product_category)
+      .eq('product_id', product_id);
+
+    if (error) {
+      console.error('Error deleting item from cart:', error);
+    } else {
+      console.log('Item deleted from cart successfully.');
+    }
+  } catch (error) {
+    console.error('Error removing item from cart:', error);
+  }
+}
+
+
+// -----------------
+// Loading state for user
+// -----------------
+
+// Display the loading state when a Supabase request is made
+export function showLoadingState() {
+
+  const loadingState = document.getElementById("loadingState");
+  loadingState.style.display = "block";
+}
+
+// Hide the loading state when content has loaded
+export function hideLoadingState() {
+
+  const loadingState = document.getElementById("loadingState");
+  loadingState.style.display = "none";
+
+}
+
 

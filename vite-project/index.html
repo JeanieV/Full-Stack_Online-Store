@@ -101,11 +101,6 @@
       <div class="d-flex justify-content-end">
         <nav class="navbar navbar-expand-sm sticky-top mt-5 mb-3">
 
-          <!-- This is where the loading state will take place -->
-          <div id="loadingState" class="loading-state">
-            <div class="spinner"></div>
-            <p>Loading</p>
-          </div>
 
           <!-- Sign In -->
           <a class="navbar-brand titles1 p-4" href="./src/users/signUp.html" id="registerButton"> Register </a>
@@ -142,6 +137,14 @@
     <div id="myCart" class="modal modalCart">
       <span class="close">&times;</span>
     </div>
+
+    <!-- This is where the loading state will take place for the cart -->
+    <div id="loadingState" class="modal modalCart">
+      <div class="d-flex justify-content-center align-items-center spin">
+        <span class="spinner"></span>
+      </div>
+    </div>
+
 
     <!-- --------------------- -->
     <!-- Carousel Section -->
