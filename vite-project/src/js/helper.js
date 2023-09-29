@@ -385,9 +385,6 @@ export async function addToCart() {
 }
 
 
-
-
-
 // -----------------
 // Empty Shopping Cart
 // -----------------
@@ -720,28 +717,6 @@ export function showCart() {
             quantityInput.value = cartItem.getQuantity || 1;
             quantityInput.classList.add("quantity-input");
 
-            // quantityInput.addEventListener("input", async (event) => {
-            //   const newQuantity = parseInt(event.target.value, 10);
-
-            //   if (!isNaN(newQuantity) && newQuantity > 0) {
-            //     cartItem.getQuantity = newQuantity;
-
-            //     const newTotalPrice = newQuantity * cartItem.getPrice;
-            //     cartItem.productPrice.textContent = "R" + newTotalPrice;
-
-            //     try {
-            //       // Update the cart entry quantity in the database
-            //       // await updateQuantity(user_id, cartItem.getCategory, cartItem.getProductId, newQuantity, newTotalPrice);
-
-            //     } catch (error) {
-            //       console.error('Error updating quantity:', error);
-            //     }
-            //   } else {
-            //     // Reset the input value if an invalid quantity is entered
-            //     event.target.value = cartItem.getQuantity;
-            //   }
-            // });
-
             // Creating the Product Price that will show in the cart
             const productPrice = document.createElement("td");
             productPrice.classList.add("tableData");
@@ -759,12 +734,13 @@ export function showCart() {
             deleteButton.classList.add("cart-delete-button");
             deleteButton.textContent = "Delete";
 
+            removeRowButton.appendChild(deleteButton);
+
             // Add a click event listener to the delete button
             deleteButton.addEventListener('click', () => {
-              removeFromCart(user_id, cartItem.getCategory, cartItem.getProductId);
+              removeFromCart(cartItem.getProductId, cartItem.getCategory);
+              row.remove();
             });
-
-            removeRowButton.appendChild(deleteButton);
 
             row.appendChild(productImage);
             row.appendChild(productName);
@@ -774,22 +750,6 @@ export function showCart() {
             table.appendChild(row);
 
           }
-
-
-          // Function to calculate and update subtotal
-          // function updateSubtotal() {
-          //   subTotal = 0; // Reset subtotal
-
-          //   for (const cartItem of cartItems) {
-          //     subTotal += cartItem.getQuantity * cartItem.getPrice;
-          //   }
-
-          //   total = subTotal + 90;
-
-          //   // Update the subtotal value in the table
-          //   subTotalValue.textContent = "R" + subTotal;
-          //   totalValue.textContent = "R" + total;
-          // }
 
           // Creating the Sub Total row and label
           const subTotalRow = document.createElement("tr");
@@ -859,15 +819,19 @@ export function showCart() {
 // Remove the product
 // -----------------
 
-// Original removeFromCart function that deletes the item from the Supabase database
-async function removeFromCart(user_id, product_category, product_id) {
+// Delete the item from the cart table
+async function removeFromCart(product_id, product_category) {
+
+  const user_id = parseInt(localStorage.getItem('loggedInUserId'));
+
   try {
     const { error } = await supabase
       .from('cart')
       .delete()
       .eq('user_id', user_id)
-      .eq('product_category', product_category)
-      .eq('product_id', product_id);
+      .eq('product_id', product_id) // Add this line
+      .eq('product_category', product_category) // Add this line
+      .single();
 
     if (error) {
       console.error('Error deleting item from cart:', error);
@@ -878,6 +842,7 @@ async function removeFromCart(user_id, product_category, product_id) {
     console.error('Error removing item from cart:', error);
   }
 }
+
 
 
 // -----------------
@@ -900,3 +865,43 @@ export function hideLoadingState() {
 }
 
 
+
+// Notes
+
+// Function to calculate and update subtotal
+// function updateSubtotal() {
+//   subTotal = 0; // Reset subtotal
+
+//   for (const cartItem of cartItems) {
+//     subTotal += cartItem.getQuantity * cartItem.getPrice;
+//   }
+
+//   total = subTotal + 90;
+
+//   // Update the subtotal value in the table
+//   subTotalValue.textContent = "R" + subTotal;
+//   totalValue.textContent = "R" + total;
+// }
+
+
+// quantityInput.addEventListener("input", async (event) => {
+//   const newQuantity = parseInt(event.target.value, 10);
+
+//   if (!isNaN(newQuantity) && newQuantity > 0) {
+//     cartItem.getQuantity = newQuantity;
+
+//     const newTotalPrice = newQuantity * cartItem.getPrice;
+//     cartItem.productPrice.textContent = "R" + newTotalPrice;
+
+//     try {
+//       // Update the cart entry quantity in the database
+//       // await updateQuantity(user_id, cartItem.getCategory, cartItem.getProductId, newQuantity, newTotalPrice);
+
+//     } catch (error) {
+//       console.error('Error updating quantity:', error);
+//     }
+//   } else {
+//     // Reset the input value if an invalid quantity is entered
+//     event.target.value = cartItem.getQuantity;
+//   }
+// });
