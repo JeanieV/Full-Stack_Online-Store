@@ -383,7 +383,6 @@ export async function addToCart() {
   }
 }
 
-
 // -----------------
 // Empty Shopping Cart
 // -----------------
@@ -477,8 +476,6 @@ export function emptyShoppingCart() {
   cartView.style.display = "block";
 }
 
-
-
 // -----------------
 // Fetching all the product tables (stoneware, porcelain, ceramic and tools)
 // -----------------
@@ -559,11 +556,12 @@ export async function fetchUserCart(user_id) {
   }
 }
 
-
 // -----------------
 // Shopping Cart
 // -----------------
 
+let subTotalValue;
+let totalValue;
 
 // Function to show the shopping cart
 export function showCart() {
@@ -732,8 +730,13 @@ export function showCart() {
 
             // Add a click event listener to the delete button
             deleteButton.addEventListener('click', () => {
-              removeFromCart(cartItem.getProductId, cartItem.getCategory);
+              removeFromCart(user_id, cartItem.getProductId, cartItem.getCategory);
               row.remove();
+
+              // Correct the subtotal by subtracting the price of the deleted product
+              subTotal -= cartItem.getPrice;
+
+              updateTotals();
             });
 
             row.appendChild(productImage);
@@ -743,7 +746,38 @@ export function showCart() {
             row.appendChild(removeRowButton)
             table.appendChild(row);
 
+            // Function to calculate and update subtotal and total
+            function updateTotals() {
+
+              // Iterate through cart items to calculate subtotal
+              for (const cartItem of cartItems) {
+                const itemSubtotal = cartItem.getPrice * cartItem.getQuantity;
+
+                // Check if itemSubtotal is a valid number (not NaN)
+                if (!isNaN(itemSubtotal)) {
+                  subTotal += itemSubtotal;
+                }
+              }
+
+              const deliveryFee = 90; // Assuming a fixed delivery fee
+
+              if (subTotal === 0) {
+                total = 0;
+              }
+              else {
+                // Calculate the total by adding the subtotal and delivery fee
+                total = subTotal + deliveryFee;
+              }
+              // Update the subtotal and total values in the table
+              subTotalValue.textContent = "R" + subTotal.toFixed(2); // Format to two decimal places
+              totalValue.textContent = "R" + total.toFixed(2); // Format to two decimal places
+
+            }
+
+            // Calculate subtotal for each item and add it to the total
+            subTotal += cartItem.getPrice;
           }
+
 
           // Creating the Sub Total row and label
           const subTotalRow = document.createElement("tr");
@@ -753,13 +787,17 @@ export function showCart() {
           subTotalLabel.textContent = "Sub-Total";
 
           // Creating the value 
-          const subTotalValue = document.createElement("td");
+          subTotalValue = document.createElement("td");
           subTotalValue.classList.add("tableData1");
           subTotalValue.textContent = "R" + subTotal;
 
           subTotalRow.appendChild(subTotalLabel);
           subTotalRow.appendChild(subTotalValue);
           table.appendChild(subTotalRow);
+
+          // Calculate the total by adding the delivery fee
+          const deliveryFee = 90;
+          total = subTotal + deliveryFee;
 
           // Creating the Delivery row and label
           const deliveryRow = document.createElement("tr");
@@ -771,11 +809,10 @@ export function showCart() {
           // Creating the value
           const deliveryValue = document.createElement("td");
           deliveryValue.classList.add("tableData1");
-          deliveryValue.textContent = "R90.00";
+          deliveryValue.textContent = "R" + deliveryFee;
           deliveryRow.appendChild(deliveryLabel);
           deliveryRow.appendChild(deliveryValue);
           table.appendChild(deliveryRow);
-
 
           // Creating the Total row and label
           const totalRow = document.createElement("tr");
@@ -785,7 +822,7 @@ export function showCart() {
           totalLabel.textContent = "Total";
 
           // Creating the value
-          const totalValue = document.createElement("td");
+          totalValue = document.createElement("td");
           totalValue.classList.add("tableData1");
           totalValue.textContent = "R" + total;
           totalRow.appendChild(totalLabel);
@@ -814,9 +851,7 @@ export function showCart() {
 // -----------------
 
 // Delete the item from the cart table
-async function removeFromCart(product_id, product_category) {
-
-  const user_id = parseInt(localStorage.getItem('loggedInUserId'));
+async function removeFromCart(user_id, product_id, product_category) {
 
   try {
     const { error } = await supabase
@@ -862,20 +897,6 @@ export function hideLoadingState() {
 
 // Notes
 
-// Function to calculate and update subtotal
-// function updateSubtotal() {
-//   subTotal = 0; // Reset subtotal
-
-//   for (const cartItem of cartItems) {
-//     subTotal += cartItem.getQuantity * cartItem.getPrice;
-//   }
-
-//   total = subTotal + 90;
-
-//   // Update the subtotal value in the table
-//   subTotalValue.textContent = "R" + subTotal;
-//   totalValue.textContent = "R" + total;
-// }
 
 
 // quantityInput.addEventListener("input", async (event) => {

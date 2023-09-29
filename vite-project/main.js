@@ -100,21 +100,28 @@ window.addEventListener('load', () => {
 // -----------------
 
 function logOutUser() {
-  // Clear the user session data from localStorage
-  localStorage.removeItem('price');
-  localStorage.removeItem('productCategory');
-  localStorage.removeItem('productID');
-  localStorage.removeItem('loggedInUserId');
-  localStorage.removeItem('loggedInUsername');
-  localStorage.removeItem('loggedInFullName');
-  localStorage.removeItem('loggedInAddress');
-  localStorage.removeItem('loggedInPhoneNumber');
-  localStorage.removeItem('loggedInEmail');
-  localStorage.removeItem('loggedInPassword');
+  // Clear all user-related session data from localStorage
+  const sessionDataKeys = [
+    'price',
+    'productCategory',
+    'productID',
+    'loggedInUserId',
+    'loggedInUsername',
+    'loggedInFullName',
+    'loggedInAddress',
+    'loggedInPhoneNumber',
+    'loggedInEmail',
+    'loggedInPassword'
+  ];
+
+  sessionDataKeys.forEach(key => {
+    localStorage.removeItem(key);
+  });
 
   // Redirect the user to the index page
   window.location.href = 'index.html';
 }
+
 
 // Add an event listener to the "Log Out" button
 const logoutButton = document.getElementById('logoutUser');
