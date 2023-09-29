@@ -146,7 +146,7 @@ h2 {
 
 /* Pottery Tips section */
 .source {
-    color: #1E2640;
+    color: #E0DFD0;
     font-size: 22px
 }
 
@@ -156,6 +156,7 @@ h2 {
 
 p {
     font-size: 20px;
+    color: #000000;
 }
 
 .blockquote {

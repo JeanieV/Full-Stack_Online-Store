@@ -709,6 +709,23 @@ export function showCart() {
             quantityInput.value = cartItem.getQuantity || 1;
             quantityInput.classList.add("quantity-input");
 
+            quantityInput.addEventListener("input", async (event) => {
+              const newQuantity = parseInt(event.target.value, 10);
+
+              if (!isNaN(newQuantity) && newQuantity > 0) {
+                cartItem.getQuantity = newQuantity;
+
+                const newTotalPrice = newQuantity * cartItem.getPrice;
+                cartItem.productPrice.textContent = "R" + newTotalPrice;
+
+                updateQuantity(user_id, cartItem.getCategory, cartItem.getProductId, newQuantity, newTotalPrice);
+
+              } else {
+                // Reset the input value if an invalid quantity is entered
+                event.target.value = cartItem.getQuantity;
+              }
+            });
+
             // Creating the Product Price that will show in the cart
             const productPrice = document.createElement("td");
             productPrice.classList.add("tableData");
@@ -753,25 +770,23 @@ export function showCart() {
               for (const cartItem of cartItems) {
                 const itemSubtotal = cartItem.getPrice * cartItem.getQuantity;
 
-                // Check if itemSubtotal is a valid number (not NaN)
+                // Check if itemSubtotal is a valid number
                 if (!isNaN(itemSubtotal)) {
                   subTotal += itemSubtotal;
                 }
               }
 
-              const deliveryFee = 90; // Assuming a fixed delivery fee
+              const deliveryFee = 90;
 
               if (subTotal === 0) {
                 total = 0;
               }
               else {
-                // Calculate the total by adding the subtotal and delivery fee
                 total = subTotal + deliveryFee;
               }
               // Update the subtotal and total values in the table
-              subTotalValue.textContent = "R" + subTotal.toFixed(2); // Format to two decimal places
-              totalValue.textContent = "R" + total.toFixed(2); // Format to two decimal places
-
+              subTotalValue.textContent = "R" + subTotal.toFixed(2);
+              totalValue.textContent = "R" + total.toFixed(2);
             }
 
             // Calculate subtotal for each item and add it to the total
@@ -846,6 +861,39 @@ export function showCart() {
 }
 
 
+// Function to update quantity in the Supabase cart table
+async function updateQuantity(user_id, product_category, product_id, newQuantity, newTotalPrice) {
+  try {
+    const { error } = await supabase
+      .from('cart')
+      .update(
+        {
+          user_id: user_id,
+          product_category: product_category,
+          product_id: product_id,
+          quantity: newQuantity,
+          totalPrice: newTotalPrice
+        })
+      .eq("user_id", user_id)
+      .eq("product_category", product_category)
+      .eq("product_id", product_id)
+      .eq("quantity", newQuantity)
+      .eq("totalPrice", newTotalPrice);
+
+    if (error) {
+      console.error('Error updating quantity:', error);
+    } else {
+      console.log('Quantity updated successfully.');
+
+      
+    }
+  } catch (error) {
+    console.error('Error updating quantity:', error);
+  }
+}
+
+
+
 // -----------------
 // Remove the product
 // -----------------
@@ -872,8 +920,6 @@ async function removeFromCart(user_id, product_id, product_category) {
   }
 }
 
-
-
 // -----------------
 // Loading state for user
 // -----------------
@@ -899,24 +945,3 @@ export function hideLoadingState() {
 
 
 
-// quantityInput.addEventListener("input", async (event) => {
-//   const newQuantity = parseInt(event.target.value, 10);
-
-//   if (!isNaN(newQuantity) && newQuantity > 0) {
-//     cartItem.getQuantity = newQuantity;
-
-//     const newTotalPrice = newQuantity * cartItem.getPrice;
-//     cartItem.productPrice.textContent = "R" + newTotalPrice;
-
-//     try {
-//       // Update the cart entry quantity in the database
-//       // await updateQuantity(user_id, cartItem.getCategory, cartItem.getProductId, newQuantity, newTotalPrice);
-
-//     } catch (error) {
-//       console.error('Error updating quantity:', error);
-//     }
-//   } else {
-//     // Reset the input value if an invalid quantity is entered
-//     event.target.value = cartItem.getQuantity;
-//   }
-// });
