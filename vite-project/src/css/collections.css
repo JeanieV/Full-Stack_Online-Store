@@ -15,6 +15,7 @@ body {
     border-radius: 50%;
     background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
     animation: animateCircle 1.2s linear infinite;
+    margin-top: 30px;
 }
 
 @keyframes animateCircle {
@@ -111,7 +112,7 @@ h2 {
 }
 
 h6{
-    font-size: 40px;
+    font-size: 50px;
     color: #E0DFD0;
     text-align: center; 
 }
@@ -119,6 +120,7 @@ h6{
 p {
     font-size: 27px;
     text-align: center;
+    color: #000000;
 }
 
 /* Navbar section */
@@ -145,7 +147,9 @@ p {
     border: none;
 }
 
-
+.sortTable{
+    border: #000000 5px solid;
+}
 .sortingImage {
     width: 5vw;
 }
@@ -193,15 +197,12 @@ h5 {
     text-align: center;
 }
 
-
-
 .homeCard {
     background-color: #E0DFD0;
     width: 23vw;
     height: 34vw;
+    /* border-radius: 30px; */
 }
-
-
 
 .card-body {
     text-align: center;
@@ -298,7 +299,6 @@ h5 {
     display: flex;
 }
 
-
 .img-zoom-lens {
     position: absolute;
     border: 1px solid #d4d4d4;
@@ -334,12 +334,13 @@ li {
 .content-cart {
     background-color: #E0DFD0;
     border: 1px solid #888;
-    width: 60vw;
+    width: 70vw;
+    border-radius: 20px;
 }
 
 .cart-image {
-    width: 150px;
-    height: 160px;
+    width: 140px;
+    height: 150px;
     overflow: hidden;
 }
 
@@ -378,9 +379,22 @@ li {
 
 .quantity-input {
     text-align: center;
-    font-size: 25px;
-    width: 6vw;
+    font-size: 20px;
+    width: 5vw;
     border: 1px solid #888;
+}
+
+.deleteButton{
+    background-color: #A47551 !important;
+    color: white !important;
+    text-align: center !important;
+    font-size: 20px !important;
+    border: none;
+}
+
+.deleteButton:hover{
+    background-color: #922C40 !important;
+    color: white !important;
 }
 
 .purchaseButton {

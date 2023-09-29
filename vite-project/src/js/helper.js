@@ -1,4 +1,3 @@
-import { CartEntry } from './classes';
 import { supabase } from '../../supabase';
 import { Product } from './classes';
 
@@ -616,36 +615,31 @@ export function showCart() {
           cartContainer.style.display = 'none';
         });
 
-        const invoiceName = document.createElement("h2");
-        invoiceName.classList.add("heading2Modal", "pb-2");
-        invoiceName.innerHTML = "Invoice";
-
-        // Appending "Invoice" name before the table
-        mycart.appendChild(buttonClose);
-        mycart.appendChild(invoiceName);
-
-        const centerDiv1 = document.createElement('div');
-        centerDiv1.classList.add("col-md-12", "text-center");
-
-        const cartDate = document.createElement("p");
-        cartDate.innerHTML = "Date: " + new Date().toLocaleDateString();
-        cartDate.classList.add("invoice-date");
-
-        centerDiv1.appendChild(cartDate);
-
         const fullname = localStorage.getItem('loggedInFullName');
 
         if (fullname) {
+
           const customerName = document.createElement("h2");
-          customerName.classList.add("heading2Modal", "pb-5");
+          customerName.classList.add("heading2Modal", "pb-3");
           customerName.textContent = `Hi there, ${fullname}!`;
-          centerDiv1.appendChild(customerName);
 
+          // Appending "Invoice" name before the table
+          mycart.appendChild(buttonClose);
+          mycart.appendChild(customerName);
 
-          const cartInfo = document.createElement("p");
-          cartInfo.classList.add("invoice-date", "pb-5");
-          cartInfo.textContent = `Thank you for choosing Art of Pottery for your one-stop pottery shop!`;
-          centerDiv1.appendChild(cartInfo);
+          const centerDiv1 = document.createElement('div');
+          centerDiv1.classList.add("col-md-12", "text-center");
+
+          const invoiceName = document.createElement("h2");
+          invoiceName.classList.add("heading2Modal", "pb-3");
+          invoiceName.innerHTML = "Invoice";
+          centerDiv1.appendChild(invoiceName);
+
+          const cartDate = document.createElement("p");
+          cartDate.innerHTML = "Date: " + new Date().toLocaleDateString();
+          cartDate.classList.add("invoice-date", "pb-5");
+
+          centerDiv1.appendChild(cartDate);
 
           const table = document.createElement('table');
           table.classList.add("table", "table-striped");
@@ -731,7 +725,7 @@ export function showCart() {
             removeRowButton.classList.add("tableData");
 
             const deleteButton = document.createElement("button");
-            deleteButton.classList.add("cart-delete-button");
+            deleteButton.classList.add("deleteButton", "p-3");
             deleteButton.textContent = "Delete";
 
             removeRowButton.appendChild(deleteButton);

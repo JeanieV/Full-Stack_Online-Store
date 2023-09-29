@@ -124,8 +124,8 @@ p {
 }
 
 .cart-image {
-    width: 150px;
-    height: 160px;
+    width: 140px;
+    height: 150px;
     overflow: hidden;
 }
 
@@ -153,6 +153,19 @@ p {
     font-size: 21px;
 }
 
+.deleteButton{
+    background-color: #A47551 !important;
+    color: white !important;
+    text-align: center !important;
+    font-size: 20px !important;
+    border: none;
+}
+
+.deleteButton:hover{
+    background-color: #922C40 !important;
+    color: white !important;
+}
+
 .priceHeadings {
     text-align: right;
     font-size: 25px;
@@ -163,8 +176,8 @@ p {
 
 .quantity-input {
     text-align: center;
-    font-size: 25px;
-    width: 6vw;
+    font-size: 20px;
+    width: 5vw;
     border: 1px solid #888;
 }
 
