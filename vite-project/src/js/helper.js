@@ -974,8 +974,7 @@ async function purchaseCompleted(user_id) {
     const { error } = await supabase
       .from('cart')
       .delete()
-      .eq('user_id', user_id)
-      .single();
+      .eq('user_id', user_id);
 
     if (error) {
       console.error('Error deleting item from cart:', error);
