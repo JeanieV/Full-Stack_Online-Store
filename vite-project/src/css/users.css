@@ -69,7 +69,7 @@ h1 {
     border: none;
 }
 
-.accountButton{
+.accountButton {
     font-size: 25px;
     background-color: #922C40;
     color: #E0DFD0;
@@ -128,4 +128,405 @@ td {
     font-size: 30px;
     font-weight: bold;
     text-align: left;
+}
+
+
+/*Media Queries Below*/
+
+@media only screen and (min-width: 200px) and (max-width: 319px) {
+
+    #background-video {
+        width: 200vw;
+        height: 200vh;
+    }
+
+    .signUpForm {
+        width: 80vw;
+    }
+
+    .logInForm {
+        width: 80vw;
+    }
+
+    .editForm {
+        width: 80vw;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .inputStyle {
+        height: 30px;
+        width: 30vw;
+        font-size: 10px;
+    }
+
+    .logInButton {
+        font-size: 15px;
+        width: 20vw;
+    }
+
+    .accountButton {
+        font-size: 10px;
+        width: 16vw;
+    }
+
+    .homeButton {
+        width: 50px;
+        height: 50px;
+    }
+
+    p {
+        font-size: 10px;
+    }
+
+    .infoBackground {
+        width: 80vw;
+    }
+
+    .heading2Modal {
+        font-size: 15px;
+    }
+
+    td {
+        font-size: 10px;
+    }
+
+    .labelStyle {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+
+    #background-video {
+        width: 200vw;
+        height: 200vh;
+    }
+
+    .signUpForm {
+        width: 80vw;
+    }
+
+    .logInForm {
+        width: 80vw;
+    }
+
+    .editForm {
+        width: 80vw;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .inputStyle {
+        height: 40px;
+        width: 25vw;
+        font-size: 15px;
+    }
+
+    .logInButton {
+        font-size: 15px;
+        width: 20vw;
+    }
+
+    .accountButton {
+        font-size: 15px;
+        width: 16vw;
+    }
+
+    .homeButton {
+        width: 50px;
+        height: 50px;
+    }
+
+    p {
+        font-size: 10px;
+    }
+
+    .infoBackground {
+        width: 80vw;
+    }
+
+    .heading2Modal {
+        font-size: 20px;
+    }
+
+    td {
+        font-size: 15px;
+    }
+
+    .labelStyle {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+    #background-video {
+        width: 200vw;
+        height: 200vh;
+    }
+
+    .signUpForm {
+        width: 70vw;
+    }
+
+    .logInForm {
+        width: 70vw;
+    }
+
+    .editForm {
+        width: 70vw;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    .inputStyle {
+        height: 40px;
+        width: 25vw;
+        font-size: 15px;
+    }
+
+    .logInButton {
+        font-size: 15px;
+        width: 20vw;
+    }
+
+    .accountButton {
+        font-size: 15px;
+        width: 10vw;
+    }
+
+    .homeButton {
+        width: 60px;
+        height: 60px;
+    }
+
+    p {
+        font-size: 10px;
+    }
+
+    .infoBackground {
+        width: 70vw;
+    }
+
+    .heading2Modal {
+        font-size: 40px;
+    }
+
+    td {
+        font-size: 20px;
+    }
+
+    .labelStyle {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+
+    #background-video {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .signUpForm {
+        width: 60vw;
+    }
+
+    .logInForm {
+        width: 60vw;
+    }
+
+    .editForm {
+        width: 60vw;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    .inputStyle {
+        height: 40px;
+        width: 15vw;
+        font-size: 20px;
+    }
+
+    .logInButton {
+        font-size: 20px;
+        width: 10vw;
+    }
+
+    .accountButton {
+        font-size: 20px;
+        width: 10vw;
+    }
+
+    .homeButton {
+        width: 70px;
+        height: 70px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .infoBackground {
+        width: 60vw;
+    }
+
+    .heading2Modal {
+        font-size: 35px;
+    }
+
+    td {
+        font-size: 22px;
+    }
+
+    .labelStyle {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+
+    #background-video {
+        width: 100vw;
+        height: 100vh;
+    }
+    
+    .signUpForm {
+        width: 50vw;
+    }
+    
+    .logInForm {
+        width: 40vw;
+    }
+    
+    .editForm {
+        width: 50vw;
+    }
+    
+    h1 {
+        font-size: 50px;
+    }
+    
+    .labelStyle {
+        font-size: 28px;
+    }
+    
+    .inputStyle {
+        height: 40px;
+        width: 15vw;
+        font-size: 20px;
+    }
+    
+    .logInButton {
+        font-size: 25px;
+        width: 9vw;
+    }
+    
+    .accountButton {
+        font-size: 25px;
+        width: 10vw;
+    }
+    
+    .homeButton {
+        width: 80px;
+        height: 80px;
+    }
+    
+    p {
+        font-size: 20px;
+    }
+    
+    .infoBackground {
+        width: 60vw;
+    }
+    
+    .heading2Modal {
+        font-size: 35px;
+    }
+    
+    td {
+        font-size: 25px;
+    }
+    
+    .labelStyle {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 1201px) {
+
+    #background-video {
+        width: 100vw;
+        height: 100vh;
+    }
+    
+    .signUpForm {
+        width: 50vw;
+    }
+    
+    .logInForm {
+        width: 40vw;
+    }
+    
+    .editForm {
+        width: 50vw;
+    }
+    
+    h1 {
+        font-size: 50px;
+    }
+    
+    .labelStyle {
+        font-size: 28px;
+    }
+    
+    .inputStyle {
+        height: 40px;
+        width: 15vw;
+        font-size: 20px;
+    }
+    
+    .logInButton {
+        font-size: 25px;
+        width: 9vw;
+    }
+    
+    .accountButton {
+        font-size: 25px;
+        width: 10vw;
+    }
+    
+    .homeButton {
+        width: 80px;
+        height: 80px;
+    }
+    
+    p {
+        font-size: 20px;
+    }
+    
+    .infoBackground {
+        width: 60vw;
+    }
+    
+    .heading2Modal {
+        font-size: 35px;
+    }
+    
+    td {
+        font-size: 25px;
+    }
+    
+    .labelStyle {
+        font-size: 30px;
+    }
 }

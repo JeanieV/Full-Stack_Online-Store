@@ -77,7 +77,7 @@ export function filterProducts() {
 
     if (title.includes(searchValue) || price.includes(searchValue)) {
       card.style.display = 'block';
-      noResults = true; 
+      noResults = true;
     } else {
       card.style.display = 'none';
     }
@@ -92,7 +92,6 @@ export function filterProducts() {
     });
   }
 }
-
 
 
 // -----------------
@@ -759,9 +758,6 @@ export function showCart() {
               updateTotals();
             });
 
-
-
-
             // Creating the Product Price that will show in the cart
             const productPrice = document.createElement("td");
             productPrice.classList.add("tableData");
@@ -880,13 +876,34 @@ export function showCart() {
           totalRow.appendChild(totalValue);
           table.appendChild(totalRow);
 
-
           // Appending the table after the "Invoice" name
           mycart.appendChild(centerDiv1);
           mycart.appendChild(table);
         }
 
+        // Creating a container div for the button
+        const centerDiv2 = document.createElement('div');
+        centerDiv2.classList.add("col-md-12", "text-center", "py-5");
+
+        // Creating the Go to Cart button inside the modal
+        const purchaseButton = document.createElement("button");
+        purchaseButton.classList.add("btn", "purchaseButton", "p-3");
+        purchaseButton.innerHTML = "Purchase";
+
+        // When the button is clicked, the cart modal will not show
+        purchaseButton.addEventListener('click', () => {
+          alert("Thank you for shopping at the Art of Pottery!\nPurchase successful!");
+
+          purchaseCompleted(user_id);
+
+          cartContainer.style.display = "none"
+          emptyShoppingCart();
+        })
+
+        centerDiv2.appendChild(purchaseButton);
+
         // Append the cart modal container to the cartContainer
+        mycart.appendChild(centerDiv2);
         centerCartDiv.appendChild(mycart);
         cartContainer.appendChild(centerCartDiv);
 
@@ -895,7 +912,6 @@ export function showCart() {
       }
     })
 }
-
 
 // -----------------
 // Update the Quantity
@@ -925,7 +941,6 @@ async function updateQuantity(user_id, product_category, product_id, newQuantity
   }
 }
 
-
 // -----------------
 // Remove the product
 // -----------------
@@ -940,6 +955,26 @@ async function removeFromCart(user_id, product_id, product_category) {
       .eq('user_id', user_id)
       .eq('product_id', product_id) // Add this line
       .eq('product_category', product_category) // Add this line
+      .single();
+
+    if (error) {
+      console.error('Error deleting item from cart:', error);
+    } else {
+      console.log('Item deleted from cart successfully.');
+    }
+  } catch (error) {
+    console.error('Error removing item from cart:', error);
+  }
+}
+
+// Delete user from the cart table
+async function purchaseCompleted(user_id) {
+
+  try {
+    const { error } = await supabase
+      .from('cart')
+      .delete()
+      .eq('user_id', user_id)
       .single();
 
     if (error) {

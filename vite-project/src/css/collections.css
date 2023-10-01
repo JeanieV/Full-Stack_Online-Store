@@ -6,7 +6,22 @@ body {
     background-color: #A47551;
 }
 
-/* Loader UI */
+.jumbo {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    position: relative;
+    height: 50vw;
+    background-color: white;
+}
+
+.homeView {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    grid-column: 1 / 2;
+}
+
+/* Loading States */
 
 .loader {
     position: relative;
@@ -64,46 +79,42 @@ body {
     border-radius: 50%;
 }
 
+.spinner {
+    border: 10px solid #A47551;
+    border-radius: 50%;
+    border-top: 10px solid #E0DFD0;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+}
+
+.spin {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 
-/* Header */
+/* Headings */
+
 h1 {
     font-size: 80px;
     color: #A47551;
     text-align: center;
 }
-
-.jumbo {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    position: relative;
-    height: 50vw;
-    background-color: white;
-}
-
-.homeView {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    grid-column: 1 / 2;
-}
-
-.logoBackground {
-    background-color: white;
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    grid-column: 2 / 3;
-}
-
-.logo {
-    max-width: 100%;
-    height: 25vw;
-}
-
 
 h2 {
     font-size: 80px;
@@ -123,7 +134,85 @@ p {
     color: #000000;
 }
 
-/* Navbar section */
+h3 {
+    font-size: 25px;
+    color: #000000;
+    text-align: center;
+}
+
+h4 {
+    font-size: 20px;
+    color: #000000;
+    text-align: center;
+}
+
+h5 {
+    font-size: 15px;
+    color: #922C40;
+    text-align: center;
+}
+
+.heading2Modal {
+    font-size: 35px;
+    text-align: center;
+    color: #A47551;
+    padding: 0;
+}
+
+.priceHeadings {
+    text-align: right;
+    font-size: 25px;
+    color: #922C40;
+    padding: 15px;
+    border-top: solid 1px #888;
+}
+
+.tableHeadings {
+    font-size: 30px;
+    text-align: center;
+    color: #922C40;
+    padding: 0;
+}
+
+/* Images */
+
+.logoBackground {
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-column: 2 / 3;
+}
+
+.logo {
+    max-width: 100%;
+    height: 25vw;
+}
+
+.shoppingCartimg {
+    width: 60px;
+    background-color: transparent;
+}
+
+.viewShoppingCart {
+    background-color: transparent;
+    border: none;
+}
+
+.sortingImage {
+    width: 5vw;
+}
+
+.productImage {
+    width: 300px;
+    height: 320px;
+}
+
+/* Navbar Section */
+
 .first-navbar {
     background-color: #E0DFD0;
 }
@@ -137,25 +226,17 @@ p {
     color: #000000;
 }
 
-.shoppingCartimg {
-    width: 60px;
-    background-color: transparent;
-}
 
-.viewShoppingCart {
-    background-color: transparent;
-    border: none;
-}
+
+/* Table */
 
 .sortTable {
     border: #000000 5px solid;
 }
 
-.sortingImage {
-    width: 5vw;
-}
 
-/* Back to top button */
+
+/* Buttons */
 
 #backToTopButton {
     display: none;
@@ -176,41 +257,42 @@ p {
     background-color: #DC9750;
 }
 
-
-/* Card section */
-
-
-h3 {
-    font-size: 25px;
-    color: #000000;
-    text-align: center;
-}
-
-h4 {
+.sortingButtons {
+    width: 10vw;
     font-size: 20px;
-    color: #000000;
-    text-align: center;
+    border: none;
 }
 
-h5 {
-    font-size: 15px;
-    color: #922C40;
-    text-align: center;
+.sortingButtons:hover {
+    transform: scale(1.1);
 }
 
-.homeCard {
-    background-color: #E0DFD0;
-    width: 23vw;
-    height: 34vw;
-    /* border-radius: 30px; */
+.glass {
+    cursor: pointer;
+    font-size: 25px;
+    background-color: #922C40;
+    color: #E1E7E0;
+    width: 4vw;
+    height: 3vw;
+    border: none;
 }
 
-.card-body {
-    text-align: center;
+.glass:hover {
+    background-color: #DC9750;
 }
 
-.card1 {
-    text-align: center;
+.clear-filter-button {
+    cursor: pointer;
+    font-size: 20px;
+    background-color: #922C40;
+    color: #E1E7E0;
+    width: 10vw;
+    height: 3vw;
+    border: none;
+}
+
+.clear-filter-button:hover {
+    background-color: #DC9750;
 }
 
 .cardButtons {
@@ -225,14 +307,46 @@ h5 {
     color: #E0DFD0;
 }
 
-.sortingButtons {
-    width: 10vw;
-    font-size: 20px;
+.deleteButton {
+    background-color: #A47551 !important;
+    color: white !important;
+    text-align: center !important;
+    font-size: 20px !important;
     border: none;
 }
 
-.sortingButtons:hover {
-    transform: scale(1.1);
+.deleteButton:hover {
+    background-color: #922C40 !important;
+    color: white !important;
+}
+
+.purchaseButton {
+    background-color: #A47551;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+}
+
+.purchaseButton:hover {
+    background-color: #DC9750;
+    color: white;
+}
+
+
+/* Card Section */
+
+.homeCard {
+    background-color: #E0DFD0;
+    width: 23vw;
+    height: 34vw;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card1 {
+    text-align: center;
 }
 
 .sorting-button-container {
@@ -243,17 +357,7 @@ h5 {
 }
 
 
-.productImage {
-    width: 300px;
-    height: 320px;
-}
-
-.heading2Modal {
-    font-size: 35px;
-    text-align: center;
-    color: #A47551;
-    padding: 0;
-}
+/* Modal Section */
 
 .modal {
     display: none;
@@ -265,15 +369,12 @@ h5 {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Modal Content */
 .modal-content {
     background-color: #E0DFD0;
     border: 1px solid #888;
     width: 70vw;
 }
 
-
-/* The Close Button */
 .close {
     color: black;
     font-size: 50px;
@@ -286,8 +387,6 @@ h5 {
     text-decoration: none;
     cursor: pointer;
 }
-
-/* Zoom on modal image */
 
 .productModal {
     width: 400px;
@@ -345,19 +444,6 @@ li {
     overflow: hidden;
 }
 
-.cart-image-bin {
-    width: 80px;
-    height: 80px;
-    border-radius: 25px;
-}
-
-.tableHeadings {
-    font-size: 30px;
-    text-align: center;
-    color: #922C40;
-    padding: 0;
-}
-
 .tableData {
     text-align: center;
     font-size: 21px;
@@ -370,14 +456,6 @@ li {
     font-size: 21px;
 }
 
-.priceHeadings {
-    text-align: right;
-    font-size: 25px;
-    color: #922C40;
-    padding: 15px;
-    border-top: solid 1px #888;
-}
-
 .quantity-input {
     text-align: center;
     font-size: 20px;
@@ -385,37 +463,12 @@ li {
     border: 1px solid #888;
 }
 
-.deleteButton {
-    background-color: #A47551 !important;
-    color: white !important;
-    text-align: center !important;
-    font-size: 20px !important;
-    border: none;
-}
-
-.deleteButton:hover {
-    background-color: #922C40 !important;
-    color: white !important;
-}
-
-.purchaseButton {
-    background-color: #A47551;
-    color: white;
-    text-align: center;
-    font-size: 20px;
-}
-
-.purchaseButton:hover {
-    background-color: #DC9750;
-    color: white;
-}
-
 .invoice-date {
     text-align: center;
     font-size: 21px;
 }
 
-/* Scroll Button */
+/* Scroll Section */
 
 .scroll-button {
     position: absolute;
@@ -517,38 +570,8 @@ a:hover {
 }
 
 
-/* Loading state */
-
-.spinner {
-    border: 10px solid #A47551;
-    border-radius: 50%;
-    border-top: 10px solid #E0DFD0;
-    width: 100px;
-    height: 100px;
-    animation: spin 2s linear infinite;
-}
-
-.spin {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-
 /* Search bar */
+
 .inputStyle {
     height: 40px;
     width: 17vw;
@@ -556,30 +579,1335 @@ a:hover {
     font-size: 20px;
 }
 
-.glass {
-    cursor: pointer;
-    font-size: 25px;
-    background-color: #922C40;
-    color: #E1E7E0;
-    width: 4vw;
-    height: 3vw;
-    border: none;
+
+/*Media Queries Below*/
+
+@media only screen and (min-width: 200px) and (max-width: 319px) {
+
+    .jumbo {
+        height: 100vw;
+    }
+
+    /* Headings */
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    h6 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    h5 {
+        font-size: 15px;
+    }
+
+    .heading2Modal {
+        font-size: 15px;
+    }
+
+    .priceHeadings {
+        font-size: 10px;
+    }
+
+    .tableHeadings {
+        font-size: 15px;
+    }
+
+    /* Images */
+
+    .logo {
+        max-width: 100%;
+        height: 30vw;
+    }
+
+    .shoppingCartimg {
+        width: 30px;
+    }
+
+    .sortingImage {
+        width: 8vw;
+    }
+
+    .productImage {
+        width: 200px;
+        height: 220px;
+    }
+
+    /* Navbar Section */
+
+    .titles {
+        font-size: 15px;
+    }
+
+    /* Buttons */
+
+    #backToTopButton {
+        font-size: 15px;
+    }
+
+    .sortingButtons {
+        width: 15vw;
+        font-size: 20px;
+    }
+
+    .glass {
+        font-size: 15px;
+        width: 15vw;
+        height: 15vw;
+    }
+
+    .clear-filter-button {
+        font-size: 15px;
+        width: 20vw;
+        height: 15vw;
+    }
+
+    .cardButtons {
+        width: 22vw;
+        font-size: 17px;
+    }
+
+    .deleteButton {
+        font-size: 10px !important;
+    }
+
+    .purchaseButton {
+        font-size: 10px;
+    }
+
+    /* Card Section */
+
+    .homeCard {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    /* Modal Section */
+
+    .modal {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal-content {
+        width: 80vw;
+    }
+
+    .close {
+        font-size: 30px;
+    }
+
+    .productModal {
+        width: 300px;
+        height: 310px;
+    }
+
+    .img-zoom-lens {
+        width: 30px;
+        height: 30px;
+    }
+
+    .img-zoom-result {
+        width: 300px;
+        height: 200px;
+    }
+
+    .column {
+        float: none;
+        width: 100%;
+    }
+
+    li {
+        font-size: 15px;
+    }
+
+
+    /* Cart Section */
+
+    .content-cart {
+        width: 90vw;
+    }
+
+    .cart-image {
+        width: 50px;
+        height: 60px;
+    }
+
+    .tableData {
+        font-size: 10px;
+    }
+
+    .tableData1 {
+        font-size: 10px;
+    }
+
+    .quantity-input {
+        font-size: 15px;
+        width: 5vw;
+    }
+
+    .invoice-date {
+        font-size: 15px;
+    }
+
+    /* Scroll Section */
+
+    .scroll-button {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 20px;
+        z-index: 1;
+    }
+
+
+    #section1 a span {
+        width: 30px;
+        height: 30px;
+    }
+
+
+    /* Coming Soon */
+
+    .time .number {
+        font-size: 20px;
+    }
+
+    .time .text {
+        font-size: 20px;
+    }
+
+    /* Search bar */
+
+    .inputStyle {
+        height: 40px;
+        width: 40vw;
+        font-size: 10px;
+    }
 }
 
-.glass:hover {
-    background-color: #DC9750;
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+
+    .jumbo {
+        height: 100vw;
+    }
+
+    /* Headings */
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    h6 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    h5 {
+        font-size: 15px;
+    }
+
+    .heading2Modal {
+        font-size: 15px;
+    }
+
+    .priceHeadings {
+        font-size: 10px;
+    }
+
+    .tableHeadings {
+        font-size: 15px;
+    }
+
+    /* Images */
+
+    .logo {
+        max-width: 100%;
+        height: 30vw;
+    }
+
+    .shoppingCartimg {
+        width: 30px;
+    }
+
+    .sortingImage {
+        width: 8vw;
+    }
+
+    .productImage {
+        width: 200px;
+        height: 220px;
+    }
+
+    /* Navbar Section */
+
+    .titles {
+        font-size: 17px;
+    }
+
+    /* Buttons */
+
+    #backToTopButton {
+        font-size: 15px;
+    }
+
+    .sortingButtons {
+        width: 15vw;
+        font-size: 20px;
+    }
+
+    .glass {
+        font-size: 15px;
+        width: 15vw;
+        height: 15vw;
+    }
+
+    .clear-filter-button {
+        font-size: 15px;
+        width: 20vw;
+        height: 15vw;
+    }
+
+    .cardButtons {
+        width: 22vw;
+        font-size: 17px;
+    }
+
+    .deleteButton {
+        font-size: 10px !important;
+    }
+
+    .purchaseButton {
+        font-size: 10px;
+    }
+
+    /* Card Section */
+
+    .homeCard {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    /* Modal Section */
+
+    .modal {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal-content {
+        width: 80vw;
+    }
+
+    .close {
+        font-size: 30px;
+    }
+
+    .productModal {
+        width: 300px;
+        height: 310px;
+    }
+
+    .img-zoom-lens {
+        width: 30px;
+        height: 30px;
+    }
+
+    .img-zoom-result {
+        width: 300px;
+        height: 200px;
+    }
+
+    .column {
+        float: none;
+        width: 100%;
+    }
+
+    li {
+        font-size: 15px;
+    }
+
+
+    /* Cart Section */
+
+    .content-cart {
+        width: 90vw;
+    }
+
+    .cart-image {
+        width: 50px;
+        height: 60px;
+    }
+
+    .tableData {
+        font-size: 10px;
+    }
+
+    .tableData1 {
+        font-size: 10px;
+    }
+
+    .quantity-input {
+        font-size: 15px;
+        width: 5vw;
+    }
+
+    .invoice-date {
+        font-size: 15px;
+    }
+
+    /* Scroll Section */
+
+    .scroll-button {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 20px;
+        z-index: 1;
+    }
+
+
+    #section1 a span {
+        width: 30px;
+        height: 30px;
+    }
+
+
+    /* Coming Soon */
+
+    .time .number {
+        font-size: 30px;
+    }
+
+    .time .text {
+        font-size: 30px;
+    }
+
+    /* Search bar */
+
+    .inputStyle {
+        height: 40px;
+        width: 40vw;
+        font-size: 10px;
+    }
 }
 
-.clear-filter-button{
-    cursor: pointer;
-    font-size: 20px;
-    background-color: #922C40;
-    color: #E1E7E0;
-    width: 10vw;
-    height: 3vw;
-    border: none;
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+
+    .jumbo {
+        height: 50vw;
+    }
+
+    /* Headings */
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    h6 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    h5 {
+        font-size: 15px;
+    }
+
+    .heading2Modal {
+        font-size: 25px;
+    }
+
+    .priceHeadings {
+        font-size: 20px;
+    }
+
+    .tableHeadings {
+        font-size: 20px;
+    }
+
+    /* Images */
+
+    .logo {
+        max-width: 100%;
+        height: 30vw;
+    }
+
+    .shoppingCartimg {
+        width: 40px;
+    }
+
+    .sortingImage {
+        width: 6vw;
+    }
+
+    .productImage {
+        width: 200px;
+        height: 220px;
+    }
+
+    /* Navbar Section */
+
+    .titles {
+        font-size: 22px;
+    }
+
+    /* Buttons */
+
+    #backToTopButton {
+        font-size: 15px;
+    }
+
+    /* Search bar */
+
+    .inputStyle {
+        height: 40px;
+        width: 17vw;
+        font-size: 10px;
+    }
+
+    .sortingButtons {
+        width: 10vw;
+        font-size: 20px;
+    }
+
+    .glass {
+        font-size: 15px;
+        width: 8vw;
+        height: 6vw;
+    }
+
+    .clear-filter-button {
+        font-size: 15px;
+        width: 15vw;
+        height: 8vw;
+    }
+
+    .cardButtons {
+        width: 15vw;
+        font-size: 17px;
+    }
+
+    .deleteButton {
+        font-size: 15px !important;
+    }
+
+    .purchaseButton {
+        font-size: 15px;
+    }
+
+    /* Card Section */
+
+    .homeCard {
+        width: 50vw;
+        height: 60vw;
+    }
+
+    /* Modal Section */
+
+    .modal {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal-content {
+        width: 80vw;
+    }
+
+    .close {
+        font-size: 40px;
+    }
+
+    .productModal {
+        width: 300px;
+        height: 310px;
+    }
+
+    .img-zoom-lens {
+        width: 30px;
+        height: 30px;
+    }
+
+    .img-zoom-result {
+        width: 170px;
+        height: 170px;
+    }
+
+    .column {
+        float: none;
+        width: 100%;
+    }
+
+    li {
+        font-size: 15px;
+    }
+
+
+    /* Cart Section */
+
+    .content-cart {
+        width: 80vw;
+    }
+
+    .cart-image {
+        width: 100px;
+        height: 110px;
+    }
+
+    .tableData {
+        font-size: 15px;
+    }
+
+    .tableData1 {
+        font-size: 15px;
+    }
+
+    .quantity-input {
+        font-size: 15px;
+        width: 5vw;
+    }
+
+    .invoice-date {
+        font-size: 15px;
+    }
+
+    /* Scroll Section */
+
+    .scroll-button {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 20px;
+        z-index: 1;
+    }
+
+
+    #section1 a span {
+        width: 30px;
+        height: 30px;
+    }
+
+
+    /* Coming Soon */
+
+    .time .number {
+        font-size: 30px;
+    }
+
+    .time .text {
+        font-size: 30px;
+    }
+
 }
 
-.clear-filter-button:hover{
-    background-color: #DC9750;
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+
+    .jumbo {
+        height: 50vw;
+    }
+
+    /* Headings */
+
+    h1 {
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    h6 {
+        font-size: 40px;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 25px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    h5 {
+        font-size: 15px;
+    }
+
+    .heading2Modal {
+        font-size: 30px;
+    }
+
+    .priceHeadings {
+        font-size: 22px;
+    }
+
+    .tableHeadings {
+        font-size: 22px;
+    }
+
+    /* Images */
+
+    .shoppingCartimg {
+        width: 40px;
+    }
+
+    .sortingImage {
+        width: 5vw;
+    }
+
+    .productImage {
+        width: 200px;
+        height: 210px;
+    }
+
+    /* Navbar Section */
+
+    .titles {
+        font-size: 27px;
+    }
+
+    /* Buttons */
+
+    #backToTopButton {
+        font-size: 18px;
+    }
+
+    /* Search bar */
+
+    .inputStyle {
+        height: 40px;
+        width: 17vw;
+        font-size: 15px;
+    }
+
+    .sortingButtons {
+        width: 10vw;
+        font-size: 20px;
+    }
+
+    .glass {
+        font-size: 25px;
+        width: 5vw;
+        height: 5vw;
+    }
+
+    .clear-filter-button {
+        font-size: 20px;
+        width: 10vw;
+        height: 7vw;
+    }
+
+    .cardButtons {
+        width: 7vw;
+        font-size: 17px;
+    }
+
+    .deleteButton {
+        font-size: 20px !important;
+    }
+
+    .purchaseButton {
+        font-size: 20px;
+    }
+
+    /* Card Section */
+
+    .homeCard {
+        width: 40vw;
+        height: 44vw;
+    }
+
+    /* Modal Section */
+
+    .modal {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal-content {
+        width: 80vw;
+    }
+
+    .close {
+        font-size: 50px;
+    }
+
+    .productModal {
+        width: 400px;
+        height: 370px;
+    }
+
+    .img-zoom-lens {
+        width: 30px;
+        height: 30px;
+    }
+
+    .img-zoom-result {
+        width: 200px;
+        height: 200px;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+    }
+
+    li {
+        font-size: 17px;
+    }
+
+
+    /* Cart Section */
+
+    .content-cart {
+        width: 70vw;
+    }
+
+    .cart-image {
+        width: 140px;
+        height: 150px;
+    }
+
+    .tableData {
+        font-size: 21px;
+    }
+
+    .tableData1 {
+        font-size: 21px;
+    }
+
+    .quantity-input {
+        font-size: 20px;
+        width: 5vw;
+    }
+
+    .invoice-date {
+        font-size: 21px;
+    }
+
+    /* Scroll Section */
+
+    .scroll-button {
+        font-size: 40px;
+    }
+
+    #section1 a span {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    /* Coming Soon */
+
+    .time .number {
+        font-size: 40px;
+    }
+
+    .time .text {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+
+    .jumbo {
+        height: 50vw;
+    }
+
+    /* Headings */
+
+    h1 {
+        font-size: 60px;
+    }
+
+    h2 {
+        font-size: 60px;
+    }
+
+    h6 {
+        font-size: 50px;
+    }
+
+    p {
+        font-size: 27px;
+    }
+
+    h3 {
+        font-size: 25px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    h5 {
+        font-size: 15px;
+    }
+
+    .heading2Modal {
+        font-size: 35px;
+    }
+
+    .priceHeadings {
+        font-size: 25px;
+    }
+
+    .tableHeadings {
+        font-size: 25px;
+    }
+
+    /* Images */
+
+    .shoppingCartimg {
+        width: 50px;
+    }
+
+    .sortingImage {
+        width: 5vw;
+    }
+
+    .productImage {
+        width: 300px;
+        height: 320px;
+    }
+
+    /* Navbar Section */
+
+    .titles {
+        font-size: 30px;
+    }
+
+    /* Buttons */
+
+    #backToTopButton {
+        font-size: 18px;
+    }
+
+    /* Search bar */
+
+    .inputStyle {
+        height: 40px;
+        width: 17vw;
+        font-size: 20px;
+    }
+
+    .sortingButtons {
+        width: 10vw;
+        font-size: 20px;
+    }
+
+    .glass {
+        font-size: 25px;
+        width: 5vw;
+        height: 4vw;
+    }
+
+    .clear-filter-button {
+        font-size: 20px;
+        width: 10vw;
+        height: 5vw;
+    }
+
+    .cardButtons {
+        width: 7vw;
+        font-size: 17px;
+    }
+
+    .deleteButton {
+        font-size: 20px !important;
+    }
+
+    .purchaseButton {
+        font-size: 20px;
+    }
+
+    /* Card Section */
+
+    .homeCard {
+        width: 30vw;
+        height: 50vw;
+    }
+
+    /* Modal Section */
+
+    .modal {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal-content {
+        width: 80vw;
+    }
+
+    .close {
+        font-size: 50px;
+    }
+
+    .productModal {
+        width: 400px;
+        height: 370px;
+    }
+
+    .img-zoom-lens {
+        width: 30px;
+        height: 30px;
+    }
+
+    .img-zoom-result {
+        width: 200px;
+        height: 200px;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+    }
+
+    li {
+        font-size: 17px;
+    }
+
+
+    /* Cart Section */
+
+    .content-cart {
+        width: 70vw;
+    }
+
+    .cart-image {
+        width: 140px;
+        height: 150px;
+    }
+
+    .tableData {
+        font-size: 21px;
+    }
+
+    .tableData1 {
+        font-size: 21px;
+    }
+
+    .quantity-input {
+        font-size: 20px;
+        width: 5vw;
+    }
+
+    .invoice-date {
+        font-size: 21px;
+    }
+
+    /* Scroll Section */
+
+    .scroll-button {
+        font-size: 40px;
+    }
+
+    #section1 a span {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    /* Coming Soon */
+
+    .time .number {
+        font-size: 60px;
+    }
+
+    .time .text {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (min-width: 1201px) {
+
+    /* Headings */
+    
+    h1 {
+        font-size: 80px;
+    }
+    
+    h2 {
+        font-size: 80px;
+    }
+    
+    h6 {
+        font-size: 50px;
+    }
+    
+    p {
+        font-size: 27px;
+    }
+    
+    h3 {
+        font-size: 25px;
+    }
+    
+    h4 {
+        font-size: 20px;
+    }
+    
+    h5 {
+        font-size: 15px;
+    }
+    
+    .heading2Modal {
+        font-size: 35px;
+    }
+    
+    .priceHeadings {
+        font-size: 25px;
+    }
+    
+    .tableHeadings {
+        font-size: 30px;
+    }
+    
+    /* Images */
+    
+    .logoBackground {
+        background-color: white;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        grid-column: 2 / 3;
+    }
+    
+    .logo {
+        max-width: 100%;
+        height: 25vw;
+    }
+    
+    .shoppingCartimg {
+        width: 60px;
+    }
+    
+    .sortingImage {
+        width: 5vw;
+    }
+    
+    .productImage {
+        width: 300px;
+        height: 320px;
+    }
+    
+    /* Navbar Section */
+    
+    .titles {
+        font-size: 32px;
+    }
+    
+    /* Buttons */
+    
+    #backToTopButton {
+        font-size: 18px;
+    }
+    
+    .sortingButtons {
+        width: 10vw;
+        font-size: 20px;
+    }
+    
+    .glass {
+        font-size: 25px;
+        width: 4vw;
+        height: 3vw;
+    }
+    
+    .clear-filter-button {
+        font-size: 20px;
+        width: 10vw;
+        height: 3vw;
+    }
+
+    .cardButtons {
+        width: 7vw;
+        font-size: 17px;
+    }
+    
+    .deleteButton {
+        font-size: 20px !important;
+    }
+    
+    .purchaseButton {
+        font-size: 20px;
+    }
+    
+    /* Card Section */
+    
+    .homeCard {
+        width: 23vw;
+        height: 34vw;
+    }
+    
+    /* Modal Section */
+    
+    .modal {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+    .modal-content {
+        width: 70vw;
+    }
+    
+    .close {
+        font-size: 50px;
+    }
+    
+    .productModal {
+        width: 400px;
+        height: 370px;
+    }
+    
+    .img-zoom-lens {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .img-zoom-result {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .column {
+        float: left;
+        width: 50%;
+    }
+    
+    li {
+        font-size: 20px;
+    }
+    
+    
+    /* Cart Section */
+    
+    .content-cart {
+        width: 70vw;
+    }
+    
+    .cart-image {
+        width: 140px;
+        height: 150px;
+    }
+    
+    .tableData {
+        font-size: 21px;
+    }
+    
+    .tableData1 {
+        font-size: 21px;
+    }
+    
+    .quantity-input {
+        font-size: 20px;
+        width: 5vw;
+    }
+    
+    .invoice-date {
+        font-size: 21px;
+    }
+    
+    /* Scroll Section */
+    
+    .scroll-button {
+        font-size: 40px;
+    }
+    
+    #section1 a span {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .time .number {
+        font-size: 100px;
+    }
+    
+    .time .text {
+        font-size: 40px;
+    }
+    
+    
+    /* Search bar */
+    
+    .inputStyle {
+        height: 40px;
+        width: 17vw;
+        font-size: 20px;
+    }
 }
