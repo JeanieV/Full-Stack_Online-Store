@@ -732,40 +732,13 @@ export function showCart() {
             // Creating the product quantity that will show in the table
             const productQuantity = document.createElement("td");
             productQuantity.classList.add("tableData");
-
-            // Creating the quantity input
-            const quantityInput = document.createElement("input");
-            quantityInput.type = "number";
-            quantityInput.min = 1;
-            quantityInput.max = 1000;
-            quantityInput.value = cartItem.getQuantity || 1;
-            quantityInput.classList.add("quantity-input");
-
-
-            // Add this code inside the loop where you create quantityInput elements
-            quantityInput.addEventListener('change', async (event) => {
-              const newQuantity = parseInt(event.target.value);
-              const newTotalPrice = newQuantity * cartItem.getPrice;
-
-              // Update the quantity and total price in the Supabase cart table
-              await updateQuantity(user_id, cartItem.getCategory, cartItem.getProductId, newQuantity, newTotalPrice);
-
-              // Update the cart item's quantity and total price in your local data
-              cartItem.getQuantity = newQuantity;
-              cartItem.getTotalPrice = newTotalPrice;
-
-              // Recalculate and update the subtotal and total
-              updateTotals();
-            });
+            productQuantity.innerHTML = 1;
 
             // Creating the Product Price that will show in the cart
             const productPrice = document.createElement("td");
             productPrice.classList.add("tableData");
             productPrice.innerHTML = "R" + cartItem.getPrice;
             cartItem.productPrice = productPrice;
-
-            // Appending to the quantity in the table
-            productQuantity.appendChild(quantityInput);
 
             // Creating the remove button that will delete the row
             const removeRowButton = document.createElement("td");
@@ -913,33 +886,6 @@ export function showCart() {
     })
 }
 
-// -----------------
-// Update the Quantity
-// -----------------
-
-// Function to update quantity in the Supabase cart table
-async function updateQuantity(user_id, product_category, product_id, newQuantity, newTotalPrice) {
-  try {
-    const { error } = await supabase
-      .from('cart')
-      .update({
-        quantity: newQuantity,
-        totalPrice: newTotalPrice
-      })
-      .eq('user_id', user_id)
-      .eq('product_category', product_category)
-      .eq('product_id', product_id);
-
-    if (error) {
-      console.error('Error updating quantity:', error);
-      return null;
-    }
-
-  } catch (error) {
-    console.error('Error updating quantity:', error);
-    return null;
-  }
-}
 
 // -----------------
 // Remove the product
@@ -953,8 +899,8 @@ async function removeFromCart(user_id, product_id, product_category) {
       .from('cart')
       .delete()
       .eq('user_id', user_id)
-      .eq('product_id', product_id) // Add this line
-      .eq('product_category', product_category) // Add this line
+      .eq('product_id', product_id) 
+      .eq('product_category', product_category)
       .single();
 
     if (error) {

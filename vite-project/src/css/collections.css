@@ -456,13 +456,6 @@ li {
     font-size: 21px;
 }
 
-.quantity-input {
-    text-align: center;
-    font-size: 20px;
-    width: 5vw;
-    border: 1px solid #888;
-}
-
 .invoice-date {
     text-align: center;
     font-size: 21px;
@@ -761,11 +754,6 @@ a:hover {
         font-size: 10px;
     }
 
-    .quantity-input {
-        font-size: 15px;
-        width: 5vw;
-    }
-
     .invoice-date {
         font-size: 15px;
     }
@@ -985,11 +973,6 @@ a:hover {
 
     .tableData1 {
         font-size: 10px;
-    }
-
-    .quantity-input {
-        font-size: 15px;
-        width: 5vw;
     }
 
     .invoice-date {
@@ -1220,11 +1203,6 @@ a:hover {
         font-size: 15px;
     }
 
-    .quantity-input {
-        font-size: 15px;
-        width: 5vw;
-    }
-
     .invoice-date {
         font-size: 15px;
     }
@@ -1441,11 +1419,6 @@ a:hover {
         font-size: 21px;
     }
 
-    .quantity-input {
-        font-size: 20px;
-        width: 5vw;
-    }
-
     .invoice-date {
         font-size: 21px;
     }
@@ -1652,11 +1625,6 @@ a:hover {
 
     .tableData1 {
         font-size: 21px;
-    }
-
-    .quantity-input {
-        font-size: 20px;
-        width: 5vw;
     }
 
     .invoice-date {
@@ -1872,11 +1840,6 @@ a:hover {
     
     .tableData1 {
         font-size: 21px;
-    }
-    
-    .quantity-input {
-        font-size: 20px;
-        width: 5vw;
     }
     
     .invoice-date {
