@@ -1,5 +1,5 @@
 import { Product } from '../js/classes';
-import { addToCart, showModal, showCart, generateProductCard, sortProducts, sortProductsHigh, sortProductsLow } from '../js/helper';
+import { addToCart, showModal, showCart, generateProductCard, sortProducts, sortProductsHigh, sortProductsLow, filterProducts } from '../js/helper';
 
 // -----------------
 // Connection to Supabase
@@ -34,21 +34,21 @@ const fetchData = async () => {
         localStorage.setItem("productID", product[index].getProductId);
         localStorage.setItem("productCategory", product[index].getCategory);
         localStorage.setItem("price", product[index].getPrice);
-        showModal(product[index]); 
+        showModal(product[index]);
       });
     });
 
-   // The product with the correct id will be added to the orders table
-   const addToCartButtons = document.querySelectorAll('.addToCart');
-   
-   addToCartButtons.forEach((button, index) => {
-     button.addEventListener('click', () => {
-       localStorage.setItem("productID", product[index].getProductId);
-       localStorage.setItem("productCategory", product[index].getCategory);
-       localStorage.setItem("price", product[index].getPrice);
-       addToCart();
-     });
-   });
+    // The product with the correct id will be added to the orders table
+    const addToCartButtons = document.querySelectorAll('.addToCart');
+
+    addToCartButtons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        localStorage.setItem("productID", product[index].getProductId);
+        localStorage.setItem("productCategory", product[index].getCategory);
+        localStorage.setItem("price", product[index].getPrice);
+        addToCart();
+      });
+    });
 
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -101,6 +101,21 @@ lowSort.addEventListener('click', sortProductsLow);
 const sortButtonHighToLow = document.querySelector(".highToLow");
 sortButtonHighToLow.addEventListener('click', sortProductsHigh);
 
+// Creating the constants
+const clear = document.querySelector('.clear-filter-button');
+const searchButton = document.getElementById('searchButton');
+
+// If the user clicks the search button
+searchButton.addEventListener('click', () => {
+  filterProducts(); // Call the filter function when the button is clicked
+});
+
+// If the user clicks the clear button
+clear.addEventListener('click', () => {
+  const searchInput = document.getElementById('searchInput');
+  searchInput.value = '';
+  filterProducts();
+});
 
 // -----------------
 // Calling the Cart Section

@@ -62,6 +62,39 @@ export function sortProductsHigh() {
   cardsLow.forEach(card => containerLow.appendChild(card));
 }
 
+// Filter and show product cards based on search input
+export function filterProducts() {
+  const searchInput = document.getElementById('searchInput');
+  const searchValue = searchInput.value.toLowerCase();
+
+  const cards = Array.from(document.querySelectorAll('.homeCard'));
+
+  let noResults = false; // Flag to track if any card is displayed
+
+  cards.forEach(card => {
+    const title = card.querySelector('h3').textContent.toLowerCase();
+    const price = card.querySelector('h4').textContent;
+
+    if (title.includes(searchValue) || price.includes(searchValue)) {
+      card.style.display = 'block';
+      noResults = true; 
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  // Show an alert if no cards are displayed
+  if (!noResults) {
+    alert('No matching products found for your search!');
+    searchInput.value = '';
+    cards.forEach(card => {
+      card.style.display = 'block';
+    });
+  }
+}
+
+
+
 // -----------------
 // Modal for each product
 // -----------------
@@ -709,22 +742,25 @@ export function showCart() {
             quantityInput.value = cartItem.getQuantity || 1;
             quantityInput.classList.add("quantity-input");
 
-            quantityInput.addEventListener("input", async (event) => {
-              const newQuantity = parseInt(event.target.value, 10);
 
-              if (!isNaN(newQuantity) && newQuantity > 0) {
-                cartItem.getQuantity = newQuantity;
+            // Add this code inside the loop where you create quantityInput elements
+            quantityInput.addEventListener('change', async (event) => {
+              const newQuantity = parseInt(event.target.value);
+              const newTotalPrice = newQuantity * cartItem.getPrice;
 
-                const newTotalPrice = newQuantity * cartItem.getPrice;
-                cartItem.productPrice.textContent = "R" + newTotalPrice;
+              // Update the quantity and total price in the Supabase cart table
+              await updateQuantity(user_id, cartItem.getCategory, cartItem.getProductId, newQuantity, newTotalPrice);
 
-                updateQuantity(user_id, cartItem.getCategory, cartItem.getProductId, newQuantity, newTotalPrice);
+              // Update the cart item's quantity and total price in your local data
+              cartItem.getQuantity = newQuantity;
+              cartItem.getTotalPrice = newTotalPrice;
 
-              } else {
-                // Reset the input value if an invalid quantity is entered
-                event.target.value = cartItem.getQuantity;
-              }
+              // Recalculate and update the subtotal and total
+              updateTotals();
             });
+
+
+
 
             // Creating the Product Price that will show in the cart
             const productPrice = document.createElement("td");
@@ -861,37 +897,33 @@ export function showCart() {
 }
 
 
+// -----------------
+// Update the Quantity
+// -----------------
+
 // Function to update quantity in the Supabase cart table
 async function updateQuantity(user_id, product_category, product_id, newQuantity, newTotalPrice) {
   try {
     const { error } = await supabase
       .from('cart')
-      .update(
-        {
-          user_id: user_id,
-          product_category: product_category,
-          product_id: product_id,
-          quantity: newQuantity,
-          totalPrice: newTotalPrice
-        })
-      .eq("user_id", user_id)
-      .eq("product_category", product_category)
-      .eq("product_id", product_id)
-      .eq("quantity", newQuantity)
-      .eq("totalPrice", newTotalPrice);
+      .update({
+        quantity: newQuantity,
+        totalPrice: newTotalPrice
+      })
+      .eq('user_id', user_id)
+      .eq('product_category', product_category)
+      .eq('product_id', product_id);
 
     if (error) {
       console.error('Error updating quantity:', error);
-    } else {
-      console.log('Quantity updated successfully.');
-
-      
+      return null;
     }
+
   } catch (error) {
     console.error('Error updating quantity:', error);
+    return null;
   }
 }
-
 
 
 // -----------------
@@ -938,10 +970,6 @@ export function hideLoadingState() {
   loadingState.style.display = "none";
 
 }
-
-
-
-// Notes
 
 
 
