@@ -320,7 +320,7 @@ export function generateProductCard(product) {
   // Create the product price
   const price = document.createElement("h4");
   price.classList.add("card-text", "p-3");
-  price.textContent = `R ${product.getPrice} each`;
+  price.textContent = `R ${product.getPrice.toFixed(2)} each`;
 
   // "Read More" button
   const readMoreButton = document.createElement("button");
@@ -392,7 +392,7 @@ export async function addToCart() {
     } else if (data.length > 0) {
 
       // Product already exists in the cart
-      alert('This product is already in your cart. Update the quantity.');
+      alert('This product is already in your cart.');
     } else {
       // Product doesn't exist in the cart, insert a new entry
       const { error: insertError } = await supabase.from('cart').insert({
@@ -737,7 +737,7 @@ export function showCart() {
             // Creating the Product Price that will show in the cart
             const productPrice = document.createElement("td");
             productPrice.classList.add("tableData");
-            productPrice.innerHTML = "R" + cartItem.getPrice;
+            productPrice.innerHTML = "R" + cartItem.getPrice.toFixed(2);
             cartItem.productPrice = productPrice;
 
             // Creating the remove button that will delete the row
@@ -886,7 +886,6 @@ export function showCart() {
     })
 }
 
-
 // -----------------
 // Remove the product
 // -----------------
@@ -912,6 +911,11 @@ async function removeFromCart(user_id, product_id, product_category) {
     console.error('Error removing item from cart:', error);
   }
 }
+
+// -----------------
+// Purchase the product
+// -----------------
+
 
 // Delete user from the cart table
 async function purchaseCompleted(user_id) {

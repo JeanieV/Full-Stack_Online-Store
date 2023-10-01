@@ -46,7 +46,7 @@ async function submitRegisterForm(event) {
 
 
             console.log("User added to database!")
-            alert('Thank you for registering!');
+            alert('Thank you for registering!\nPlease log in to continue.');
 
             // Reset the form again
             registerForm.reset();
