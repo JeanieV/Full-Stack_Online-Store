@@ -732,11 +732,34 @@ export function showCart() {
             // Creating the product quantity that will show in the table
             const productQuantity = document.createElement("td");
             productQuantity.classList.add("tableData");
-            productQuantity.innerHTML = 1;
+
+            // Creating the quantity input
+            let quantityInput = document.createElement("input");
+            quantityInput.type = "number";
+            quantityInput.min = 1;
+            quantityInput.max = 1000;
+            quantityInput.value = cartItem.getQuantity || 1;
+            quantityInput.classList.add("quantity-input");
+
+            productQuantity.appendChild(quantityInput);
+
+            quantityInput.addEventListener('input', (event) => {
+              const newQuantity = parseInt(event.target.value);
+              const newPrice = cartItem.getPrice * newQuantity;
+              const productId = cartItem.getProductId;
+              const productCategory = cartItem.getCategory;
+
+              // Update the quantity in the database
+              updateQuantityInCart(user_id, productCategory, productId, newQuantity, newPrice)
+
+              quantityInput.innerHTML = newQuantity;
+              productPrice.innerHTML = "R" + newPrice.toFixed(2);
+            });
 
             // Creating the Product Price that will show in the cart
-            const productPrice = document.createElement("td");
+            let productPrice = document.createElement("td");
             productPrice.classList.add("tableData");
+            productPrice.setAttribute("id", "productPriceData")
             productPrice.innerHTML = "R" + cartItem.getPrice.toFixed(2);
             cartItem.productPrice = productPrice;
 
@@ -887,6 +910,35 @@ export function showCart() {
 }
 
 // -----------------
+// Update the quantity
+// -----------------
+
+// Update the quantity in the database and update the cart display
+export async function updateQuantityInCart(user_id, product_category, product_id, newQuantity, newPrice) {
+  try {
+    const { data, error: updateError } = await supabase
+      .from('cart')
+      .update({
+        quantity: newQuantity,
+        totalPrice: newPrice
+      })
+      .eq('user_id', user_id)
+      .eq('product_category', product_category)
+      .eq('product_id', product_id);
+
+    if (updateError) {
+      console.error('Error updating quantity:', updateError);
+    } else {
+      console.log('Quantity updated successfully.');
+      
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+
+// -----------------
 // Remove the product
 // -----------------
 
@@ -898,7 +950,7 @@ async function removeFromCart(user_id, product_id, product_category) {
       .from('cart')
       .delete()
       .eq('user_id', user_id)
-      .eq('product_id', product_id) 
+      .eq('product_id', product_id)
       .eq('product_category', product_category)
       .single();
 
@@ -915,7 +967,6 @@ async function removeFromCart(user_id, product_id, product_category) {
 // -----------------
 // Purchase the product
 // -----------------
-
 
 // Delete user from the cart table
 async function purchaseCompleted(user_id) {
