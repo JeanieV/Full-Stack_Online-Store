@@ -732,32 +732,10 @@ export function showCart() {
             // Creating the product quantity that will show in the table
             const productQuantity = document.createElement("td");
             productQuantity.classList.add("tableData");
-
-            // Creating the quantity input
-            let quantityInput = document.createElement("input");
-            quantityInput.type = "number";
-            quantityInput.min = 1;
-            quantityInput.max = 1000;
-            quantityInput.value = cartItem.getQuantity || 1;
-            quantityInput.classList.add("quantity-input");
-
-            productQuantity.appendChild(quantityInput);
-
-            quantityInput.addEventListener('input', (event) => {
-              const newQuantity = parseInt(event.target.value);
-              const newPrice = cartItem.getPrice * newQuantity;
-              const productId = cartItem.getProductId;
-              const productCategory = cartItem.getCategory;
-
-              // Update the quantity in the database
-              updateQuantityInCart(user_id, productCategory, productId, newQuantity, newPrice)
-
-              quantityInput.innerHTML = newQuantity;
-              productPrice.innerHTML = "R" + newPrice.toFixed(2);
-            });
+            productQuantity.innerHTML = 1;
 
             // Creating the Product Price that will show in the cart
-            let productPrice = document.createElement("td");
+            const productPrice = document.createElement("td");
             productPrice.classList.add("tableData");
             productPrice.setAttribute("id", "productPriceData")
             productPrice.innerHTML = "R" + cartItem.getPrice.toFixed(2);
@@ -775,7 +753,13 @@ export function showCart() {
 
             // Add a click event listener to the delete button
             deleteButton.addEventListener('click', () => {
-              removeFromCart(user_id, cartItem.getProductId, cartItem.getCategory);
+              // If it's the last item for the specific user, clear the cart
+              if (cartItems.length === 1) {
+                purchaseCompleted(user_id);
+              } else {
+                removeFromCart(user_id, cartItem.getCategory, cartItem.getProductId);
+              }
+
               row.remove();
 
               // Correct the subtotal by subtracting the price of the deleted product
@@ -910,42 +894,22 @@ export function showCart() {
 }
 
 // -----------------
-// Update the quantity
-// -----------------
-
-// Update the quantity in the database and update the cart display
-export async function updateQuantityInCart(user_id, product_category, product_id, newQuantity, newPrice) {
-  try {
-    const { data, error: updateError } = await supabase
-      .from('cart')
-      .update({
-        quantity: newQuantity,
-        totalPrice: newPrice
-      })
-      .eq('user_id', user_id)
-      .eq('product_category', product_category)
-      .eq('product_id', product_id);
-
-    if (updateError) {
-      console.error('Error updating quantity:', updateError);
-    } else {
-      console.log('Quantity updated successfully.');
-      
-    }
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
-
-
-// -----------------
 // Remove the product
 // -----------------
 
 // Delete the item from the cart table
-async function removeFromCart(user_id, product_id, product_category) {
-
+async function removeFromCart(user_id, product_category, product_id) {
   try {
+    if (!user_id || !product_id || !product_category) {
+      console.error('Invalid parameters for deletion');
+      return;
+    }
+
+    console.log('Removing product:');
+    console.log('User ID:', user_id);
+    console.log('Product Category:', product_category);
+    console.log('Product ID:', product_id);
+
     const { error } = await supabase
       .from('cart')
       .delete()
@@ -956,6 +920,7 @@ async function removeFromCart(user_id, product_id, product_category) {
 
     if (error) {
       console.error('Error deleting item from cart:', error);
+
     } else {
       console.log('Item deleted from cart successfully.');
     }
@@ -963,6 +928,7 @@ async function removeFromCart(user_id, product_id, product_category) {
     console.error('Error removing item from cart:', error);
   }
 }
+
 
 // -----------------
 // Purchase the product
