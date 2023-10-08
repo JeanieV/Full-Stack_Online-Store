@@ -48,6 +48,18 @@ h3 {
 p {
     font-size: 27px;
     text-align: center;
+    color: #E0DFD0;
+}
+
+.text {
+    font-size: 27px;
+    text-align: center;
+    color: #000000;
+}
+
+.empty{
+    font-size: 20px;
+    color: #000000;
 }
 
 .tableHeadings {

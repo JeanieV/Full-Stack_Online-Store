@@ -54,6 +54,11 @@ h2 {
 
 p {
     font-size: 20px;
+    color: #E0DFD0;
+}
+
+.empty{
+    font-size: 20px;
     color: #000000;
 }
 
@@ -254,7 +259,7 @@ a:hover {
 /* Pottery Tips section */
 
 .source {
-    color: #E0DFD0;
+    color: #000000;
     font-size: 22px
 }
 
@@ -264,7 +269,6 @@ a:hover {
 
 .blockquote {
     text-align: center;
-
 }
 
 .blockquote:hover {

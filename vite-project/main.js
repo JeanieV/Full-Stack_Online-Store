@@ -102,6 +102,8 @@ window.addEventListener('load', () => {
 function logOutUser() {
   // Clear all user-related session data from localStorage
   const sessionDataKeys = [
+    'quantity',
+    'totalPrice',
     'loggedInUserId',
     'loggedInUsername',
     'loggedInFullName',

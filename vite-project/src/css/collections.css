@@ -134,6 +134,17 @@ p {
     color: #000000;
 }
 
+.text{
+    font-size: 27px;
+    text-align: center;
+    color: #E0DFD0;
+}
+
+.empty{
+    font-size: 20px;
+    color: #000000;
+}
+
 h3 {
     font-size: 25px;
     color: #000000;
@@ -330,6 +341,10 @@ h5 {
 .purchaseButton:hover {
     background-color: #DC9750;
     color: white;
+}
+
+.quantity-input{
+    width: 5vw;
 }
 
 

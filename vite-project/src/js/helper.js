@@ -373,9 +373,18 @@ export async function addToCart() {
   // Get form input values
   const product_id = parseInt(localStorage.getItem("productID"));
   const product_category = localStorage.getItem("productCategory");
-  const quantity = 1;
+
+  // Get the stored quantity from localStorage
+  const storedQuantity = parseInt(localStorage.getItem(`quantity_${product_id}`));
+
+  // Set the quantity to 1 if it's not available in localStorage
+  const quantity = isNaN(storedQuantity) ? 1 : storedQuantity;
   const price = localStorage.getItem("price");
   const totalPrice = price * quantity;
+
+  // Save the quantity and totalPrice in localStorage
+  localStorage.setItem(`quantity_${product_id}`, quantity);
+  localStorage.setItem(`totalPrice_${product_id}`, totalPrice);
 
   try {
     // Check if the product is already in the cart
@@ -390,9 +399,8 @@ export async function addToCart() {
       console.error('Error querying cart:', error);
 
     } else if (data.length > 0) {
-
       // Product already exists in the cart
-      alert('This product is already in your cart.');
+      alert('This product is already in your cart.\nQuantity has been reset to 1');
     } else {
       // Product doesn't exist in the cart, insert a new entry
       const { error: insertError } = await supabase.from('cart').insert({
@@ -478,7 +486,7 @@ export function emptyShoppingCart() {
 
   // Creating the paragraph
   const newparagraph = document.createElement("p");
-  newparagraph.classList.add("tableData");
+  newparagraph.classList.add("tableData", "empty");
   newparagraph.innerHTML = `Your shopping cart is currently empty. <br> Kindly click on the button below to start your shopping journey!`
 
   const centerDiv = document.createElement('div');
@@ -554,6 +562,10 @@ export async function fetchUserCart(user_id) {
       const { product_id, product_category } = cartItem;
 
       let productData;
+
+      // Get the quantity from localStorage
+      cartItem.quantity = parseInt(localStorage.getItem(`quantity_${product_id}`)) || 1;
+      cartItem.totalPrice = parseInt(localStorage.getItem(`totalPrice_${product_id}`));
 
       // Use if statements to determine the table to query based on product_category
       if (product_category === 'stoneware') {
@@ -636,6 +648,7 @@ export function showCart() {
         const mycart = document.createElement("div");
         mycart.classList.add("content-cart", "mx-5", "mt-5");
 
+        // Creating the close button
         const buttonClose = document.createElement("span");
         buttonClose.classList.add("close", "p-2");
         buttonClose.innerHTML = "&times";
@@ -647,13 +660,13 @@ export function showCart() {
 
         const fullname = localStorage.getItem('loggedInFullName');
 
+        // If the user is logged in
         if (fullname) {
 
           const customerName = document.createElement("h2");
           customerName.classList.add("heading2Modal", "pb-3");
           customerName.textContent = `Hi there, ${fullname}!`;
 
-          // Appending "Invoice" name before the table
           mycart.appendChild(buttonClose);
           mycart.appendChild(customerName);
 
@@ -732,14 +745,62 @@ export function showCart() {
             // Creating the product quantity that will show in the table
             const productQuantity = document.createElement("td");
             productQuantity.classList.add("tableData");
-            productQuantity.innerHTML = 1;
+
+            const quantityInput = document.createElement("input");
+            quantityInput.type = "number";
+            quantityInput.min = 1;
+            quantityInput.max = 100;
+            quantityInput.value = cartItem.getQuantity || localStorage.getItem(`quantity_${cartItem.getProductId}`); 
+            quantityInput.classList.add("quantity-input");
+
+            productQuantity.appendChild(quantityInput);
 
             // Creating the Product Price that will show in the cart
             const productPrice = document.createElement("td");
             productPrice.classList.add("tableData");
-            productPrice.setAttribute("id", "productPriceData")
-            productPrice.innerHTML = "R" + cartItem.getPrice.toFixed(2);
+            productPrice.setAttribute("id", "productPriceData");
+
+            // Function to calculate and set the initial product price
+            function calculateInitialProductPrice() {
+              const initialQuantity = parseInt(quantityInput.value) || 1;
+              const initialPrice = initialQuantity * cartItem.getPrice;
+              productPrice.innerHTML = "R" + initialPrice.toFixed(2);
+              return initialPrice;
+            }
+
+            const initialItemPrice = calculateInitialProductPrice();
+
             cartItem.productPrice = productPrice;
+
+            // Add an event listener to the quantity input
+            quantityInput.addEventListener("change", () => {
+              // Creating the newQuantity and newPrice
+              const newQuantity = parseInt(quantityInput.value);
+              const newPrice = newQuantity * cartItem.getPrice;
+
+              if (!isNaN(newQuantity)) {
+                // Getting the old quantity from localStorage
+                const oldQuantity = cartItem.getQuantity || parseInt(localStorage.getItem(`quantity_${cartItem.getProductId}`)) || 0;
+                const oldPrice = oldQuantity * cartItem.getPrice;
+
+                updateQuantityInCart(user_id, cartItem.getCategory, cartItem.getProductId, newQuantity, newPrice);
+
+                // Update the quantity and totalPrice in localStorage
+                localStorage.setItem(`quantity_${cartItem.getProductId}`, newQuantity);
+                localStorage.setItem(`totalPrice_${cartItem.getProductId}`, newPrice);
+
+                // Update the product price in the table
+                productPrice.innerHTML = "R" + newPrice.toFixed(2);
+
+                // Update the subtotal by subtracting the old product price and adding the new product price
+                subTotal = subTotal - oldPrice + newPrice;
+
+                // Update the subtotal in the UI
+                subTotalValue.textContent = "R" + subTotal.toFixed(2);
+
+                updateTotals(); 
+              }
+            });
 
             // Creating the remove button that will delete the row
             const removeRowButton = document.createElement("td");
@@ -760,12 +821,15 @@ export function showCart() {
                 removeFromCart(user_id, cartItem.getCategory, cartItem.getProductId);
               }
 
-              row.remove();
-
-              // Correct the subtotal by subtracting the price of the deleted product
-              subTotal -= cartItem.getPrice;
+              // Calculate the item subtotal based on the updated quantity
+              const newQuantity = parseInt(quantityInput.value);
+              const deletedItemPrice = cartItem.getPrice * newQuantity;
+              subTotal -= deletedItemPrice;
 
               updateTotals();
+
+              // Remove the row from the table
+              row.remove();
             });
 
             row.appendChild(productImage);
@@ -796,15 +860,15 @@ export function showCart() {
               else {
                 total = subTotal + deliveryFee;
               }
+
               // Update the subtotal and total values in the table
               subTotalValue.textContent = "R" + subTotal.toFixed(2);
               totalValue.textContent = "R" + total.toFixed(2);
             }
 
             // Calculate subtotal for each item and add it to the total
-            subTotal += cartItem.getPrice;
+            subTotal += initialItemPrice;
           }
-
 
           // Creating the Sub Total row and label
           const subTotalRow = document.createElement("tr");
@@ -816,7 +880,7 @@ export function showCart() {
           // Creating the value 
           subTotalValue = document.createElement("td");
           subTotalValue.classList.add("tableData1");
-          subTotalValue.textContent = "R" + subTotal;
+          subTotalValue.textContent = "R" + subTotal.toFixed(2);
 
           subTotalRow.appendChild(subTotalLabel);
           subTotalRow.appendChild(subTotalValue);
@@ -836,7 +900,7 @@ export function showCart() {
           // Creating the value
           const deliveryValue = document.createElement("td");
           deliveryValue.classList.add("tableData1");
-          deliveryValue.textContent = "R" + deliveryFee;
+          deliveryValue.textContent = "R" + deliveryFee.toFixed(2);
           deliveryRow.appendChild(deliveryLabel);
           deliveryRow.appendChild(deliveryValue);
           table.appendChild(deliveryRow);
@@ -851,12 +915,11 @@ export function showCart() {
           // Creating the value
           totalValue = document.createElement("td");
           totalValue.classList.add("tableData1");
-          totalValue.textContent = "R" + total;
+          totalValue.textContent = "R" + total.toFixed(2);
           totalRow.appendChild(totalLabel);
           totalRow.appendChild(totalValue);
           table.appendChild(totalRow);
 
-          // Appending the table after the "Invoice" name
           mycart.appendChild(centerDiv1);
           mycart.appendChild(table);
         }
@@ -894,6 +957,35 @@ export function showCart() {
 }
 
 // -----------------
+// Update the quantity
+// -----------------
+
+// Update the quantity in the database
+async function updateQuantityInCart(user_id, product_category, product_id, newQuantity, newPrice) {
+  try {
+    const { error } = await supabase
+      .from('cart')
+      .update({
+        quantity: newQuantity,
+        totalPrice: newPrice
+      })
+      .eq('user_id', user_id)
+      .eq('product_category', product_category)
+      .eq('product_id', product_id);
+
+    if (error) {
+      console.error('Error updating quantity:', error);
+    } else {
+      console.log('Quantity updated successfully.');
+
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+
+// -----------------
 // Remove the product
 // -----------------
 
@@ -918,10 +1010,12 @@ async function removeFromCart(user_id, product_category, product_id) {
       .eq('product_category', product_category)
       .single();
 
+
     if (error) {
       console.error('Error deleting item from cart:', error);
 
     } else {
+      alert("This product has been deleted.");
       console.log('Item deleted from cart successfully.');
     }
   } catch (error) {
