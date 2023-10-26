@@ -1,5 +1,4 @@
 Welcome to the Art of Pottery Online Store!
-[Link to My Project](vite-project/index.html)
 
 This is your landing page:
 You will be able to register/log-in, view our different collections and read some helpful pottery tips.
