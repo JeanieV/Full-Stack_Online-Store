@@ -49,6 +49,15 @@ function topFunction() {
   document.documentElement.scrollTop = 800; // For Chrome, Firefox, IE and Opera
 }
 
+function userLocalStorage(user_id, username, fullname, address, phoneNumber, email, password) {
+  localStorage.setItem('loggedInUserId', user_id);
+  localStorage.setItem('loggedInUsername', username);
+  localStorage.setItem('loggedInFullName', fullname);
+  localStorage.setItem('loggedInAddress', address);
+  localStorage.setItem('loggedInPhoneNumber', phoneNumber);
+  localStorage.setItem('loggedInEmail', email);
+  localStorage.setItem('loggedInPassword', password);
+}
 
 // -----------------
 // Is the user logged in?
